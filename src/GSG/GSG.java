@@ -13,23 +13,35 @@ import java.util.List;
  */
 public class GSG {
 
-	// N joueurs, K braconniers et L garde chasse, les K premiers joueurs seront les braconniers et les L derniers joueurs les gardes chasses
+	/**
+	 * N players, K attackers and L defenders, the first K players are the attackers
+	 * actions define the possible choice for players
+	 */
 	int nb_braconnier;
 	int nb_garde_chasse;
 	int nb_joueur;
-	
-	// Liste d'actions représentée sous forme d'entier.
 	int actions[];
-	
-	// gain du braconnier à réaliser une action
 	int gain_braconnier;
 	
-	// indique la méthode de calcul d'utilité qui devra être utilisée
+	/**
+	 * can be "gain or zero" or "gain less number of defender"
+	 * define the method use to compute the utility depending the choice's player
+	 */
 	String utilite_calcule;
 	
-	// représente les matrices qui représentent le jeux, une matrice par joueur avec les valeurs de son utilité en fonction des choix de chacun
+	/**
+	 * represent matrixes of utility (one by player)
+	 */
+	ArrayList<ArrayList> matrice_du_jeux = new ArrayList<ArrayList>();
+	
 	ArrayList<ArrayList> matrices_du_jeux = new ArrayList<ArrayList>();
-
+	/**
+	 * @param nb_braconnier
+	 * @param nb_garde_chasse
+	 * @param ressources
+	 * @param gain_braconnier
+	 * @param utilite_calcule
+	 */
 	public GSG(int nb_braconnier, int nb_garde_chasse, int[] ressources, int gain_braconnier, String utilite_calcule) {
 		this.nb_braconnier = nb_braconnier;
 		this.nb_garde_chasse = nb_garde_chasse;
@@ -39,6 +51,13 @@ public class GSG {
 		this.utilite_calcule = utilite_calcule;
 		this.matrices_du_jeux = null;
 	}
+	
+	/**
+	 * @param indice_joueur
+	 * @param choix_des_joueurs
+	 * @return the utility of the player in "indice_joueur" position
+	 *  depending actions choose by players and method to compute the utility
+	 */
 	private Integer calcul_utilite(int indice_joueur,ArrayList<Integer> choix_des_joueurs) {
 		switch(this.utilite_calcule) {
 		
@@ -101,6 +120,10 @@ public class GSG {
 		return 0;
 	}
 
+	/**
+	 * @param tab
+	 * @return matrixes of the game (one by player)
+	 */
 	private ArrayList<ArrayList> calcul_matrice_2joueurs(ArrayList<ArrayList> tab) {
 		ArrayList<ArrayList> t0 = new ArrayList<ArrayList>();
 		ArrayList<ArrayList> t1 = new ArrayList<ArrayList>();
@@ -381,9 +404,17 @@ public class GSG {
 		tab.add(t5);
 		return tab;
 	}
+	
+	/**
+	 * @return matrixes of the game
+	 */
 	public  ArrayList<ArrayList> getMatrixes_of_game() {
 		return matrices_du_jeux;
 	}
+	
+	/**
+	 * compute matrixes depending the number of players
+	 */
 	public void calcul_matrices() {
 		ArrayList<ArrayList> tab = new ArrayList<ArrayList>();
 		
@@ -410,6 +441,10 @@ public class GSG {
 		}
 		
 	}	
+	
+	/**
+	 * print matrixes
+	 */
 	public void afficher_matrices() {
 		for (int j=0; j<this.nb_joueur; j++) {
 			System.out.println("Matrice donnant l'utilité du joueur " + j + "\n" + this.matrices_du_jeux.get(j));
