@@ -37,33 +37,7 @@ public class GSG {
 		this.actions = ressources;
 		this.gain_braconnier = gain_braconnier;
 		this.utilite_calcule = utilite_calcule;
-		
-		ArrayList<ArrayList> tab = new ArrayList<ArrayList>();
-		
-		switch(nb_joueur) {
-		
-		case 2:
-			tab = calcul_matrice_2joueurs(tab);
-			break;
-		case 3:
-			tab = calcul_matrice_3joueurs(tab);
-			break;
-		case 4:
-			tab = calcul_matrice_4joueurs(tab);
-			break;
-		case 5:
-			tab = calcul_matrice_5joueurs(tab);
-			break;
-		case 6:
-			tab = calcul_matrice_6joueurs(tab);
-			break;
-		default:
-			System.out.println("Nombre de joueurs non traité");
-			break;
-		}
-		
-		this.matrices_du_jeux = tab;
-		
+		this.matrices_du_jeux = null;
 	}
 	private Integer calcul_utilite(int indice_joueur,ArrayList<Integer> choix_des_joueurs) {
 		switch(this.utilite_calcule) {
@@ -220,7 +194,7 @@ public class GSG {
 				t0_bis.add(t0_ter);
 				t1_bis.add(t1_ter);
 				t2_bis.add(t2_ter);
-				t2_bis.add(t3_ter);
+				t3_bis.add(t3_ter);
 			}
 			t0.add(t0_bis);
 			t1.add(t1_bis);
@@ -409,6 +383,36 @@ public class GSG {
 	}
 	public  ArrayList<ArrayList> getMatrixes_of_game() {
 		return matrices_du_jeux;
+	}
+	public void calcul_matrices() {
+		ArrayList<ArrayList> tab = new ArrayList<ArrayList>();
+		
+		switch(nb_joueur) {
+		
+		case 2:
+			this.matrices_du_jeux = calcul_matrice_2joueurs(tab);
+			break;
+		case 3:
+			this.matrices_du_jeux = calcul_matrice_3joueurs(tab);
+			break;
+		case 4:
+			this.matrices_du_jeux = calcul_matrice_4joueurs(tab);
+			break;
+		case 5:
+			this.matrices_du_jeux = calcul_matrice_5joueurs(tab);
+			break;
+		case 6:
+			this.matrices_du_jeux = calcul_matrice_6joueurs(tab);
+			break;
+		default:
+			System.out.println("Nombre de joueurs non traité");
+			break;
+		}
+		
 	}	
-	
+	public void afficher_matrices() {
+		for (int j=0; j<this.nb_joueur; j++) {
+			System.out.println("Matrice donnant l'utilité du joueur " + j + "\n" + this.matrices_du_jeux.get(j));
+		}
+	}
 }
