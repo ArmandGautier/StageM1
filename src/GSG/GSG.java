@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * @author agautier
- *
  */
 public class GSG {
 
@@ -21,7 +20,7 @@ public class GSG {
 	int nb_garde_chasse;
 	int nb_joueur;
 	int actions[];
-	int gain_braconnier;
+	float gain_braconnier[];
 	
 	/**
 	 * can be "gain or zero" or "gain less number of defender"
@@ -32,9 +31,8 @@ public class GSG {
 	/**
 	 * represent matrixes of utility (one by player)
 	 */
-	ArrayList<ArrayList> matrice_du_jeux = new ArrayList<ArrayList>();
-	
 	ArrayList<ArrayList> matrices_du_jeux = new ArrayList<ArrayList>();
+	
 	/**
 	 * @param nb_braconnier
 	 * @param nb_garde_chasse
@@ -42,14 +40,13 @@ public class GSG {
 	 * @param gain_braconnier
 	 * @param utilite_calcule
 	 */
-	public GSG(int nb_braconnier, int nb_garde_chasse, int[] ressources, int gain_braconnier, String utilite_calcule) {
+	public GSG(int nb_braconnier, int nb_garde_chasse, int[] ressources, float[] gain_braconnier, String utilite_calcule) {
 		this.nb_braconnier = nb_braconnier;
 		this.nb_garde_chasse = nb_garde_chasse;
 		this.nb_joueur = nb_braconnier+nb_garde_chasse;
 		this.actions = ressources;
 		this.gain_braconnier = gain_braconnier;
 		this.utilite_calcule = utilite_calcule;
-		this.matrices_du_jeux = null;
 	}
 	
 	/**
@@ -58,7 +55,7 @@ public class GSG {
 	 * @return the utility of the player in "indice_joueur" position
 	 *  depending actions choose by players and method to compute the utility
 	 */
-	private Integer calcul_utilite(int indice_joueur,ArrayList<Integer> choix_des_joueurs) {
+	private Float calcul_utilite(int indice_joueur,ArrayList<Integer> choix_des_joueurs) {
 		switch(this.utilite_calcule) {
 		
 		case "gain or zero":
@@ -68,10 +65,10 @@ public class GSG {
 				int choix = choix_des_joueurs.get(indice_joueur);
 				List<Integer> choix_des_garde_chasse = choix_des_joueurs.subList(this.nb_braconnier, choix_des_joueurs.size());
 				if (choix_des_garde_chasse.contains(choix)) {
-					return 0;
+					return (float) 0;
 				}
 				else {
-					return this.gain_braconnier;
+					return this.gain_braconnier[choix];
 				}
 			}
 			// cas où le joueur est un garde_chasse
@@ -79,10 +76,10 @@ public class GSG {
 				int choix = choix_des_joueurs.get(indice_joueur);
 				List<Integer> choix_des_braconniers = choix_des_joueurs.subList(0, this.nb_braconnier);
 				if (choix_des_braconniers.contains(choix)) {
-					return 1;
+					return (float) 1;
 				}
 				else {
-					return 0;
+					return (float) 0;
 				}
 			}
 			
@@ -98,7 +95,7 @@ public class GSG {
 						nb_gc++;
 					}
 				}
-				return this.gain_braconnier - nb_gc;
+				return this.gain_braconnier[choix] - nb_gc;
 			}
 			// cas où le joueur est un garde_chasse
 			else {
@@ -110,14 +107,14 @@ public class GSG {
 						nb_b++;
 					}
 				}
-				return nb_b;
+				return (float) nb_b;
 			}
 			
 		default :
 			System.out.println("Mauvaise utilitée");
 			break;
 		}
-		return 0;
+		return (float) 0;
 	}
 
 	/**
@@ -128,8 +125,8 @@ public class GSG {
 		ArrayList<ArrayList> t0 = new ArrayList<ArrayList>();
 		ArrayList<ArrayList> t1 = new ArrayList<ArrayList>();
 		for (int a1 : this.actions) {
-			ArrayList<Integer> tab_temp0 = new ArrayList<Integer>();
-			ArrayList<Integer> tab_temp1 = new ArrayList<Integer>();
+			ArrayList<Float> tab_temp0 = new ArrayList<Float>();
+			ArrayList<Float> tab_temp1 = new ArrayList<Float>();
 			for (int a2 : this.actions) {
 				ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
 				choix_des_joueurs.add(a1);
@@ -153,9 +150,9 @@ public class GSG {
 			ArrayList<ArrayList> t1_bis = new ArrayList<ArrayList>();
 			ArrayList<ArrayList> t2_bis = new ArrayList<ArrayList>();
 			for (int a2 : this.actions) {
-				ArrayList<Integer> tab_temp0 = new ArrayList<Integer>();
-				ArrayList<Integer> tab_temp1 = new ArrayList<Integer>();
-				ArrayList<Integer> tab_temp2 = new ArrayList<Integer>();
+				ArrayList<Float> tab_temp0 = new ArrayList<Float>();
+				ArrayList<Float> tab_temp1 = new ArrayList<Float>();
+				ArrayList<Float> tab_temp2 = new ArrayList<Float>();
 				for (int a3 : this.actions) {
 					ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
 					choix_des_joueurs.add(a1);
@@ -194,10 +191,10 @@ public class GSG {
 				ArrayList<ArrayList> t2_ter = new ArrayList<ArrayList>();
 				ArrayList<ArrayList> t3_ter = new ArrayList<ArrayList>();
 				for (int a3 : this.actions) {
-					ArrayList<Integer> tab_temp0 = new ArrayList<Integer>();
-					ArrayList<Integer> tab_temp1 = new ArrayList<Integer>();
-					ArrayList<Integer> tab_temp2 = new ArrayList<Integer>();
-					ArrayList<Integer> tab_temp3 = new ArrayList<Integer>();
+					ArrayList<Float> tab_temp0 = new ArrayList<Float>();
+					ArrayList<Float> tab_temp1 = new ArrayList<Float>();
+					ArrayList<Float> tab_temp2 = new ArrayList<Float>();
+					ArrayList<Float> tab_temp3 = new ArrayList<Float>();
 					for (int a4 : this.actions) {
 						ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
 						choix_des_joueurs.add(a1);
@@ -255,11 +252,11 @@ public class GSG {
 					ArrayList<ArrayList> t3_quat = new ArrayList<ArrayList>();
 					ArrayList<ArrayList> t4_quat = new ArrayList<ArrayList>();
 					for (int a4 : this.actions) {
-						ArrayList<Integer> tab_temp0 = new ArrayList<Integer>();
-						ArrayList<Integer> tab_temp1 = new ArrayList<Integer>();
-						ArrayList<Integer> tab_temp2 = new ArrayList<Integer>();
-						ArrayList<Integer> tab_temp3 = new ArrayList<Integer>();
-						ArrayList<Integer> tab_temp4 = new ArrayList<Integer>();
+						ArrayList<Float> tab_temp0 = new ArrayList<Float>();
+						ArrayList<Float> tab_temp1 = new ArrayList<Float>();
+						ArrayList<Float> tab_temp2 = new ArrayList<Float>();
+						ArrayList<Float> tab_temp3 = new ArrayList<Float>();
+						ArrayList<Float> tab_temp4 = new ArrayList<Float>();
 						for (int a5 : this.actions) {
 							ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
 							choix_des_joueurs.add(a1);
@@ -340,12 +337,12 @@ public class GSG {
 						ArrayList<ArrayList> t4_cinq = new ArrayList<ArrayList>();
 						ArrayList<ArrayList> t5_cinq = new ArrayList<ArrayList>();
 						for (int a5 : this.actions) {
-							ArrayList<Integer> tab_temp0 = new ArrayList<Integer>();
-							ArrayList<Integer> tab_temp1 = new ArrayList<Integer>();
-							ArrayList<Integer> tab_temp2 = new ArrayList<Integer>();
-							ArrayList<Integer> tab_temp3 = new ArrayList<Integer>();
-							ArrayList<Integer> tab_temp4 = new ArrayList<Integer>();
-							ArrayList<Integer> tab_temp5 = new ArrayList<Integer>();
+							ArrayList<Float> tab_temp0 = new ArrayList<Float>();
+							ArrayList<Float> tab_temp1 = new ArrayList<Float>();
+							ArrayList<Float> tab_temp2 = new ArrayList<Float>();
+							ArrayList<Float> tab_temp3 = new ArrayList<Float>();
+							ArrayList<Float> tab_temp4 = new ArrayList<Float>();
+							ArrayList<Float> tab_temp5 = new ArrayList<Float>();
 							for (int a6 : this.actions) {
 								ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
 								choix_des_joueurs.add(a1);
@@ -408,7 +405,7 @@ public class GSG {
 	/**
 	 * @return matrixes of the game
 	 */
-	public  ArrayList<ArrayList> getMatrixes_of_game() {
+	public ArrayList<ArrayList> getMatrixes_of_game() {
 		return matrices_du_jeux;
 	}
 	
@@ -446,8 +443,18 @@ public class GSG {
 	 * print matrixes
 	 */
 	public void afficher_matrices() {
-		for (int j=0; j<this.nb_joueur; j++) {
-			System.out.println("Matrice donnant l'utilité du joueur " + j + "\n" + this.matrices_du_jeux.get(j));
+		if (this.matrices_du_jeux.isEmpty()) {
+			System.out.println("Les matrices du jeux n'existent pas");
+		}
+		else {
+			for (int j=0; j<this.nb_joueur; j++) {
+				if (j<this.nb_braconnier) {
+					System.out.println("Matrice donnant l'utilité du braconnier " + j + "\n" + this.matrices_du_jeux.get(j));
+				}
+				else {
+					System.out.println("Matrice donnant l'utilité du garde chasse " + j + "\n" + this.matrices_du_jeux.get(j));
+				}
+			}
 		}
 	}
 }

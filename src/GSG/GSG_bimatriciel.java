@@ -11,12 +11,15 @@ public class GSG_bimatriciel extends GSG {
 	 * @param gain_braconnier
 	 * @param utilite_calcule
 	 */
-	public GSG_bimatriciel(int nb_braconnier, int nb_garde_chasse, int[] ressources, int gain_braconnier, String utilite_calcule) {
+	public GSG_bimatriciel(int nb_braconnier, int nb_garde_chasse, int[] ressources, float[] gain_braconnier, String utilite_calcule) {
 		super(nb_braconnier, nb_garde_chasse, ressources, gain_braconnier, utilite_calcule);
+		for (int i=0; i<this.gain_braconnier.length; i++) {
+			this.gain_braconnier[i] = this.gain_braconnier[i] / this.nb_garde_chasse;
+		}
 	}
 
 	/**
-	 * @return all the bimatrixes representing the game
+	 * @return all bi-matrixes representing the game
 	 */
 	private ArrayList<ArrayList> calcul_bimatrices() {
 		ArrayList<ArrayList> tab = new ArrayList<ArrayList>();
@@ -48,17 +51,22 @@ public class GSG_bimatriciel extends GSG {
 	}
 	
 	/**
-	 * print matrixes
+	 * print bi-matrixes
 	 */
 	public void afficher_matrices() {
-		int k = 0;
-		for (int i=0; i<this.nb_braconnier; i++) {
-			for (int j=this.nb_braconnier; j<this.nb_joueur; j++) {
-				ArrayList<ArrayList> mat = this.matrices_du_jeux.get(k);
-				System.out.println("Bimatrice " + k );
-				System.out.println("Matrice donnant l'utilité du braconnier " + i + "\n" + mat.get(0) + "\n");
-				System.out.println("Matrice donnant l'utilité du garde chasse " + j + "\n" + mat.get(1) + "\n");
-				k++;
+		if (this.matrices_du_jeux.isEmpty()) {
+			System.out.println("Les matrices du jeux n'existent pas");
+		}
+		else {
+			int k = 0;
+			for (int i=0; i<this.nb_braconnier; i++) {
+				for (int j=this.nb_braconnier; j<this.nb_joueur; j++) {
+					ArrayList<ArrayList> mat = this.matrices_du_jeux.get(k);
+					System.out.println("Bimatrice " + k );
+					System.out.println("Matrice donnant l'utilité du braconnier " + i + "\n" + mat.get(0) + "\n");
+					System.out.println("Matrice donnant l'utilité du garde chasse " + j + "\n" + mat.get(1) + "\n");
+					k++;
+				}
 			}
 		}
 	}
