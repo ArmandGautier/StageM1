@@ -5,6 +5,8 @@ package GSG;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.function.Consumer;
 
 
 /**
@@ -29,9 +31,15 @@ public class GSG {
 	String utilite_calcule;
 	
 	/**
-	 * represent matrixes of utility (one by player)
+	 * represent the number of possible situation
 	 */
-	ArrayList<ArrayList> matrices_du_jeux = new ArrayList<ArrayList>();
+	int dimension;
+	
+	/**
+	 * represent matrixes of utility (one by player) in one dimension
+	 */
+	ArrayList<int[]> act = new ArrayList<int[]>();
+	ArrayList<float[]> uti = new ArrayList<float[]>();
 	
 	/**
 	 * @param nb_braconnier
@@ -47,6 +55,7 @@ public class GSG {
 		this.actions = ressources;
 		this.gain_braconnier = gain_braconnier;
 		this.utilite_calcule = utilite_calcule;
+		this.dimension = (int) (Math.pow(actions.length, nb_joueur));
 	}
 	
 	/**
@@ -116,345 +125,94 @@ public class GSG {
 		}
 		return (float) 0;
 	}
+	
+	/**
+	 * compute values of utility for every players in all possible situation
+	 */
+	public void calcul_val() {
+		ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
+	    for (int k=0; k < this.nb_joueur; k++) {
+	    	choix_des_joueurs.add(0);
+	    }
+		for (int i=0; i < this.dimension; i++) {
+			float[] uti_tmp = new float[nb_joueur];
+			int changement_action_pour_k = this.dimension/this.actions.length;
+			
+			if (i != 0) {
+			    for (int k=0; k < this.nb_joueur; k++) {
+			    	
+					if (Math.floorMod(i,changement_action_pour_k) == 0) {
+						choix_des_joueurs.set(k, choix_des_joueurs.get(k)+1);
+					    for (int l=k+1; l < this.nb_joueur; l++) {
+					    	choix_des_joueurs.set(l,0);
+					    }
+					    break;
+					}
+					
+					else {
+						changement_action_pour_k = changement_action_pour_k/this.actions.length;
+					}
+			    }
+			}
+		    
+			int[] c = new int[nb_joueur];
+			for (int j=0; j < this.nb_joueur; j++) {
+				uti_tmp[j] = calcul_utilite(j,choix_des_joueurs);
+				c[j] = choix_des_joueurs.get(j);
+			}
+			
+			uti.add(uti_tmp);
+			act.add(c);
+		}
+	}
+	
+	public void afficher_int(ArrayList<int[]> t) {
+		for (int[] tab : t) {
+			for (int i=0; i<tab.length; i++) {
+				System.out.println(tab[i]);
+			}
+		}
+	}
+	
+	public void afficher_float(ArrayList<float[]> t) {
+		for (float[] tab : t) {
+			for (int i=0; i<tab.length; i++) {
+				System.out.println(tab[i]);
+			}
+		}
+	}
+	
+	public void afficher_jeux() {
+		ListIterator<int[]> it1 = this.act.listIterator();
+		ListIterator<float[]> it2 = this.uti.listIterator();
+		
+		while (it1.hasNext() && it2.hasNext()) {
+			int[] tab1 = it1.next();
+			float[] tab2 = it2.next();
+			System.out.print("Profil : ");
+			for (int i=0; i<tab1.length; i++) {
+				System.out.print(tab1[i] + " ");
+			}
+			System.out.print(" Utilitées correspondantes : ");
+			for (int j=0; j<tab2.length; j++) {
+				System.out.print(tab2[j] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
 
 	/**
-	 * @param tab
-	 * @return matrixes of the game (one by player)
+	 * @return the act
 	 */
-	private ArrayList<ArrayList> calcul_matrice_2joueurs(ArrayList<ArrayList> tab) {
-		ArrayList<ArrayList> t0 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t1 = new ArrayList<ArrayList>();
-		for (int a1 : this.actions) {
-			ArrayList<Float> tab_temp0 = new ArrayList<Float>();
-			ArrayList<Float> tab_temp1 = new ArrayList<Float>();
-			for (int a2 : this.actions) {
-				ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
-				choix_des_joueurs.add(a1);
-				choix_des_joueurs.add(a2);
-				tab_temp0.add(calcul_utilite(0,choix_des_joueurs));
-				tab_temp1.add(calcul_utilite(1,choix_des_joueurs));
-			}
-			t0.add(tab_temp0);
-			t1.add(tab_temp1);
-		}
-		tab.add(t0);
-		tab.add(t1);
-		return tab;
+	public ArrayList<int[]> getAct() {
+		return act;
 	}
-	private ArrayList<ArrayList> calcul_matrice_3joueurs(ArrayList<ArrayList> tab) {
-		ArrayList<ArrayList> t0 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t1 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t2 = new ArrayList<ArrayList>();
-		for (int a1 : this.actions) {
-			ArrayList<ArrayList> t0_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t1_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t2_bis = new ArrayList<ArrayList>();
-			for (int a2 : this.actions) {
-				ArrayList<Float> tab_temp0 = new ArrayList<Float>();
-				ArrayList<Float> tab_temp1 = new ArrayList<Float>();
-				ArrayList<Float> tab_temp2 = new ArrayList<Float>();
-				for (int a3 : this.actions) {
-					ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
-					choix_des_joueurs.add(a1);
-					choix_des_joueurs.add(a2);
-					choix_des_joueurs.add(a3);
-					tab_temp0.add(calcul_utilite(0,choix_des_joueurs));
-					tab_temp1.add(calcul_utilite(1,choix_des_joueurs));
-					tab_temp2.add(calcul_utilite(2,choix_des_joueurs));
-				}
-				t0_bis.add(tab_temp0);
-				t1_bis.add(tab_temp1);
-				t2_bis.add(tab_temp2);
-			}
-			t0.add(t0_bis);
-			t1.add(t1_bis);
-			t2.add(t2_bis);
-		}
-		tab.add(t0);
-		tab.add(t1);
-		tab.add(t2);
-		return tab;
-	}
-	private ArrayList<ArrayList> calcul_matrice_4joueurs(ArrayList<ArrayList> tab) {
-		ArrayList<ArrayList> t0 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t1 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t2 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t3 = new ArrayList<ArrayList>();
-		for (int a1 : this.actions) {
-			ArrayList<ArrayList> t0_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t1_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t2_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t3_bis = new ArrayList<ArrayList>();
-			for (int a2 : this.actions) {
-				ArrayList<ArrayList> t0_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t1_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t2_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t3_ter = new ArrayList<ArrayList>();
-				for (int a3 : this.actions) {
-					ArrayList<Float> tab_temp0 = new ArrayList<Float>();
-					ArrayList<Float> tab_temp1 = new ArrayList<Float>();
-					ArrayList<Float> tab_temp2 = new ArrayList<Float>();
-					ArrayList<Float> tab_temp3 = new ArrayList<Float>();
-					for (int a4 : this.actions) {
-						ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
-						choix_des_joueurs.add(a1);
-						choix_des_joueurs.add(a2);
-						choix_des_joueurs.add(a3);
-						choix_des_joueurs.add(a4);
-						tab_temp0.add(calcul_utilite(0,choix_des_joueurs));
-						tab_temp1.add(calcul_utilite(1,choix_des_joueurs));
-						tab_temp2.add(calcul_utilite(2,choix_des_joueurs));
-						tab_temp3.add(calcul_utilite(3,choix_des_joueurs));
-					}
-					t0_ter.add(tab_temp0);
-					t1_ter.add(tab_temp1);
-					t2_ter.add(tab_temp2);
-					t3_ter.add(tab_temp3);
-				}
-				t0_bis.add(t0_ter);
-				t1_bis.add(t1_ter);
-				t2_bis.add(t2_ter);
-				t3_bis.add(t3_ter);
-			}
-			t0.add(t0_bis);
-			t1.add(t1_bis);
-			t2.add(t2_bis);
-			t3.add(t3_bis);
-		}
-		tab.add(t0);
-		tab.add(t1);
-		tab.add(t2);
-		tab.add(t3);
-		return tab;
-	}
-	private ArrayList<ArrayList> calcul_matrice_5joueurs(ArrayList<ArrayList> tab) {
-		ArrayList<ArrayList> t0 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t1 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t2 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t3 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t4 = new ArrayList<ArrayList>();
-		for (int a1 : this.actions) {
-			ArrayList<ArrayList> t0_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t1_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t2_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t3_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t4_bis = new ArrayList<ArrayList>();
-			for (int a2 : this.actions) {
-				ArrayList<ArrayList> t0_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t1_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t2_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t3_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t4_ter = new ArrayList<ArrayList>();
-				for (int a3 : this.actions) {
-					ArrayList<ArrayList> t0_quat = new ArrayList<ArrayList>();
-					ArrayList<ArrayList> t1_quat = new ArrayList<ArrayList>();
-					ArrayList<ArrayList> t2_quat = new ArrayList<ArrayList>();
-					ArrayList<ArrayList> t3_quat = new ArrayList<ArrayList>();
-					ArrayList<ArrayList> t4_quat = new ArrayList<ArrayList>();
-					for (int a4 : this.actions) {
-						ArrayList<Float> tab_temp0 = new ArrayList<Float>();
-						ArrayList<Float> tab_temp1 = new ArrayList<Float>();
-						ArrayList<Float> tab_temp2 = new ArrayList<Float>();
-						ArrayList<Float> tab_temp3 = new ArrayList<Float>();
-						ArrayList<Float> tab_temp4 = new ArrayList<Float>();
-						for (int a5 : this.actions) {
-							ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
-							choix_des_joueurs.add(a1);
-							choix_des_joueurs.add(a2);
-							choix_des_joueurs.add(a3);
-							choix_des_joueurs.add(a4);
-							choix_des_joueurs.add(a5);
-							tab_temp0.add(calcul_utilite(0,choix_des_joueurs));
-							tab_temp1.add(calcul_utilite(1,choix_des_joueurs));
-							tab_temp2.add(calcul_utilite(2,choix_des_joueurs));
-							tab_temp3.add(calcul_utilite(3,choix_des_joueurs));
-							tab_temp4.add(calcul_utilite(4,choix_des_joueurs));
-						}
-						t0_quat.add(tab_temp0);
-						t1_quat.add(tab_temp1);
-						t2_quat.add(tab_temp2);
-						t3_quat.add(tab_temp3);
-						t4_quat.add(tab_temp4);
-					}
-					t0_ter.add(t0_quat);
-					t1_ter.add(t1_quat);
-					t2_ter.add(t2_quat);
-					t3_ter.add(t3_quat);
-					t4_ter.add(t4_quat);
-				}
-				t0_bis.add(t0_ter);
-				t1_bis.add(t1_ter);
-				t2_bis.add(t2_ter);
-				t3_bis.add(t3_ter);
-				t4_bis.add(t4_ter);
-			}
-			t0.add(t0_bis);
-			t1.add(t1_bis);
-			t2.add(t2_bis);
-			t3.add(t3_bis);
-			t4.add(t4_bis);
-		}
-		tab.add(t0);
-		tab.add(t1);
-		tab.add(t2);
-		tab.add(t3);
-		tab.add(t4);
-		return tab;
-	}
-	private ArrayList<ArrayList> calcul_matrice_6joueurs(ArrayList<ArrayList> tab) {
-		ArrayList<ArrayList> t0 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t1 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t2 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t3 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t4 = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> t5 = new ArrayList<ArrayList>();
-		for (int a1 : this.actions) {
-			ArrayList<ArrayList> t0_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t1_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t2_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t3_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t4_bis = new ArrayList<ArrayList>();
-			ArrayList<ArrayList> t5_bis = new ArrayList<ArrayList>();
-			for (int a2 : this.actions) {
-				ArrayList<ArrayList> t0_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t1_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t2_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t3_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t4_ter = new ArrayList<ArrayList>();
-				ArrayList<ArrayList> t5_ter = new ArrayList<ArrayList>();
-				for (int a3 : this.actions) {
-					ArrayList<ArrayList> t0_quat = new ArrayList<ArrayList>();
-					ArrayList<ArrayList> t1_quat = new ArrayList<ArrayList>();
-					ArrayList<ArrayList> t2_quat = new ArrayList<ArrayList>();
-					ArrayList<ArrayList> t3_quat = new ArrayList<ArrayList>();
-					ArrayList<ArrayList> t4_quat = new ArrayList<ArrayList>();
-					ArrayList<ArrayList> t5_quat = new ArrayList<ArrayList>();
-					for (int a4 : this.actions) {
-						ArrayList<ArrayList> t0_cinq = new ArrayList<ArrayList>();
-						ArrayList<ArrayList> t1_cinq = new ArrayList<ArrayList>();
-						ArrayList<ArrayList> t2_cinq = new ArrayList<ArrayList>();
-						ArrayList<ArrayList> t3_cinq = new ArrayList<ArrayList>();
-						ArrayList<ArrayList> t4_cinq = new ArrayList<ArrayList>();
-						ArrayList<ArrayList> t5_cinq = new ArrayList<ArrayList>();
-						for (int a5 : this.actions) {
-							ArrayList<Float> tab_temp0 = new ArrayList<Float>();
-							ArrayList<Float> tab_temp1 = new ArrayList<Float>();
-							ArrayList<Float> tab_temp2 = new ArrayList<Float>();
-							ArrayList<Float> tab_temp3 = new ArrayList<Float>();
-							ArrayList<Float> tab_temp4 = new ArrayList<Float>();
-							ArrayList<Float> tab_temp5 = new ArrayList<Float>();
-							for (int a6 : this.actions) {
-								ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
-								choix_des_joueurs.add(a1);
-								choix_des_joueurs.add(a2);
-								choix_des_joueurs.add(a3);
-								choix_des_joueurs.add(a4);
-								choix_des_joueurs.add(a5);
-								choix_des_joueurs.add(a6);
-								tab_temp0.add(calcul_utilite(0,choix_des_joueurs));
-								tab_temp1.add(calcul_utilite(1,choix_des_joueurs));
-								tab_temp2.add(calcul_utilite(2,choix_des_joueurs));
-								tab_temp3.add(calcul_utilite(3,choix_des_joueurs));
-								tab_temp4.add(calcul_utilite(4,choix_des_joueurs));
-								tab_temp5.add(calcul_utilite(5,choix_des_joueurs));
-							}
-							t0_cinq.add(tab_temp0);
-							t1_cinq.add(tab_temp1);
-							t2_cinq.add(tab_temp2);
-							t3_cinq.add(tab_temp3);
-							t4_cinq.add(tab_temp4);
-							t5_cinq.add(tab_temp5);
-						}
-						t0_quat.add(t0_cinq);
-						t1_quat.add(t1_cinq);
-						t2_quat.add(t2_cinq);
-						t3_quat.add(t3_cinq);
-						t4_quat.add(t4_cinq);
-						t5_quat.add(t5_cinq);
-					}
-					t0_ter.add(t0_quat);
-					t1_ter.add(t1_quat);
-					t2_ter.add(t2_quat);
-					t3_ter.add(t3_quat);
-					t4_ter.add(t4_quat);
-					t5_ter.add(t5_quat);
-				}
-				t0_bis.add(t0_ter);
-				t1_bis.add(t1_ter);
-				t2_bis.add(t2_ter);
-				t3_bis.add(t3_ter);
-				t4_bis.add(t4_ter);
-				t5_bis.add(t5_ter);
-			}
-			t0.add(t0_bis);
-			t1.add(t1_bis);
-			t2.add(t2_bis);
-			t3.add(t3_bis);
-			t4.add(t4_bis);
-			t5.add(t5_bis);
-		}
-		tab.add(t0);
-		tab.add(t1);
-		tab.add(t2);
-		tab.add(t3);
-		tab.add(t4);
-		tab.add(t5);
-		return tab;
-	}
-	
+
 	/**
-	 * @return matrixes of the game
+	 * @return the uti
 	 */
-	public ArrayList<ArrayList> getMatrixes_of_game() {
-		return matrices_du_jeux;
-	}
-	
-	/**
-	 * compute matrixes depending the number of players
-	 */
-	public void calcul_matrices() {
-		ArrayList<ArrayList> tab = new ArrayList<ArrayList>();
-		
-		switch(nb_joueur) {
-		
-		case 2:
-			this.matrices_du_jeux = calcul_matrice_2joueurs(tab);
-			break;
-		case 3:
-			this.matrices_du_jeux = calcul_matrice_3joueurs(tab);
-			break;
-		case 4:
-			this.matrices_du_jeux = calcul_matrice_4joueurs(tab);
-			break;
-		case 5:
-			this.matrices_du_jeux = calcul_matrice_5joueurs(tab);
-			break;
-		case 6:
-			this.matrices_du_jeux = calcul_matrice_6joueurs(tab);
-			break;
-		default:
-			System.out.println("Nombre de joueurs non traité");
-			break;
-		}
-		
-	}	
-	
-	/**
-	 * print matrixes
-	 */
-	public void afficher_matrices() {
-		if (this.matrices_du_jeux.isEmpty()) {
-			System.out.println("Les matrices du jeux n'existent pas");
-		}
-		else {
-			for (int j=0; j<this.nb_joueur; j++) {
-				if (j<this.nb_braconnier) {
-					System.out.println("Matrice donnant l'utilité du braconnier " + j + "\n" + this.matrices_du_jeux.get(j));
-				}
-				else {
-					System.out.println("Matrice donnant l'utilité du garde chasse " + j + "\n" + this.matrices_du_jeux.get(j));
-				}
-			}
-		}
+	public ArrayList<float[]> getUti() {
+		return uti;
 	}
 }
