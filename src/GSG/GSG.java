@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * @author agautier
+ */
 public class GSG {
 
 	/**
@@ -26,12 +29,12 @@ public class GSG {
 	String utilite_calcule;
 	
 	/**
-	 * represent the number of possible profile
+	 * represent the number of possible situation
 	 */
 	int dimension;
 	
 	/**
-	 * represent all the profiles and their corresponding utilities
+	 * represent matrixes of utility (one by player) in one dimension
 	 */
 	ArrayList<int[]> act = new ArrayList<int[]>();
 	ArrayList<float[]> uti = new ArrayList<float[]>();
@@ -122,7 +125,7 @@ public class GSG {
 	}
 	
 	/**
-	 * compute values of utility for every players in all possible profiles
+	 * compute values of utility for every players in all possible situation
 	 */
 	public void calcul_val() {
 		ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
@@ -160,10 +163,6 @@ public class GSG {
 			act.add(c);
 		}
 	}
-	
-	/**
-	 * some print function 
-	 */
 	
 	public void afficher_int(ArrayList<int[]> t) {
 		for (int[] tab : t) {
