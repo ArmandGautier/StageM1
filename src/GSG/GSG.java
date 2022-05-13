@@ -19,8 +19,8 @@ public class GSG {
 	int nb_braconnier;
 	int nb_garde_chasse;
 	int nb_joueur;
-	int actions[];
-	float gain_braconnier[];
+	float val_ressource[];
+	ArrayList<ArrayList<Integer>> ressource_accesible = new ArrayList<ArrayList<Integer>>();
 	
 	/**
 	 * can be "gain or zero" or "gain less number of defender"
@@ -31,7 +31,7 @@ public class GSG {
 	/**
 	 * represent the number of possible situation
 	 */
-	int dimension;
+	int dimension=1;
 	
 	/**
 	 * represent matrixes of utility (one by player) in one dimension
@@ -40,20 +40,44 @@ public class GSG {
 	ArrayList<float[]> uti = new ArrayList<float[]>();
 	
 	/**
+	 * constructor when all players have same possible actions
 	 * @param nb_braconnier
 	 * @param nb_garde_chasse
 	 * @param ressources
-	 * @param gain_braconnier
+	 * @param val_ressource
 	 * @param utilite_calcule
 	 */
-	public GSG(int nb_braconnier, int nb_garde_chasse, int[] ressources, float[] gain_braconnier, String utilite_calcule) {
+	public GSG(int nb_braconnier, int nb_garde_chasse, ArrayList<Integer> ressources, float[] val_ressource, String utilite_calcule) {
 		this.nb_braconnier = nb_braconnier;
 		this.nb_garde_chasse = nb_garde_chasse;
 		this.nb_joueur = nb_braconnier+nb_garde_chasse;
-		this.actions = ressources;
-		this.gain_braconnier = gain_braconnier;
+		this.val_ressource = val_ressource;
 		this.utilite_calcule = utilite_calcule;
-		this.dimension = (int) (Math.pow(actions.length, nb_joueur));
+		this.dimension = (int) (Math.pow(ressources.size(), nb_joueur));
+		for (int i=0; i<this.nb_joueur; i++) {
+			this.ressource_accesible.add(ressources);
+		}
+	}
+	
+	/**
+	 * constructor when players have different possible actions
+	 * @param nb_braconnier
+	 * @param nb_garde_chasse
+	 * @param ressources
+	 * @param val_ressource
+	 * @param utilite_calcule
+	 * @param ressource_accessible
+	 */
+	public GSG(int nb_braconnier, int nb_garde_chasse, float[] val_ressource, String utilite_calcule, ArrayList<ArrayList<Integer>> ressource_accessible) {
+		this.nb_braconnier = nb_braconnier;
+		this.nb_garde_chasse = nb_garde_chasse;
+		this.nb_joueur = nb_braconnier+nb_garde_chasse;
+		this.val_ressource = val_ressource;
+		this.utilite_calcule = utilite_calcule;
+		this.ressource_accesible = ressource_accessible;
+		for (int i=0; i<this.nb_joueur; i++) {
+			this.dimension = this.dimension*this.ressource_accesible.get(i).size();
+		}
 	}
 	
 	/**
@@ -75,7 +99,7 @@ public class GSG {
 					return (float) 0;
 				}
 				else {
-					return this.gain_braconnier[choix];
+					return this.val_ressource[choix];
 				}
 			}
 			// cas où le joueur est un garde_chasse
@@ -102,7 +126,7 @@ public class GSG {
 						nb_gc++;
 					}
 				}
-				return this.gain_braconnier[choix] - nb_gc;
+				return this.val_ressource[choix] - nb_gc;
 			}
 			// cas où le joueur est un garde_chasse
 			else {
@@ -130,17 +154,19 @@ public class GSG {
 	public void calcul_val() {
 		ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
 	    for (int k=0; k < this.nb_joueur; k++) {
-	    	choix_des_joueurs.add(0);
+	    	choix_des_joueurs.add(this.ressource_accesible.get(k).get(0));
 	    }
 		for (int i=0; i < this.dimension; i++) {
 			float[] uti_tmp = new float[nb_joueur];
-			int changement_action_pour_k = this.dimension/this.actions.length;
+			int changement_action_pour_k = this.dimension/this.ressource_accesible.get(0).size();
 			
 			if (i != 0) {
 			    for (int k=0; k < this.nb_joueur; k++) {
 			    	
 					if (Math.floorMod(i,changement_action_pour_k) == 0) {
-						choix_des_joueurs.set(k, choix_des_joueurs.get(k)+1);
+						int a = choix_des_joueurs.get(k);
+						int ind_actuel = this.ressource_accesible.get(k).indexOf(a);
+						choix_des_joueurs.set(k, this.ressource_accesible.get(k).get(ind_actuel+1));
 					    for (int l=k+1; l < this.nb_joueur; l++) {
 					    	choix_des_joueurs.set(l,0);
 					    }
@@ -148,7 +174,7 @@ public class GSG {
 					}
 					
 					else {
-						changement_action_pour_k = changement_action_pour_k/this.actions.length;
+						changement_action_pour_k = changement_action_pour_k/this.ressource_accesible.get(k).size();
 					}
 			    }
 			}
@@ -183,7 +209,6 @@ public class GSG {
 	public void afficher_jeux() {
 		ListIterator<int[]> it1 = this.act.listIterator();
 		ListIterator<float[]> it2 = this.uti.listIterator();
-		
 		while (it1.hasNext() && it2.hasNext()) {
 			int[] tab1 = it1.next();
 			float[] tab2 = it2.next();

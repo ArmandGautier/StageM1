@@ -75,7 +75,7 @@ public class Model1 extends Model {
 						double epsilon = 0.1;
 						IloLinearNumExpr c = cplex.linearNumExpr();
 						for (int k=0; k<this.nb_joueur; k++) {
-							c.addTerm(1, Xik[k][profil[k]]);
+							c.addTerm(1, Xik[k][this.actions_possible_par_joueur.get(k).indexOf(profil[k])]);
 						}
 						IloNumExpr constraint = cplex.diff(Vi[i],c);
 						cplex.addGe(constraint, epsilon - this.nb_joueur); 
@@ -139,7 +139,7 @@ public class Model1 extends Model {
 				}
 			}
 			if (this.obj == 0) {
-				System.out.println("Ce profil est un équulibre de nash");
+				System.out.println("Ce profil est un équilibre de nash");
 			}
 			else {
 				System.out.println("Ce profil n'est pas un équilibre de nash");

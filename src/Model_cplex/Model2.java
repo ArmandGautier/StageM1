@@ -88,8 +88,7 @@ public class Model2 extends Model {
 			
 			for (int i=0; i<this.nb_joueur; i++) {
 				for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
-					int Ai = this.actions_possible_par_joueur.get(i).get(k);
-					objective.addTerm(1, Uik[i][Ai]);
+					objective.addTerm(1, Uik[i][k]);
 				}
 			}
 			
@@ -118,7 +117,7 @@ public class Model2 extends Model {
 					int l=0;
 					for (int j=0; j<this.nb_joueur; j++) {
 						if (j!=i) {
-							cplex.addLe(Xa_i[i][p],Xik[j][profil[l]]);
+							cplex.addLe(Xa_i[i][p],Xik[j][this.actions_possible_par_joueur.get(j).indexOf(profil[l])]);
 							l++;
 						}
 					}
@@ -156,8 +155,7 @@ public class Model2 extends Model {
 						}
 						p++;
 					}
-					int Ai = this.actions_possible_par_joueur.get(i).get(k);
-					cplex.addEq(Uik[i][Ai],c);
+					cplex.addEq(Uik[i][k],c);
 				}
 			}
 
@@ -165,11 +163,9 @@ public class Model2 extends Model {
 			
 			for (int i=0; i<this.nb_joueur; i++) {
 				for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
-					int Ai = this.actions_possible_par_joueur.get(i).get(k);
 					for (int k2=0; k2<this.actions_possible_par_joueur.get(i).size(); k2++) {
-						int Ai2 = this.actions_possible_par_joueur.get(i).get(k2);
 						if (k2 != k) {
-							cplex.addGe(cplex.diff(Uik[i][Ai], Uik[i][Ai2]),cplex.diff(cplex.prod(this.max_utilities_par_joueur[i], Xik[i][Ai]), this.max_utilities_par_joueur[i]));
+							cplex.addGe(cplex.diff(Uik[i][k], Uik[i][k2]),cplex.diff(cplex.prod(this.max_utilities_par_joueur[i], Xik[i][k]), this.max_utilities_par_joueur[i]));
 						}
 					}
 				}
