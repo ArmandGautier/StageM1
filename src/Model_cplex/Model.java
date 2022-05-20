@@ -10,6 +10,7 @@ public abstract class Model {
 	ArrayList<ArrayList<Integer>> actions_possible_par_joueur = new ArrayList<ArrayList<Integer>>();
 	boolean solved = false;
 	double obj;
+	double solving_time;
 	
 	public Model(ArrayList<int[]> profils, ArrayList<float[]> utilites) {
 		this.profils = profils;
@@ -32,7 +33,14 @@ public abstract class Model {
 
 	} 
 	
-	abstract void construct_model();
-	abstract void print_results();
+	public abstract void construct_model();
+	public abstract void print_results();
+	public abstract boolean equilibrium();
+	/**
+	 * @return the solving time in second
+	 */
+	public double get_solving_time() {
+		return this.solving_time;
+	}
 }
 

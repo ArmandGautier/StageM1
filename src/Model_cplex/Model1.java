@@ -74,8 +74,8 @@ public class Model1 extends Model {
 					if (! best_response) {
 						double epsilon = 0.1;
 						IloLinearNumExpr c = cplex.linearNumExpr();
-						for (int k=0; k<this.nb_joueur; k++) {
-							c.addTerm(1, Xik[k][this.actions_possible_par_joueur.get(k).indexOf(profil[k])]);
+						for (int j=0; j<this.nb_joueur; j++) {
+							c.addTerm(1, Xik[j][this.actions_possible_par_joueur.get(j).indexOf(profil[j])]);
 						}
 						IloNumExpr constraint = cplex.diff(Vi[i],c);
 						cplex.addGe(constraint, epsilon - this.nb_joueur); 
@@ -86,8 +86,11 @@ public class Model1 extends Model {
 			
 			cplex.setOut(null);
 			
-			if (cplex.solve()) {
-				this.solved = true;
+			double start=System.currentTimeMillis();
+			this.solved = cplex.solve();
+			this.solving_time = System.currentTimeMillis()-start;
+			
+			if (this.solved) {
 				this.obj = cplex.getObjValue();
 				this.results_Vi = cplex.getValues(Vi);
 				this.results_Xik = new double[this.nb_joueur][];
@@ -148,5 +151,9 @@ public class Model1 extends Model {
 		else {
 			System.out.println("Ce modèle n'a pas été construit ou alors il n'a pas de solution");
 		}
+	}
+	
+	public boolean equilibrium() {
+		return (this.obj == 0);
 	}
 }

@@ -173,8 +173,11 @@ public class Model2 extends Model {
 			
 			cplex.setOut(null);
 			
-			if (cplex.solve()) {
-				this.solved = true;
+			double start=System.currentTimeMillis();
+			this.solved = cplex.solve();
+			this.solving_time = System.currentTimeMillis()-start;
+			
+			if (this.solved) {
 				this.obj = cplex.getObjValue();
 				this.results_Uik = new double[this.nb_joueur][];
 				this.results_Xik = new double[this.nb_joueur][];
@@ -226,6 +229,8 @@ public class Model2 extends Model {
 		}
 	}
 
-
+	public boolean equilibrium() {
+		return this.solved;
+	}
 }
 
