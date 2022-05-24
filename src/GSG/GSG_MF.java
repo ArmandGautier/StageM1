@@ -171,7 +171,7 @@ public class GSG_MF extends GSG_SNF {
 	}
 	
 	/**
-	 * compute gsg in SNF for each possible world ( one world = we consider that one resource is active )
+	 * compute gsg in SNF for each possible world ( one world = we consider that one the herd is in one place )
 	 */
 	private void create_snf_gsg() {
 		for (int i=0; i<this.lambda.length; i++) {
@@ -187,6 +187,9 @@ public class GSG_MF extends GSG_SNF {
 		}
 	}
 	
+	/**
+	 * Compute utilities value depending the XEU choose.
+	 */
 	public void calcul_val() {
 		create_snf_gsg();
 		
@@ -273,7 +276,9 @@ public class GSG_MF extends GSG_SNF {
 			this.profiles.add(this.gsg_snf.get(0).getProfiles().get(i));
 		}	
 	}
-
+	/**
+	 * Print information about the game
+	 */
 	public void afficher_jeux() {
 		int ind_g = 0;
 		for (GSG_SNF g : this.gsg_snf) {

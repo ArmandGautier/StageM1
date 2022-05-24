@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import ilog.concert.*;
 import ilog.cplex.*;
 
-public class Model2 extends Model {
+public class Trabelsi_model extends Model {
 	float[] max_utilities_par_joueur;
 	ArrayList<ArrayList<int[]>> list_A_i_par_joueur = new ArrayList<ArrayList<int[]>>();
 	double[][] results_Uik;
 	double[][] results_Xik;
 	
-	public Model2(ArrayList<int[]> profils, ArrayList<float[]> utilites) {
+	public Trabelsi_model(ArrayList<int[]> profils, ArrayList<float[]> utilites) {
 		super(profils, utilites);
 		
 		this.max_utilities_par_joueur = new float[this.nb_joueur];
@@ -50,8 +50,11 @@ public class Model2 extends Model {
 		try {
 			
 			IloCplex cplex = new IloCplex();
+			cplex.setOut(null);
 			
 			// création des variables
+			
+			double start1=System.currentTimeMillis();
 			
 			IloIntVar[][] Xik = new IloIntVar[this.nb_joueur][];
 			IloNumVar[][] Uik = new IloNumVar[this.nb_joueur][];
@@ -171,20 +174,22 @@ public class Model2 extends Model {
 				}
 			}
 			
-			cplex.setOut(null);
+			double construction_time = System.currentTimeMillis()-start1;
 			
-			double start=System.currentTimeMillis();
+			double start2=System.currentTimeMillis();
 			this.solved = cplex.solve();
-			this.solving_time = System.currentTimeMillis()-start;
+			this.solving_time = System.currentTimeMillis()-start2;
+			this.construction_and_solving_time = this.solving_time+construction_time;
 			
 			if (this.solved) {
 				this.obj = cplex.getObjValue();
-				this.results_Uik = new double[this.nb_joueur][];
+				/*this.results_Uik = new double[this.nb_joueur][];
 				this.results_Xik = new double[this.nb_joueur][];
 				for (int i=0; i<this.nb_joueur; i++) {
 					this.results_Xik[i] = cplex.getValues(Xik[i]);
 					this.results_Uik[i] = cplex.getValues(Uik[i]);
-				}
+				}*/
+				//cplex.writeSolutions("m2");
 			}
 			
 			cplex.close();

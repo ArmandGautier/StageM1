@@ -21,14 +21,41 @@ public class GSG_SNF extends GSG {
 	 */
 	ArrayList<float[]> utilities_value = new ArrayList<float[]>();
 
+	/**
+	 * Constructor when all players can make the same actions and actions have all the same value.
+	 * @param nb_attacker
+	 * @param nb_defender
+	 * @param attacker_utility
+	 * @param defender_utility
+	 * @param lambda
+	 * @param actions
+	 */
 	public GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, int[] actions) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, actions);
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
+	/**
+	 * Constructor when all players can make the same actions.
+	 * @param nb_attacker
+	 * @param nb_defender
+	 * @param attacker_utility
+	 * @param defender_utility
+	 * @param lambda
+	 * @param actions
+	 */
 	public GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, int[] actions) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, actions);
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
+	/**
+	 * Constructor when all players have access to different actions and actions have all the same value.
+	 * @param nb_attacker
+	 * @param nb_defender
+	 * @param attacker_utility
+	 * @param defender_utility
+	 * @param lambda
+	 * @param possible_actions
+	 */
 	public GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, ArrayList<ArrayList<Integer>> possible_actions) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, possible_actions);
 		this.dimension = 1;
@@ -36,6 +63,15 @@ public class GSG_SNF extends GSG {
 			this.dimension = this.dimension * list_actions.size();
 		}
 	}
+	/**
+	 * Constructor when all players have access to different actions.
+	 * @param nb_attacker
+	 * @param nb_defender
+	 * @param attacker_utility
+	 * @param defender_utility
+	 * @param lambda
+	 * @param possible_actions
+	 */
 	public GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, ArrayList<ArrayList<Integer>> possible_actions) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, possible_actions);
 		this.dimension = 1;
@@ -43,14 +79,44 @@ public class GSG_SNF extends GSG {
 			this.dimension = this.dimension * list_actions.size();
 		}
 	}
+	/**
+	 * Constructor when all players can make the same actions, actions have all the same value and to change the value of "fine_or_bribe".
+	 * @param nb_attacker
+	 * @param nb_defender
+	 * @param attacker_utility
+	 * @param defender_utility
+	 * @param lambda
+	 * @param actions
+	 * @param fine_or_bribe
+	 */
 	public GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, int[] actions, int fine_or_bribe) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, actions, fine_or_bribe);
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
+	/**
+	 * Constructor when all players can make the same actions and to change the value of "fine_or_bribe".
+	 * @param nb_attacker
+	 * @param nb_defender
+	 * @param attacker_utility
+	 * @param defender_utility
+	 * @param lambda
+	 * @param actions
+	 * @param fine_or_bribe
+	 */
 	public GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, int[] actions, int fine_or_bribe) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, actions, fine_or_bribe);
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
+	/**
+	 * Constructor when all players have access to different actions, actions have all the same value and to change the value of "fine_or_bribe".
+	 * @param nb_attacker
+	 * @param nb_defender
+	 * @param attacker_utility
+	 * @param defender_utility
+	 * @param lambda
+	 * @param possible_actions
+	 * @param fine_or_bribe
+	 */
 	public GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, ArrayList<ArrayList<Integer>> possible_actions, int fine_or_bribe) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, possible_actions, fine_or_bribe);
 		this.dimension = 1;
@@ -58,6 +124,16 @@ public class GSG_SNF extends GSG {
 			this.dimension = this.dimension * list_actions.size();
 		}
 	}
+	/**
+	 * Constructor when all players have access to different actions and to change the value of "fine_or_bribe".
+	 * @param nb_attacker
+	 * @param nb_defender
+	 * @param attacker_utility
+	 * @param defender_utility
+	 * @param lambda
+	 * @param possible_actions
+	 * @param fine_or_bribe
+	 */
 	public GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, ArrayList<ArrayList<Integer>> possible_actions, int fine_or_bribe) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, possible_actions, fine_or_bribe);
 		this.dimension = 1;
@@ -117,6 +193,23 @@ public class GSG_SNF extends GSG {
 					}
 					return this.lambda[choix]/nb_braco;
 				}
+				
+			case "Team-poach and bribe" :
+				
+				int nb_garde = 0;
+				for (int c : choix_des_garde_chasse) {
+					if ( c == choix) {
+						nb_garde++;
+					}
+				}
+				
+				float nb_braco = 0;
+				for (int c : choix_des_braconniers) {
+					if ( c == choix) {
+						nb_braco++;
+					}
+				}
+				return this.lambda[choix]/nb_braco - nb_garde;
 				
 			default :
 				System.out.println("Le calcul d'utilité concernant les braconniers n'existe pas");
@@ -183,6 +276,9 @@ public class GSG_SNF extends GSG {
 		return (float) 0;
 	}
 	
+	/**
+	 * Compute all utilities value and corresponding profiles.
+	 */
 	public void calcul_val() {
 		ArrayList<Integer> choix_des_joueurs = new ArrayList<Integer>();
 	    for (int k=0; k < this.nb_player; k++) {
@@ -221,7 +317,9 @@ public class GSG_SNF extends GSG {
 			this.profiles.add(c);
 		}
 	}
-
+	/**
+	 * Print information about the game.
+	 */
 	public void afficher_jeux() {
 		ListIterator<int[]> it1 = this.profiles.listIterator();
 		ListIterator<float[]> it2 = this.utilities_value.listIterator();

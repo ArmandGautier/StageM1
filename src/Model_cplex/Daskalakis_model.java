@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import ilog.concert.*;
 import ilog.cplex.*;
 
-public class Model1 extends Model {
+public class Daskalakis_model extends Model {
 	
 	double[] results_Vi;
 	double[][] results_Xik;
 
-	public Model1(ArrayList<int[]> profils, ArrayList<float[]> utilites) {
+	public Daskalakis_model(ArrayList<int[]> profils, ArrayList<float[]> utilites) {
 		super(profils, utilites);
 	}
 
@@ -17,6 +17,9 @@ public class Model1 extends Model {
 		try {
 			
 			IloCplex cplex = new IloCplex();
+			cplex.setOut(null);
+			
+			double start1=System.currentTimeMillis();
 			
 			// création des variables
 			
@@ -83,20 +86,20 @@ public class Model1 extends Model {
 					p++;
 				}
 			}
+			double construction_time = System.currentTimeMillis()-start1;
 			
-			cplex.setOut(null);
-			
-			double start=System.currentTimeMillis();
+			double start2=System.currentTimeMillis();
 			this.solved = cplex.solve();
-			this.solving_time = System.currentTimeMillis()-start;
+			this.solving_time = System.currentTimeMillis()-start2;
+			this.construction_and_solving_time = this.solving_time+construction_time;
 			
 			if (this.solved) {
 				this.obj = cplex.getObjValue();
-				this.results_Vi = cplex.getValues(Vi);
+				/*this.results_Vi = cplex.getValues(Vi);
 				this.results_Xik = new double[this.nb_joueur][];
 				for (int i=0; i<this.nb_joueur; i++) {
 					this.results_Xik[i] = cplex.getValues(Xik[i]);
-				}
+				}*/
 			}
 			
 			cplex.close();

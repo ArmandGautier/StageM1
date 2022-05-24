@@ -11,6 +11,7 @@ public abstract class Model {
 	boolean solved = false;
 	double obj;
 	double solving_time;
+	double construction_and_solving_time;
 	
 	public Model(ArrayList<int[]> profils, ArrayList<float[]> utilites) {
 		this.profils = profils;
@@ -41,6 +42,10 @@ public abstract class Model {
 	 */
 	public double get_solving_time() {
 		return this.solving_time;
+	}
+	
+	public double get_construction_and_solving_time() {
+		return this.construction_and_solving_time;
 	}
 }
 
