@@ -11,6 +11,12 @@ public abstract class GSG {
 	int nb_defender;
 	int nb_player;
 	/**
+	 * @return the nb_player
+	 */
+	public int getNb_player() {
+		return this.nb_player;
+	}
+	/**
 	 * can be "Poach or hide" or "Team-poach or hide" or "Poach and bribe"
 	 * define the method use to compute the utility of attackers
 	 */

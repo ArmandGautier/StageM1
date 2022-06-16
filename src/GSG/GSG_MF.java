@@ -23,13 +23,16 @@ public class GSG_MF extends GSG_SNF {
 	/**
 	 * Value of alpha used in the method JEU, can be change
 	 */
-	double alpha = 0.5;
+	double[] alpha;
 
 	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, actions);
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
 		this.method = method;
+		for (int i=0; i<this.nb_player; i++) {
+			alpha[i] = 0.5;
+		}
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
 	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method) {
@@ -37,6 +40,9 @@ public class GSG_MF extends GSG_SNF {
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
 		this.method = method;
+		for (int i=0; i<this.nb_player; i++) {
+			alpha[i] = 0.5;
+		}
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
 	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method) {
@@ -44,6 +50,9 @@ public class GSG_MF extends GSG_SNF {
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
 		this.method = method;
+		for (int i=0; i<this.nb_player; i++) {
+			alpha[i] = 0.5;
+		}
 		this.dimension = 1;
 		for ( ArrayList<Integer> list_actions : possible_actions) {
 			this.dimension = this.dimension * list_actions.size();
@@ -54,6 +63,9 @@ public class GSG_MF extends GSG_SNF {
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
 		this.method = method;
+		for (int i=0; i<this.nb_player; i++) {
+			alpha[i] = 0.5;
+		}
 		this.dimension = 1;
 		for ( ArrayList<Integer> list_actions : possible_actions) {
 			this.dimension = this.dimension * list_actions.size();
@@ -64,6 +76,9 @@ public class GSG_MF extends GSG_SNF {
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
 		this.method = method;
+		for (int i=0; i<this.nb_player; i++) {
+			alpha[i] = 0.5;
+		}
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
 	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe) {
@@ -71,6 +86,9 @@ public class GSG_MF extends GSG_SNF {
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
 		this.method = method;
+		for (int i=0; i<this.nb_player; i++) {
+			alpha[i] = 0.5;
+		}
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
 	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe) {
@@ -78,6 +96,9 @@ public class GSG_MF extends GSG_SNF {
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
 		this.method = method;
+		for (int i=0; i<this.nb_player; i++) {
+			alpha[i] = 0.5;
+		}
 		this.dimension = 1;
 		for ( ArrayList<Integer> list_actions : possible_actions) {
 			this.dimension = this.dimension * list_actions.size();
@@ -88,12 +109,15 @@ public class GSG_MF extends GSG_SNF {
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
 		this.method = method;
+		for (int i=0; i<this.nb_player; i++) {
+			alpha[i] = 0.5;
+		}
 		this.dimension = 1;
 		for ( ArrayList<Integer> list_actions : possible_actions) {
 			this.dimension = this.dimension * list_actions.size();
 		}
 	}
-	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method, double alpha) {
+	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method, double[] alpha) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, actions);
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
@@ -101,7 +125,7 @@ public class GSG_MF extends GSG_SNF {
 		this.alpha = alpha;
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
-	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method, double alpha) {
+	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method, double[] alpha) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, actions);
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
@@ -109,7 +133,7 @@ public class GSG_MF extends GSG_SNF {
 		this.alpha = alpha;
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
-	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method, double alpha) {
+	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method, double[] alpha) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, possible_actions);
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
@@ -120,7 +144,7 @@ public class GSG_MF extends GSG_SNF {
 			this.dimension = this.dimension * list_actions.size();
 		}
 	}
-	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method, double alpha) {
+	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method, double[] alpha) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, possible_actions);
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
@@ -131,7 +155,7 @@ public class GSG_MF extends GSG_SNF {
 			this.dimension = this.dimension * list_actions.size();
 		}
 	}
-	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe, double alpha) {
+	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe, double[] alpha) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, actions, fine_or_bribe);
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
@@ -139,7 +163,7 @@ public class GSG_MF extends GSG_SNF {
 		this.alpha = alpha;
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
-	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe, double alpha) {
+	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, int[] actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe, double[] alpha) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, actions, fine_or_bribe);
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
@@ -147,7 +171,7 @@ public class GSG_MF extends GSG_SNF {
 		this.alpha = alpha;
 		this.dimension = (int) (Math.pow(actions.length, this.nb_player));
 	}
-	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe, double alpha) {
+	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe, double[] alpha) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, possible_actions, fine_or_bribe);
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
@@ -158,7 +182,7 @@ public class GSG_MF extends GSG_SNF {
 			this.dimension = this.dimension * list_actions.size();
 		}
 	}
-	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe, double alpha) {
+	public GSG_MF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility, float[] lambda, ArrayList<ArrayList<Integer>> possible_actions, ArrayList<int[]> focal_element, float[] mass_function, String method, int fine_or_bribe, double[] alpha) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, lambda, possible_actions, fine_or_bribe);
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
@@ -246,7 +270,7 @@ public class GSG_MF extends GSG_SNF {
 							max_uti = to_compare;
 						}
 					}
-					uti_tmp[k] += this.mass_function[j] * ( this.alpha*min_uti + (1-this.alpha)*max_uti);
+					uti_tmp[k] += this.mass_function[j] * ( this.alpha[k]*min_uti + (1-this.alpha[k])*max_uti);
 				}
 				j++;
 			}

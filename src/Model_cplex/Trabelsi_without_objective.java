@@ -9,6 +9,11 @@ public class Trabelsi_without_objective extends Model {
 	ArrayList<ArrayList<int[]>> list_A_i_par_joueur = new ArrayList<ArrayList<int[]>>();
 	double[][] results_Uik;
 	double[][] results_Xik;
+	double nb_sol = 0;
+	
+	public double getNb_sol() {
+		return this.nb_sol;
+	}
 	
 	public Trabelsi_without_objective(ArrayList<int[]> profils, ArrayList<float[]> utilites) {
 		super(profils, utilites);
@@ -166,17 +171,19 @@ public class Trabelsi_without_objective extends Model {
 			
 			double start2=System.currentTimeMillis();
 			this.solved = cplex.solve();
+			/*this.solved = cplex.populate(); 
+			this.nb_sol = cplex.getSolnPoolNsolns();*/
 			this.solving_time = System.currentTimeMillis()-start2;
 			this.construction_and_solving_time = this.solving_time+construction_time;
 			
 			if (this.solved) {
 				this.obj = cplex.getObjValue();
-				/*this.results_Uik = new double[this.nb_joueur][];
+				this.results_Uik = new double[this.nb_joueur][];
 				this.results_Xik = new double[this.nb_joueur][];
 				for (int i=0; i<this.nb_joueur; i++) {
 					this.results_Xik[i] = cplex.getValues(Xik[i]);
 					this.results_Uik[i] = cplex.getValues(Uik[i]);
-				}*/
+				}
 				//cplex.writeSolutions("m2bis");
 				
 			}
@@ -224,27 +231,7 @@ public class Trabelsi_without_objective extends Model {
 	}
 
 	public boolean equilibrium() {
-		if (this.solved) {
-			double[] max_Uik = new double[this.nb_joueur];
-			for (int i=0; i<this.nb_joueur; i++) {
-				for (int k=0; k<this.results_Xik[i].length; k++) {
-					if (this.results_Xik[i][k] == 1) {
-						max_Uik[i] = this.results_Uik[i][k];
-					}
-				}
-			}
-			for (int i=0; i<this.nb_joueur; i++) {
-				for (int k=0; k<this.results_Xik[i].length; k++) {
-					if (this.results_Uik[i][k] > max_Uik[i]) {
-						return false;
-					}
-				}
-			}
-			return true;
-		}
-		else {
-			return false;
-		}
+		return this.solved;
 	}
 }
 

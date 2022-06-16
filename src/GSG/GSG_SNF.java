@@ -3,6 +3,10 @@
  */
 package GSG;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -349,5 +353,42 @@ public class GSG_SNF extends GSG {
 	 */
 	public ArrayList<float[]> getUtilities() {
 		return this.utilities_value;
+	}
+	
+	public void writeInFile(String filename) {
+		try {
+			  
+		  File file = new File(filename);
+
+		  if (!file.exists()) {
+			  file.createNewFile();
+		  }
+		  
+		  FileWriter fw = new FileWriter(file.getAbsoluteFile());
+		  BufferedWriter bw = new BufferedWriter(fw);
+		  
+		  String content;
+		  
+		  ListIterator<int[]> it1 = this.profiles.listIterator();
+		  ListIterator<float[]> it2 = this.utilities_value.listIterator();
+		  
+		  while (it1.hasNext() && it2.hasNext()) {
+			  content = "";
+			  int[] tab1 = it1.next();
+			  float[] tab2 = it2.next();
+			  for (int i=0; i<tab1.length; i++) {
+				  content += tab1[i];
+				  content += " ";
+			  }
+			  content += " : ";
+			  for (int j=0; j<tab2.length; j++) {
+				  content += tab2[j];
+				  content += " ";
+			  }
+			  content += "\n";
+			  bw.write(content);
+		  }
+		  bw.close();
+		} catch (IOException e) {e.printStackTrace();}
 	}
 }

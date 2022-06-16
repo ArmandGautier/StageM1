@@ -2,27 +2,38 @@ package Model_cplex;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
-public abstract class Model {
-	ArrayList<int[]> profils = new ArrayList<int[]>();
-	ArrayList<float[]> utilites = new ArrayList<float[]>();
+public abstract class Model_for_hypergraphical_game {
+	Map<Integer,ArrayList<int[]>> profiles = new HashMap<>();
+	Map<Integer,ArrayList<float[]>> utilites = new HashMap<>();
 	int nb_joueur;
+	int nb_jeux;
 	ArrayList<ArrayList<Integer>> actions_possible_par_joueur = new ArrayList<ArrayList<Integer>>();
+	ArrayList<ArrayList<Integer>> player_by_game = new ArrayList<ArrayList<Integer>>();
 	boolean solved = false;
 	double obj;
 	double solving_time;
 	double construction_and_solving_time;
 	
-	public Model(ArrayList<int[]> profils, ArrayList<float[]> utilites) {
-		this.profils = profils;
+	public Model_for_hypergraphical_game(Map<Integer,ArrayList<int[]>> profils, Map<Integer,ArrayList<float[]>> utilites, ArrayList<ArrayList<Integer>> player_by_game) {
+		this.profiles = profils;
 		this.utilites = utilites;
-		this.nb_joueur = profils.get(0).length;
+		this.nb_joueur = profiles.get(0).get(0).length;
+		this.nb_jeux = profiles.size();
+		this.player_by_game = player_by_game;
 		
 		for (int i=0; i<this.nb_joueur; i++) {
 			ArrayList<Integer> action_possible = new ArrayList<Integer>();
-			for (int[] profil : this.profils) {
-				if (! action_possible.contains(profil[i])) {
-					action_possible.add(profil[i]);
+			for (Integer key : this.profiles.keySet()) {
+				if (this.player_by_game.get(key).contains(i)) {
+					int ind_i_in_localGame = this.player_by_game.get(key).indexOf(i);
+					for (int[] profil : this.profiles.get(key) ) {
+						if (! action_possible.contains(profil[ind_i_in_localGame])) {
+							action_possible.add(profil[ind_i_in_localGame]);
+						}
+					}	
 				}
 			}
 			this.actions_possible_par_joueur.add(action_possible);
@@ -35,7 +46,6 @@ public abstract class Model {
 	} 
 	
 	public abstract void construct_model();
-	public abstract void print_results();
 	public abstract boolean equilibrium();
 	/**
 	 * @return the solving time in second
@@ -52,4 +62,3 @@ public abstract class Model {
 		
 	}
 }
-
