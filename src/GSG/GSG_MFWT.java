@@ -4,8 +4,6 @@
 package GSG;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author agautier
@@ -139,13 +137,20 @@ public class GSG_MFWT{
 				int[] temp_node = new int[2];
 				temp_node[0] = i;
 				temp_node[1] = omegaToTypes(omega,i);
-				this.nodes.add(temp_node);
+				if (!containsNode(temp_node)) {
+					this.nodes.add(temp_node);
+				}
 			}
 		}
 	}
 
-	public void calcul_val() {
-		create_hypergraphical_gsg();
+	private boolean containsNode(int[] temp_node) {
+		for (int[] node : this.nodes) {
+			if (node[0] == temp_node[0] && node[1] == temp_node[1]) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private void create_hypergraphical_gsg() {
@@ -154,14 +159,18 @@ public class GSG_MFWT{
 		create_noeuds();
 		
 		for (int[][] focal_elt : this.focal_element) {
-			Local_Game l = new Local_Game(this);
-			l.calcul_val(focal_elt,this.nodes);
+			Local_Game l = new Local_Game(this,focal_elt);
+			l.calcul_val();
 			this.hypergraphical_representation.add(l);
 		}
 	
 	}
+	
+	public void calcul_val() {
+		create_hypergraphical_gsg();
+	}
 
-	public int omegaToTypes(int[] omega, int ind_player) {
+	protected int omegaToTypes(int[] omega, int ind_player) {
 		String res = "";
 		if (ind_player < this.nb_attacker) {
 			int herd_number = 0;
@@ -181,8 +190,82 @@ public class GSG_MFWT{
 		}
 	}
 	
-	private int see(int ind_player) {
+	protected int see(int ind_player) {
 		return ind_player;
+	}
+	
+	protected float computeK(int[] player ) {
+		int k = 0;
+		int i = 0;
+		for (int[][] elt_focal : this.focal_element) {
+			if (typeIsTrue(player,elt_focal)) {
+				k+=this.mass_function[i];
+			}
+			i++;
+		}
+		return 1/k;
+	}
+	
+	/**
+	 * @param node
+	 * @param focal_elt
+	 * @return true if there is unless one element in "focal_elt" in which the type of the node exist
+	 */
+	protected boolean typeIsTrue(int[] node, int[][] focal_elt) {
+		for (int[] omega : focal_elt) {
+			if ( this.omegaToTypes(omega, node[0])==node[1] ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * @param omega
+	 * @return the index of the GSG on SNF corresponding to the state of world omega
+	 */
+	protected int getIndexOfGSG(int[] omega) {
+		int indice = 0;
+		for (int[] o : this.possible_omega) {
+			if (same(omega,o)) {
+				return indice;
+			}
+			indice++;
+		}
+		return -1;
+	}
+	
+	/**
+	 * @param profile
+	 * @param gsg
+	 * @return the index of the profile "profile" in the GSG in SNF "gsg"
+	 */
+	protected int getIndexOfProfile(int[] profile, GSG_SNF gsg) {
+		int indice = 0;
+		for (int[] p : gsg.getProfiles()) {
+			if (same(profile,p)) {
+				return indice;
+			}
+			indice++;
+		}
+		return -1;
+	}
+	
+	/**
+	 * @param omega1
+	 * @param omega2
+	 * @return true if the two arrays are the same, false otherwise
+	 */
+	private boolean same(int[] omega1, int[] omega2) {
+		if (omega1.length != omega2.length) {
+			return false;
+		}
+		for (int i=0; i<omega1.length; i++) {
+			if (omega1[i] != omega2[i]) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	void afficher_jeux() {
