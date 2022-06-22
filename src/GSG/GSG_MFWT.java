@@ -43,7 +43,7 @@ public class GSG_MFWT{
 	/**
 	 * represents all nodes of the transformation
 	 */
-	ArrayList<int[]> nodes = new ArrayList<int[]>();
+	ArrayList<Node> nodes = new ArrayList<Node>();
 	/**
 	 *  a list of focal element, focal_element.get(i) give the focal element who take the value val_m[i]
 	 */
@@ -59,13 +59,9 @@ public class GSG_MFWT{
 	/**
 	 * Value of alpha used in the method JEU, can be change
 	 */
-	double[] alpha;
+	float[] alpha;
 	/**
-	 * Types are informations know by player
-	 */
-	ArrayList<String[]> types = new ArrayList<String[]>();
-	/**
-	 * List of GSG_SNF who are the hypergraphical representation
+	 * List of local game who are the hypergraphical representation
 	 */
 	ArrayList<Local_Game> hypergraphical_representation = new ArrayList<Local_Game>();
 	/**
@@ -77,7 +73,7 @@ public class GSG_MFWT{
 	 */
 	int nb_location;
 	/**
-	 * number of the herd who is tracked by defender
+	 * number of herds who are chipped by defender
 	 */
 	int[] gps;
 
@@ -98,7 +94,7 @@ public class GSG_MFWT{
 	 */
 	public GSG_MFWT(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility,
 			ArrayList<ArrayList<Integer>> possible_actions,int[] herd, int fine_or_bribe,int nb_location, ArrayList<int[][]> focal_element,
-			float[] mass_function, String method, double[] alpha, int[] gps) {
+			float[] mass_function, String method, float[] alpha, int[] gps) {
 		this.nb_attacker = nb_attacker;
 		this.nb_defender = nb_defender;
 		this.nb_player = this.nb_attacker + this.nb_defender;
@@ -125,6 +121,7 @@ public class GSG_MFWT{
 					lambda[omega[i]] += herd[i];
 				}
 				GSG_SNF gsg = new GSG_SNF(this.nb_attacker, this.nb_defender, this.attacker_utility, this.defender_utility, lambda, this.possible_actions, this.fine_or_bribe);
+				gsg.calcul_val();
 				this.gsg_snf.add(gsg);
 				this.possible_omega.add(omega);
 			}
@@ -134,19 +131,17 @@ public class GSG_MFWT{
 	private void create_noeuds() {
 		for (int[] omega : this.possible_omega) {
 			for (int i=0; i<this.nb_player; i++) {
-				int[] temp_node = new int[2];
-				temp_node[0] = i;
-				temp_node[1] = omegaToTypes(omega,i);
-				if (!containsNode(temp_node)) {
-					this.nodes.add(temp_node);
+				Node n = new Node(i,omegaToTypes(omega,i));
+				if (!containsNode(n)) {
+					this.nodes.add(n);
 				}
 			}
 		}
 	}
 
-	private boolean containsNode(int[] temp_node) {
-		for (int[] node : this.nodes) {
-			if (node[0] == temp_node[0] && node[1] == temp_node[1]) {
+	private boolean containsNode(Node n) {
+		for (Node node : this.nodes) {
+			if (node.getIndexPlayer() == n.getIndexPlayer() && node.getType() == n.getType()) {
 				return true;
 			}
 		}
@@ -158,10 +153,12 @@ public class GSG_MFWT{
 		create_snf_gsg();
 		create_noeuds();
 		
+		int i=0;
 		for (int[][] focal_elt : this.focal_element) {
-			Local_Game l = new Local_Game(this,focal_elt);
+			Local_Game l = new Local_Game(this,focal_elt,i);
 			l.calcul_val();
 			this.hypergraphical_representation.add(l);
+			i++;
 		}
 	
 	}
@@ -170,7 +167,7 @@ public class GSG_MFWT{
 		create_hypergraphical_gsg();
 	}
 
-	protected int omegaToTypes(int[] omega, int ind_player) {
+	protected String omegaToTypes(int[] omega, int ind_player) {
 		String res = "";
 		if (ind_player < this.nb_attacker) {
 			int herd_number = 0;
@@ -180,22 +177,30 @@ public class GSG_MFWT{
 				}
 				herd_number ++;
 			}
-			return res.hashCode();
 		}
 		else {
-			for (int herd : gps) {
+			/*for (int herd : gps) {
 				res += "L"+omega[herd];
+			}*/
+			/// ATENTION JUSTE POUR L'EXEMPLE A SUPPRIMER APRES
+			if ( omega[0] == 2) {
+				res += "yo";
 			}
-			return res.hashCode();
+		}
+		if ( res == "" ) {
+			return "ensemble vide";
+		}
+		else {
+			return res;
 		}
 	}
 	
 	protected int see(int ind_player) {
-		return ind_player;
+		return ind_player; // à améliorer
 	}
 	
-	protected float computeK(int[] player ) {
-		int k = 0;
+	protected float computeK(Node player ) {
+		float k = 0;
 		int i = 0;
 		for (int[][] elt_focal : this.focal_element) {
 			if (typeIsTrue(player,elt_focal)) {
@@ -211,9 +216,9 @@ public class GSG_MFWT{
 	 * @param focal_elt
 	 * @return true if there is unless one element in "focal_elt" in which the type of the node exist
 	 */
-	protected boolean typeIsTrue(int[] node, int[][] focal_elt) {
+	protected boolean typeIsTrue(Node n, int[][] focal_elt) {
 		for (int[] omega : focal_elt) {
-			if ( this.omegaToTypes(omega, node[0])==node[1] ) {
+			if ( this.omegaToTypes(omega, n.getIndexPlayer()).equals(n.getType()) ) {
 				return true;
 			}
 		}
@@ -268,7 +273,12 @@ public class GSG_MFWT{
 		return true;
 	}
 	
-	void afficher_jeux() {
-
+	public void afficher_jeux() {
+		int i=0;
+		for (Local_Game game : this.hypergraphical_representation) {
+			String name  ="jeux"+i+".txt";
+			i++;
+			game.writeInFile(name);
+		}
 	}
 }

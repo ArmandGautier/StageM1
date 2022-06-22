@@ -163,6 +163,21 @@ public class GSG_SNF extends GSG {
 			
 			switch(this.attacker_utility) {
 			
+			case "Poach or bribe" :
+				
+				if (choix_des_garde_chasse.contains(choix)) {
+					int nb_gc = 0;
+					for (int c : choix_des_garde_chasse) {
+						if ( c == choix) {
+							nb_gc++;
+						}
+					}
+					return (float) (- this.fine_or_bribe*nb_gc);
+				}
+				else {
+					return this.lambda[choix];
+				}
+			
 			case "Poach or hide" :
 				
 				if (choix_des_garde_chasse.contains(choix)) {
@@ -181,7 +196,28 @@ public class GSG_SNF extends GSG {
 					}
 				}
 				return this.lambda[choix] - this.fine_or_bribe*nb_gc;
-			
+				
+			case "Team-poach or bribe" :
+				
+				if (choix_des_garde_chasse.contains(choix)) {
+					int nb_garde = 0;
+					for (int c : choix_des_garde_chasse) {
+						if ( c == choix) {
+							nb_garde++;
+						}
+					}
+					return (float) (- this.fine_or_bribe*nb_garde);
+				}
+				else {
+					float nb_braco = 0;
+					for (int c : choix_des_braconniers) {
+						if ( c == choix) {
+							nb_braco++;
+						}
+					}
+					return this.lambda[choix]/nb_braco;
+				}
+				
 			case "Team-poach or hide" :
 				
 				if (choix_des_garde_chasse.contains(choix)) {
@@ -213,7 +249,7 @@ public class GSG_SNF extends GSG {
 						nb_braco++;
 					}
 				}
-				return this.lambda[choix]/nb_braco - nb_garde;
+				return this.lambda[choix]/nb_braco - nb_garde*this.fine_or_bribe;
 				
 			default :
 				System.out.println("Le calcul d'utilité concernant les braconniers n'existe pas");
