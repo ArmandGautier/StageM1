@@ -11,7 +11,7 @@ import ilog.concert.IloNumVar;
 import ilog.cplex.IloCplex;
 
 public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_game {
-	float[] max_utilities_par_joueur;
+	float[] max_diff_utilities_par_joueur;
 	Map<Integer,ArrayList<ArrayList<int[]>>> list_A_i_par_joueur = new HashMap<>();
 	double[][] results_Uik;
 	double[][] results_Xik;
@@ -44,20 +44,43 @@ public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_
 			this.list_A_i_par_joueur.put(key, temp1);
 		}
 		
-		// donne un majorant de l'utilité max possible pour chacun des joueurs.
-		this.max_utilities_par_joueur = new float[this.nb_joueur];
+		// donne un majorant de la différence entre l'uti max et l'uti min d'un joueur
+		this.max_diff_utilities_par_joueur = new float[this.nb_joueur];
 		for (Integer key : this.profiles.keySet()) {
 			int local_index = 0;
 			for (int i=0; i<this.nb_joueur; i++) { 
 				if (this.player_by_game.get(key).contains(i)) {
+					local_index = this.player_by_game.indexOf(i);
 					float local_max = 0;
+					float local_min = 0;
 					local_max = getMax(this.utilites.get(key),local_index);
-					this.max_utilities_par_joueur[i] += local_max;
+					local_min = getMin(this.utilites.get(key),local_index);
+					this.max_diff_utilities_par_joueur[i] += (local_max-local_min);
 				}
 			}
 		}
 	}
 
+	/**
+	 * @param utilities
+	 * @param local_index
+	 * @return the minimal utility
+	 */
+	private float getMin(ArrayList<float[]> utilities, int local_index) {
+		float min = Float.MAX_VALUE;
+		for (float[] utility : utilities) {
+			if ( utility[local_index] < min ) {
+				min = utility[local_index];
+			}
+		}
+		return min;
+	}
+	
+	/**
+	 * @param utilities
+	 * @param local_index
+	 * @return the maximal utility
+	 */
 	private float getMax(ArrayList<float[]> utilities, int local_index) {
 		float max = Float.MIN_VALUE;
 		for (float[] utility : utilities) {
@@ -114,7 +137,9 @@ public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_
 			
 			for (int i=0; i<this.nb_joueur; i++) {
 				for (Integer key : this.profiles.keySet()) {
-					cplex.addEq(1, cplex.sum(Xa_i[i][key]));
+					if (this.player_by_game.get(key).contains(i)) {
+						cplex.addEq(1, cplex.sum(Xa_i[i][key]));
+					}
 				}
 			}
 			
@@ -188,7 +213,7 @@ public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_
 				for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
 					for (int k2=0; k2<this.actions_possible_par_joueur.get(i).size(); k2++) {
 						if (k2 != k) {
-							cplex.addGe(cplex.diff(Uik[i][k], Uik[i][k2]),cplex.diff(cplex.prod(this.max_utilities_par_joueur[i], Xik[i][k]), this.max_utilities_par_joueur[i]));
+							cplex.addGe(cplex.diff(Uik[i][k], Uik[i][k2]),cplex.diff(cplex.prod(this.max_diff_utilities_par_joueur[i], Xik[i][k]), this.max_diff_utilities_par_joueur[i]));
 						}
 					}
 				}
