@@ -24,5 +24,9 @@ public class Node {
 	public String getType() {
 		return type;
 	}
+	
+	public boolean equals(Node n) {
+		return (this.indexPlayer == n.getIndexPlayer() && this.type.equals(n.getType()));
+	}
 
 }

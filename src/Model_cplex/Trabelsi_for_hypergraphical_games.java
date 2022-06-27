@@ -12,6 +12,7 @@ import ilog.cplex.IloCplex;
 
 public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_game {
 	float[] max_diff_utilities_par_joueur;
+	float min = 0;
 	Map<Integer,ArrayList<ArrayList<int[]>>> list_A_i_par_joueur = new HashMap<>();
 	double[][] results_Uik;
 	double[][] results_Xik;
@@ -45,50 +46,26 @@ public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_
 		}
 		
 		// donne un majorant de la différence entre l'uti max et l'uti min d'un joueur
+		// permet également de calculer un minorant de l'utilité minimal possible
 		this.max_diff_utilities_par_joueur = new float[this.nb_joueur];
 		for (Integer key : this.profiles.keySet()) {
+			float min_local = Float.MAX_VALUE;
 			int local_index = 0;
 			for (int i=0; i<this.nb_joueur; i++) { 
 				if (this.player_by_game.get(key).contains(i)) {
-					local_index = this.player_by_game.indexOf(i);
-					float local_max = 0;
-					float local_min = 0;
-					local_max = getMax(this.utilites.get(key),local_index);
-					local_min = getMin(this.utilites.get(key),local_index);
-					this.max_diff_utilities_par_joueur[i] += (local_max-local_min);
+					local_index = this.player_by_game.get(key).indexOf(i); // Vérifier que c'est ok ici ça ne l'est pas
+					float i_max = getMax(this.utilites.get(key),local_index);
+					float i_min = getMin(this.utilites.get(key),local_index);
+					if ( i_min < min_local) {
+						min_local = i_min;
+					}
+					this.max_diff_utilities_par_joueur[i] += (i_max-i_min);
 				}
 			}
-		}
-	}
-
-	/**
-	 * @param utilities
-	 * @param local_index
-	 * @return the minimal utility
-	 */
-	private float getMin(ArrayList<float[]> utilities, int local_index) {
-		float min = Float.MAX_VALUE;
-		for (float[] utility : utilities) {
-			if ( utility[local_index] < min ) {
-				min = utility[local_index];
+			if (min_local < 0) {
+				min += min_local;
 			}
 		}
-		return min;
-	}
-	
-	/**
-	 * @param utilities
-	 * @param local_index
-	 * @return the maximal utility
-	 */
-	private float getMax(ArrayList<float[]> utilities, int local_index) {
-		float max = Float.MIN_VALUE;
-		for (float[] utility : utilities) {
-			if ( utility[local_index] > max ) {
-				max = utility[local_index];
-			}
-		}
-		return max;
 	}
 
 	public void construct_model() { 
@@ -110,7 +87,7 @@ public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_
 			for (int i=0; i<this.nb_joueur; i++) {
 				int nb_variable = this.actions_possible_par_joueur.get(i).size();
 				Xik[i] = cplex.boolVarArray(nb_variable);
-				Uik[i] = cplex.numVarArray(nb_variable, 0, Double.MAX_VALUE);
+				Uik[i] = cplex.numVarArray(nb_variable, min, Double.MAX_VALUE);
 			}
 			
 			// Xa-i 

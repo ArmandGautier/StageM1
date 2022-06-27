@@ -365,6 +365,7 @@ public class GSG_SNF extends GSG {
 	 * Print information about the game.
 	 */
 	public void afficher_jeux() {
+		System.out.println("Il y a " + this.nb_attacker + " braconnier");
 		ListIterator<int[]> it1 = this.profiles.listIterator();
 		ListIterator<float[]> it2 = this.getUtilities().listIterator();
 		while (it1.hasNext() && it2.hasNext()) {
