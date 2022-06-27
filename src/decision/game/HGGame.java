@@ -2,14 +2,26 @@ package decision.game;
 
 import java.util.List;
 import java.util.Map.Entry;
+
 import decision.game.profile.ActionProfile;
 import decision.game.profile.Profile;
 import decision.utility.oplus.Oplus;
 
+/**
+ * Hypergraphical Game
+ * @author Pierre Pomeret-Coquot
+ * @param <U> Type for utility values
+ */
 public abstract class HGGame<U> extends CGame<U> {
 	
+	/**
+	 * @return Aggregation operator (to aggregate local utility values in a single global utility value
+	 */
 	public abstract Oplus<U> oplus();
 		
+	/**
+	 * @return List of all local games
+	 */
 	public abstract List<LocalGame<U>> localGames();
 
 	@Override

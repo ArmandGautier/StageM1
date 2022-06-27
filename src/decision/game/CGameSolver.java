@@ -6,20 +6,36 @@ import java.util.List;
 import java.util.Vector;
 
 import decision.game.profile.ActionProfile;
-import decision.game.profile.Profile;
 import decision.game.profile.ActionProfile.ActionProfileIterator;
+import decision.game.profile.Profile;
 import decision.utility.Cmp;
 
 
 
+/**
+ * Tool for studying and solving a CGame
+ * @author Pierre Pomeret-Coquot
+ * @param <U> Type for utility values
+ */
 public class CGameSolver<U> {
 	
 	private Cmp<U> cmp;
 
+	/**
+	 * Instantiate a CGameSolver
+	 * @param cmp Comparator for U-typed utility values
+	 */
 	public CGameSolver(Cmp<U> cmp) {
 		this.cmp = cmp;
 	}
 	
+	/**
+	 * Best response
+	 * @param g CGame to consider
+	 * @param p Action profile to consider
+	 * @param i Player to consider
+	 * @return true iff p_i is a best response to p_{-i} 
+	 */
 	public boolean isBestResponse(CGame<U> g, ActionProfile p, int i) {
 		Profile<U> u = g.utility(p);
 		for (int a_i = 0 ; a_i < g.nActions().get(i) ; a_i++) {
@@ -33,6 +49,12 @@ public class CGameSolver<U> {
 		return true;
 	}
 	
+	/**
+	 * Nash equilibrium
+	 * @param g CGame to consider
+	 * @param p Action profile to consider
+	 * @return true iff p is a Nash equilibrium i.e. forall i, p_i is a best response to p_{-i}
+	 */
 	public boolean isNashEquilibrium(CGame<U> g, ActionProfile p) {
 		for (int i = 0 ; i < g.nPlayers() ; i++) {
 			if (!this.isBestResponse(g, p, i)) {
@@ -42,6 +64,12 @@ public class CGameSolver<U> {
 		return true;
 	}
 	
+	/**
+	 * All pure Nash equilibria
+	 * @param g CGame to consider
+	 * @param verbose If true, prints all profiles and for each profile p, either a better response for a player (if any) or that p is a Nash equilibrium
+	 * @return List of all pure Nash equilibria
+	 */
 	public List<ActionProfile> allNashEquilibria(CGame<U> g, boolean verbose) {
 		List<ActionProfile> allNashEq = new ArrayList<>();
 		Vector<Integer> nActions = g.nActions();
@@ -81,6 +109,11 @@ public class CGameSolver<U> {
 		return allNashEq;
 	}
 	
+	/**
+	 * All pure Nash equilibria
+	 * @param g CGame to consider
+	 * @return list of all pure Nash equilibria
+	 */
 	public List<ActionProfile> allNashEquilibria(CGame<U> g) {
 		return this.allNashEquilibria(g, false);
 	}

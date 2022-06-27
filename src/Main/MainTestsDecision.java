@@ -5,14 +5,19 @@ import GSG.GSG_SNF;
 import decision.game.CGame;
 import decision.game.CGameSolver;
 import decision.game.HGGame;
+import decision.game.factory.CoordinationGame;
+import decision.game.factory.HGCoordinationGame;
 import decision.game.profile.Profile;
 import decision.utility.Cmp;
 import decision.utility.FloatCmp;
 import decision.utility.IntegerCmp;
-import game.factory.CoordinationGame;
-import game.factory.HGCoordinationGame;
 
-public class MainTests {
+/**
+ * Test for decision packages
+ * @author Pierre Pomeret-Coquot
+ *
+ */
+public class MainTestsDecision {
 
 	public static void main(String[] args) {
 		
@@ -24,9 +29,11 @@ public class MainTests {
 		Profile<Integer> p1 = new Profile<>(arr1);
 		Profile<Integer> p2 = new Profile<>(arr2);
 		Profile<Integer> p3 = new Profile<>(arr3);
+		System.out.println("Test of profile equality: p1 = " + p1 + ", p2 = " + p2 + ", p3 = " + p3);
 		System.out.println("p1 == p2:\t" + (p1 == p2) + ", " + p1.equals(p2) + ", " + p2.equals(p1));
 		System.out.println("p1 == p3:\t" + (p1 == p3) + ", " + p1.equals(p3) + ", " + p3.equals(p1));
 		System.out.println("p2 == p3:\t" + (p2 == p3) + ", " + p2.equals(p3) + ", " + p3.equals(p2));
+		System.out.println("\n\n");
 
 		
 		
@@ -40,7 +47,7 @@ public class MainTests {
 		
 		
 		
-		// Instanciate a coordination game in SNF
+		// Instantiate a SNF coordination game
 		int nPlayers = 3;
 		int nActions = 2;
 		
@@ -49,9 +56,10 @@ public class MainTests {
 		System.out.println("All Nash equilibria:");
 		intSolver.allNashEquilibria(coordGame, true);
 
-				
 		System.out.println("\n\n");
 		
+
+		// Instantiate a HG coordination game
 		HGGame<Integer> hgCoordGame = new HGCoordinationGame(nPlayers,nActions);
 		System.out.println(hgCoordGame.nPlayers() + "-player " + coordGame.nActions() + "-action hypergraphical coordination game");
 		System.out.println(hgCoordGame);
@@ -60,12 +68,11 @@ public class MainTests {
 		System.out.println("coordGame == hgCoordGame:\t" + coordGame.equals(hgCoordGame) + ", " + hgCoordGame.equals(coordGame));
 		System.out.println("Cost of representation (SNF):\t" + coordGame.nValues());
 		System.out.println("Cost of representation (HG):\t" + hgCoordGame.nValues());
-
-		
-		
 		
 		System.out.println("\n\n");
 
+		
+		// Instantiate a GSG
 		int[] nPlayersGSG = {2,2};
 		float l = 1;
 		int[] t = {0,1};

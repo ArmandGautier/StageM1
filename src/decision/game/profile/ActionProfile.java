@@ -3,14 +3,26 @@ package decision.game.profile;
 import java.util.Iterator;
 import java.util.Vector;
 
+/**
+ * ActionProfile are profiles of integer
+ * @author Pierre Pomeret-Coquot
+ *
+ */
 public class ActionProfile extends Profile<Integer> {
 
 	private static final long serialVersionUID = -7882463705109987320L;
 	
+	/**
+	 * Instantiate an empty action profile
+	 */
 	public ActionProfile() {
 		super();
 	}
 	
+	/**
+	 * Instantiate an action profile from its corresponding array
+	 * @param array Values to put in the action profile
+	 */
 	public ActionProfile(int[] array) {
 		super();
 		for (int i = 0 ; i < array.length; i++) {
@@ -18,6 +30,12 @@ public class ActionProfile extends Profile<Integer> {
 		}
 	}
 
+	/**
+	 * Change the i-th component to a_i
+	 * @param i Number of the component to change
+	 * @param a_i New value of the i-th component
+	 * @return The new action profile where the i-th component has changed to a_i
+	 */
 	public ActionProfile moveTo(int i, int a_i) {
 		ActionProfile p = new ActionProfile();
 		for (int j = 0 ; j < this.size() ; j++) {
@@ -31,6 +49,14 @@ public class ActionProfile extends Profile<Integer> {
 		return p;
 	}
 
+	
+	
+	
+	/**
+	 * Iterator over all action profiles
+	 * @author Pierre Pomeret-Coquot
+	 *
+	 */
 	public static class ActionProfileIterator implements Iterator<ActionProfile> {
 
 		private int nPlayers;
@@ -38,6 +64,10 @@ public class ActionProfile extends Profile<Integer> {
 		private ActionProfile currentProfile;
 		private boolean hasNext = false;
 		
+		/**
+		 * Instantiate an iterator over all action profiles
+		 * @param nActions the Integer-profile where the i-th component is the number of actions of Player i
+		 */
 		public ActionProfileIterator(Vector<Integer> nActions) {
 			this.nPlayers = nActions.size();
 			this.nActions = nActions;

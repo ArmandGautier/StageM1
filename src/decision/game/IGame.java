@@ -1,18 +1,13 @@
 package decision.game;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
-
-import decision.game.profile.ActionProfile;
-import decision.game.profile.ActionProfile.ActionProfileIterator;
-import decision.game.profile.Profile;
-
+/**
+ * Games of Incomplete Information
+ * Not Implemented
+ * @author Pierre Pomeret-Coquot
+ * @param <U> Type for utility
+ */
 public abstract class IGame<U> {
-	
+	/*
 	public abstract int nPlayers();
 	
 	public abstract Vector<Integer> nActions();
@@ -47,5 +42,5 @@ public abstract class IGame<U> {
 		}
 		return s;
 	}
-
+	*/
 }

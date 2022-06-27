@@ -1,5 +1,10 @@
 package decision.utility.oplus;
 
+/**
+ * Natural addition for integers
+ * @author Pierre Pomeret-Coquot
+ *
+ */
 public class IntegerOplus extends Oplus<Integer> {
 
 	@Override

@@ -1,8 +1,7 @@
-package game.factory;
+package decision.game.factory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import decision.game.HGGame;
 import decision.game.LocalGame;
@@ -11,11 +10,21 @@ import decision.game.profile.Profile;
 import decision.utility.oplus.IntegerOplus;
 import decision.utility.oplus.Oplus;
 
+/**
+ * Hypergraphical representation of coordination games
+ * @author Pierre Pomeret-Coquot
+ *
+ */
 public class HGCoordinationGame extends HGGame<Integer> {
 	
 	List<LocalGame<Integer>> localGames;
 	Oplus<Integer> oplus = new IntegerOplus();
 	
+	/**
+	 * Instantiate an hypergraphical coordination game
+	 * @param nPlayers Number of players
+	 * @param nActions Number of actions (for every player)
+	 */
 	public HGCoordinationGame(int nPlayers, int nActions) {
 		this.localGames = new ArrayList<>();
 		for (int i = 0 ; i < nPlayers ; i++) {
@@ -38,12 +47,23 @@ public class HGCoordinationGame extends HGGame<Integer> {
 
 	
 	
+	/**
+	 * Local coordination games
+	 * @author Pierre Pomeret-Coquot
+	 *
+	 */
 	public static class LocalCoordinationGame extends LocalGame<Integer> {
 		
 		private int player0;
 		private int player1;
 		private int nActions;
 		
+		/**
+		 * Instantiate a local coordination game
+		 * @param player0 Global id of local player 0
+		 * @param player1 Global id of local player 1
+		 * @param nActions Number of actions (for both player0 and player1)
+		 */
 		protected LocalCoordinationGame(int player0, int player1, int nActions) {
 			this.player0 = player0;
 			this.player1 = player1;

@@ -3,10 +3,19 @@ package decision.utility;
 import java.util.Iterator;
 import java.util.Vector;
 
+/**
+ * Lexicographic comparator for T-profiles
+ * @author Pierre Pomeret-Coquot
+ * @param <T> Ordered type of profiles' components
+ */
 public class LexicoCmp<T> extends Cmp<Vector<T>>{
 	
 	private Cmp<T> cmp;
 	
+	/**
+	 * Instantiate a lexicographic comparator
+	 * @param cmp Comparator for profiles' components
+	 */
 	public LexicoCmp(Cmp<T> cmp) {
 		this.cmp = cmp;
 	}

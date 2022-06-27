@@ -3,20 +3,37 @@ package decision.game;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Vector;
 
 import decision.game.profile.ActionProfile;
 import decision.game.profile.ActionProfile.ActionProfileIterator;
 import decision.game.profile.Profile;
 
+/**
+ * Games of Complete Information
+ * @author Pierre Pomeret-Coquot
+ * @param <U> Type for utility values
+ */
 public abstract class CGame<U> {
 	
+	/**
+	 * @return Number of players
+	 */
 	public abstract int nPlayers();
 	
+	/**
+	 * @return Action profile where i-th component is the number of actions of Player i
+	 */
 	public abstract Profile<Integer> nActions();
 	
+	/**
+	 * @param p ActionProfile to evaluate
+	 * @return Utility profile where the i-th component is the utility of Player i
+	 */
 	public abstract Profile<U> utility(ActionProfile p);
 	
+	/**
+	 * @return Map where keys are action profiles and values are utility profiles
+	 */
 	public Map<ActionProfile,Profile<U>> utilityMap() {
 		Map<ActionProfile,Profile<U>> u = new HashMap<>();
 		Iterator<ActionProfile> it = new ActionProfileIterator(this.nActions());
@@ -27,6 +44,9 @@ public abstract class CGame<U> {
 		return u;
 	}
 	
+	/**
+	 * @return Cost of the representation = number of values stored in the utility "matrix"
+	 */
 	public int nValues() {
 		int n = 1;
 		for (int i = 0 ; i < this.nPlayers() ; i++) {

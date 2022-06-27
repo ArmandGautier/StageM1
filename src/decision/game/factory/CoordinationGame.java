@@ -1,16 +1,24 @@
-package game.factory;
-
-import java.util.Vector;
+package decision.game.factory;
 
 import decision.game.CGame;
 import decision.game.profile.ActionProfile;
 import decision.game.profile.Profile;
 
+/**
+ * Coordination game: players aim to choose the same action
+ * @author Pierre Pomeret-Coquot
+ *
+ */
 public class CoordinationGame extends CGame<Integer> {
 	
 	private int nPlayers;
 	private Profile<Integer> nActions = new Profile<>();
 	
+	/**
+	 * Instantiate a coordination game (players aim to choose the same action)
+	 * @param nPlayers Number of players
+	 * @param nActions Number of actions (for every player)
+	 */
 	public CoordinationGame(int nPlayers, int nActions) {
 		this.nPlayers = nPlayers;
 		for (int i = 0 ; i < nPlayers ; i++) {
@@ -18,6 +26,9 @@ public class CoordinationGame extends CGame<Integer> {
 		}
 	}
 	
+	/**
+	 * Instantiate a coordination game with two players and two actions each
+	 */
 	public CoordinationGame() {
 		this(2,2);
 	}
