@@ -149,6 +149,14 @@ public class Gilpin_model extends Model {
 					this.results_Uik[i] = cplex.getValues(Uik[i]);
 					this.results_Ui = cplex.getValues(Ui);
 				}
+				for (int i=0; i<this.nb_joueur; i++) {
+					for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
+						if (this.results_Pik[i][k] == 1) {
+							this.actionsOfSolution[i] = this.actions_possible_par_joueur.get(i).get(k);
+							break;
+						}
+					}
+				}
 			}
 			
 			cplex.close();
@@ -158,18 +166,6 @@ public class Gilpin_model extends Model {
 		}
 		
 		
-	}
-	
-	private boolean  asSame(int[] profil1, int[] profil2) {
-		if ( profil1.length != profil2.length) {
-			return false;
-		}
-		for (int i=0; i<profil1.length; i++) {
-			if (profil1[i] != profil2[i]) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	@Override

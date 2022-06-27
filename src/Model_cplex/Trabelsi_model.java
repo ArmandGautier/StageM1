@@ -5,7 +5,8 @@ import ilog.concert.*;
 import ilog.cplex.*;
 
 public class Trabelsi_model extends Model {
-	float[] max_utilities_par_joueur;
+	float[] max_diff_utilities_par_joueur;
+	float min = Float.MAX_VALUE;
 	ArrayList<ArrayList<int[]>> list_A_i_par_joueur = new ArrayList<ArrayList<int[]>>();
 	double[][] results_Uik;
 	double[][] results_Xik;
@@ -18,12 +19,12 @@ public class Trabelsi_model extends Model {
 	public Trabelsi_model(ArrayList<int[]> profils, ArrayList<float[]> utilites) {
 		super(profils, utilites);
 		
-		this.max_utilities_par_joueur = new float[this.nb_joueur];
-		for (float[] u : utilites) {
-			for (int i=0; i<u.length; i++) {
-				if (u[i] > this.max_utilities_par_joueur[i]) {
-					this.max_utilities_par_joueur[i] = u[i];
-				}
+		this.max_diff_utilities_par_joueur = new float[this.nb_joueur];
+		for ( int i=0; i<this.nb_joueur; i++) {
+			float min_i = getMin(this.utilites,i);
+			this.max_diff_utilities_par_joueur[i] = getMax(this.utilites,i) - min_i;
+			if ( min_i < min ) {
+				min = min_i;
 			}
 		}
 		
@@ -38,14 +39,14 @@ public class Trabelsi_model extends Model {
 						k++;
 					}
 				}
-				if ( ! temp.contains(prof_temp)) {
+				if ( ! isIn(temp,prof_temp)) {
 					temp.add(prof_temp);
 				}
 			}
 			this.list_A_i_par_joueur.add(temp);
 		}
 	}
-	
+
 	/**
 	 * Construct the model following the algorithm from Trabelsi (2020) in Games with incomplete information: a framework based on possibility theory.
 	 * One adaptation has be made on constraint five for the moment
@@ -76,7 +77,7 @@ public class Trabelsi_model extends Model {
 					s2[j] = "U"+i+this.actions_possible_par_joueur.get(i).get(j);
 				}
 				Xik[i] = cplex.boolVarArray(nb_variable,s1);
-				Uik[i] = cplex.numVarArray(nb_variable, 0, Double.MAX_VALUE,s2);
+				Uik[i] = cplex.numVarArray(nb_variable, min, Double.MAX_VALUE,s2);
 			}
 			
 			// Xa-i 
@@ -85,7 +86,7 @@ public class Trabelsi_model extends Model {
 				int nb_variable = this.list_A_i_par_joueur.get(i).size();
 				String[] s1 = new String[nb_variable];
 				for (int j=0; j<nb_variable; j++) {
-					s1[j] = "A-i"+j;
+					s1[j] = "A_"+i+j;
 				}
 				Xa_i[i] = cplex.boolVarArray(nb_variable,s1); 
 			}
@@ -173,7 +174,7 @@ public class Trabelsi_model extends Model {
 				for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
 					for (int k2=0; k2<this.actions_possible_par_joueur.get(i).size(); k2++) {
 						if (k2 != k) {
-							cplex.addGe(cplex.diff(Uik[i][k], Uik[i][k2]),cplex.diff(cplex.prod(this.max_utilities_par_joueur[i], Xik[i][k]), this.max_utilities_par_joueur[i]));
+							cplex.addGe(cplex.diff(Uik[i][k], Uik[i][k2]),cplex.diff(cplex.prod(this.max_diff_utilities_par_joueur[i], Xik[i][k]), this.max_diff_utilities_par_joueur[i]));
 						}
 					}
 				}
@@ -196,7 +197,14 @@ public class Trabelsi_model extends Model {
 					this.results_Xik[i] = cplex.getValues(Xik[i]);
 					this.results_Uik[i] = cplex.getValues(Uik[i]);
 				}
-				//cplex.writeSolutions("m2");
+				for (int i=0; i<this.nb_joueur; i++) {
+					for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
+						if (this.results_Xik[i][k] == 1) {
+							this.actionsOfSolution[i] = this.actions_possible_par_joueur.get(i).get(k);
+							break;
+						}
+					}
+				}
 			}
 			
 			cplex.close();
@@ -204,23 +212,6 @@ public class Trabelsi_model extends Model {
 		catch (IloException exc) {
 			exc.printStackTrace();
 		}
-	}
-	
-	/**
-	 * @param profil1
-	 * @param profil2
-	 * @return true if profil1 is the same as profil2
-	 */
-	private boolean  asSame(int[] profil1, int[] profil2) {
-		if ( profil1.length != profil2.length) {
-			return false;
-		}
-		for (int i=0; i<profil1.length; i++) {
-			if (profil1[i] != profil2[i]) {
-				return false;
-			}
-		}
-		return true;
 	}
 	
 	public void print_results() {

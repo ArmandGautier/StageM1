@@ -5,6 +5,9 @@ package Main;
 
 import java.util.ArrayList;
 
+import GSG.Bel_GSG;
+import GSG.Bel_GSG_Direct_Transform;
+import GSG.Bel_GSG_SNF;
 import GSG.GSG;
 import GSG.GSG_SNF;
 import GSG.GSG_hypergraphique;
@@ -13,7 +16,6 @@ import Model_cplex.Gilpin_model;
 import Model_cplex.Trabelsi_model;
 import Model_cplex.Trabelsi_without_objective;
 import GSG.GSG_MF;
-import GSG.GSG_MFWT;
 import Test_model.Test_model;
 
 /**
@@ -51,8 +53,11 @@ public class Main {
 		String method = "TBEU";
 		float[] alpha = {0};
 		int[] gps = {0};
-		GSG_MFWT gsg = new GSG_MFWT(nb_attacker,nb_defender,uti_att,uti_def,possible_actions,herd,fine_or_bribe,nb_location,focal_element,m,method,alpha,gps);
+		Bel_GSG gsg = new Bel_GSG_Direct_Transform(nb_attacker,nb_defender,uti_att,uti_def,possible_actions,herd,fine_or_bribe,nb_location,focal_element,m,method,alpha,gps);
 		gsg.calcul_val();
-		gsg.afficher_jeux();
+		gsg.writeInFile("Hyper.txt");
+		Bel_GSG gsg2 = new Bel_GSG_SNF(nb_attacker,nb_defender,uti_att,uti_def,possible_actions,herd,fine_or_bribe,nb_location,focal_element,m,method,alpha,gps);
+		gsg2.calcul_val();
+		gsg2.writeInFile("SNF.txt");
 	}
 }

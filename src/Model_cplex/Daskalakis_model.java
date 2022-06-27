@@ -66,7 +66,7 @@ public class Daskalakis_model extends Model {
 			for (int i=0; i<this.nb_joueur; i++) {
 				int p=0;
 				for (int[] profil : this.profils) {
-					ArrayList<Integer> list_indice_profil_similaire = recup_identique_profil(profil,i); 
+					ArrayList<Integer> list_indice_profil_similaire = getSameProfile(profil,i); 
 					boolean best_response = true;
 						for (int profil_similaire : list_indice_profil_similaire) {
 							if (!(utilites.get(p)[i] >= utilites.get(profil_similaire)[i])) {
@@ -95,11 +95,19 @@ public class Daskalakis_model extends Model {
 			
 			if (this.solved) {
 				this.obj = cplex.getObjValue();
-				/*this.results_Vi = cplex.getValues(Vi);
+				this.results_Vi = cplex.getValues(Vi);
 				this.results_Xik = new double[this.nb_joueur][];
 				for (int i=0; i<this.nb_joueur; i++) {
 					this.results_Xik[i] = cplex.getValues(Xik[i]);
-				}*/
+				}
+				for (int i=0; i<this.nb_joueur; i++) {
+					for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
+						if (this.results_Xik[i][k] == 1) {
+							this.actionsOfSolution[i] = this.actions_possible_par_joueur.get(i).get(k);
+							break;
+						}
+					}
+				}
 			}
 			
 			cplex.close();
@@ -108,31 +116,36 @@ public class Daskalakis_model extends Model {
 			exc.printStackTrace();
 		}
 	}
-
-	private ArrayList<Integer> recup_identique_profil(int[] profil, int joueur) {
-		ArrayList<Integer> profil_similaire = new ArrayList<Integer>();
-		int i=0;
-		for (int[] profil2 : this.profils) {
+	
+	/**
+	 * @param profil
+	 * @param joueur
+	 * @return a list of index of profiles who are the same as "profil" excepted the action of player "joueur" that must be different
+	 */
+	private ArrayList<Integer> getSameProfile(int[] profil, int joueur) {
+		ArrayList<Integer> sameProfile = new ArrayList<Integer>();
+		int profileIndex=0;
+		for (int[] p : this.profils) {
 			boolean same = true;
-			for (int j=0; j<nb_joueur; j++) {
+			for (int j=0; j<this.nb_joueur; j++) {
 				// si on regarde l'action d'un autre joueur que le joueur i
 				if ( joueur != j) {
-					same = profil[j] == profil2[j];
+					same = profil[j] == p[j];
 				}
 				// si on regarde l'action du joueur i
 				else {
-					same = profil[j] != profil2[j];
+					same = profil[j] != p[j];
 				}
 				if (! same) {
 					break;
 				}
 			}
 			if (same) {
-				profil_similaire.add(i);
+				sameProfile.add(profileIndex);
 			}
-			i++;
+			profileIndex++;
 		}
-		return profil_similaire;
+		return sameProfile;
 	}
 	
 	public void print_results() {

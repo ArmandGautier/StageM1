@@ -9,14 +9,34 @@ import java.util.ListIterator;
 
 public class Local_Game {
 
+	/**
+	 * the list of player who plays in at least omega that belongs to focal_elt
+	 */
 	private ArrayList<Node> list_player = new ArrayList<Node>();
+	/**
+	 * for each omega that belongs to focal_elt, give a list of boolean to know if player's plays or not in omega
+	 */
 	private ArrayList<ArrayList<Boolean>> play_in_omega = new ArrayList<ArrayList<Boolean>>();
+	/**
+	 * dimension of the local_game
+	 */
 	private int local_dimension;
+	/**
+	 * the index of the focal element, useful to know the value of m[indexOf_focal_elt]
+	 */
 	private int indexOf_focal_elt;
-	private GSG_MFWT parent_game;
+	/**
+	 * The parent game
+	 */
+	private Bel_GSG parent_game;
+	/**
+	 * list of possible_actions for player of this local game
+	 */
 	ArrayList<ArrayList<Integer>> possible_actions = new ArrayList<ArrayList<Integer>>();
+	/**
+	 * the focal element corresponding to this local game
+	 */
 	int[][] focal_elt;
-	
 	/**
 	 * a list of profile. 
 	 */
@@ -26,7 +46,13 @@ public class Local_Game {
 	 */
 	ArrayList<float[]> utilities_value = new ArrayList<float[]>();
 
-	public Local_Game(GSG_MFWT parent_game, int[][] focal_elt, int indexOf_focal_elt) {
+	
+	/**
+	 * @param parent_game
+	 * @param focal_elt
+	 * @param indexOf_focal_elt
+	 */
+	public Local_Game(Bel_GSG parent_game, int[][] focal_elt, int indexOf_focal_elt) {
 		this.parent_game = parent_game;
 		this.focal_elt = focal_elt;
 		this.indexOf_focal_elt = indexOf_focal_elt;
@@ -56,6 +82,10 @@ public class Local_Game {
 		}
 	}
 
+	/**
+	 * @param player
+	 * @param actions
+	 */
 	private void addPlayer(Node player, ArrayList<Integer> actions) {
 		this.list_player.add(player);
 		this.possible_actions.add(actions);
@@ -96,7 +126,7 @@ public class Local_Game {
 			int[] c = new int[this.list_player.size()];
 			for (Node player : this.list_player) {
 				float k = this.parent_game.computeK(player);
-				float val = computeVal(player,choix_des_joueurs);
+				float val = computeVal(player,choix_des_joueurs,j);
 				uti_tmp[j] = k * this.parent_game.mass_function[indexOf_focal_elt] * val;
 				c[j] = choix_des_joueurs.get(j);
 				j++;
@@ -106,15 +136,15 @@ public class Local_Game {
 		}
 	}
 
-	private float computeVal(Node player, ArrayList<Integer> choix_des_joueurs) {
+	private float computeVal(Node player, ArrayList<Integer> choix_des_joueurs, int j) {
 		
 		switch(this.parent_game.method) {
 		case "CEU" :
-			return calcul_val_using_CEU(player,choix_des_joueurs);
+			return calcul_val_using_CEU(player,choix_des_joueurs,j);
 		case "JEU" :
-			return calcul_val_using_JEU(player,choix_des_joueurs);
+			return calcul_val_using_JEU(player,choix_des_joueurs,j);
 		case "TBEU" :
-			return calcul_val_using_TBEU(player,choix_des_joueurs);
+			return calcul_val_using_TBEU(player,choix_des_joueurs,j);
 		default : 
 			System.out.println("Cette méthode n'existe pas ou n'est pas implémentée");
 			break;
@@ -122,12 +152,12 @@ public class Local_Game {
 		return 0;
 	}
 
-	private float calcul_val_using_TBEU(Node player, ArrayList<Integer> choix_des_joueurs) {
+	private float calcul_val_using_TBEU(Node player, ArrayList<Integer> choix_des_joueurs, int j) {
 		float val = 0;
 		int nb_omega=0;
 		int index_omega=0;
 		for (int[] omega : this.focal_elt) {
-			if ( this.parent_game.omegaToTypes(omega, player.getIndexPlayer()).equals(player.getType()) ) {
+			if ( this.play_in_omega.get(index_omega).get(j) ) {
 				nb_omega++;
 				int[] profil_selon_omega = computeProfile(index_omega,choix_des_joueurs);
 				int indiceGSG = this.parent_game.getIndexOfGSG(omega);
@@ -145,13 +175,13 @@ public class Local_Game {
 		}
 	}
 	
-	private float calcul_val_using_JEU(Node player, ArrayList<Integer> choix_des_joueurs) {
+	private float calcul_val_using_JEU(Node player, ArrayList<Integer> choix_des_joueurs, int j) {
 		float val = 0;
 		int index_omega=0;
 		float min = Float.MAX_VALUE;
 		float max = Float.MIN_VALUE;
 		for (int[] omega : this.focal_elt) {
-			if ( this.parent_game.omegaToTypes(omega, player.getIndexPlayer()).equals(player.getType()) ) {
+			if ( this.play_in_omega.get(index_omega).get(j) ) {
 				int[] profil_selon_omega = computeProfile(index_omega,choix_des_joueurs);
 				int indiceGSG = this.parent_game.getIndexOfGSG(omega);
 				GSG_SNF gsg = this.parent_game.gsg_snf.get(indiceGSG);
@@ -169,12 +199,12 @@ public class Local_Game {
 		val = this.parent_game.alpha[player.getIndexPlayer()]*min+(1-this.parent_game.alpha[player.getIndexPlayer()])*max;
 		return val;
 	}
-
-	private float calcul_val_using_CEU(Node player, ArrayList<Integer> choix_des_joueurs) {
+	
+	private float calcul_val_using_CEU(Node player, ArrayList<Integer> choix_des_joueurs, int j) {
 		float min = Float.MAX_VALUE;
 		int index_omega=0;
 		for (int[] omega : this.focal_elt) {
-			if ( this.parent_game.omegaToTypes(omega, player.getIndexPlayer()).equals(player.getType()) ) {
+			if ( this.play_in_omega.get(index_omega).get(j) ) {
 				int[] profil_selon_omega = computeProfile(index_omega,choix_des_joueurs);
 				int indiceGSG = this.parent_game.getIndexOfGSG(omega);
 				GSG_SNF gsg = this.parent_game.gsg_snf.get(indiceGSG);
@@ -189,6 +219,11 @@ public class Local_Game {
 		return min;
 	}
 	
+	/**
+	 * @param index_omega
+	 * @param choix_des_joueurs
+	 * @return a restricting profile of "choix_des_joueurs" considering only players who played in omega
+	 */
 	private int[] computeProfile(int index_omega, ArrayList<Integer> choix_des_joueurs) {
 		int[] profile = new int[this.parent_game.nb_player];
 		int index_player = 0;
@@ -201,6 +236,9 @@ public class Local_Game {
 		return profile;
 	}
 	
+	/**
+	 * print information to describe this game
+	 */
 	public void afficher_jeux() {
 		System.out.println("This game concerned the following focal element : " );
 		for (int[] omega : this.focal_elt) {
@@ -226,6 +264,10 @@ public class Local_Game {
 		}
 	}
 	
+	/**
+	 * @param filename
+	 * write the matrixes of the game in a file
+	 */
 	public void writeInFile(String filename) {
 		try {
 			

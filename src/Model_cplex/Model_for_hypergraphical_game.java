@@ -61,4 +61,34 @@ public abstract class Model_for_hypergraphical_game {
 	public void readInFile(String filename) {
 		
 	}
+	
+	/**
+	 * @param utilities
+	 * @param local_index
+	 * @return the minimal utility
+	 */
+	protected float getMin(ArrayList<float[]> utilities, int local_index) {
+		float min = Float.MAX_VALUE;
+		for (float[] utility : utilities) {
+			if ( utility[local_index] < min ) {
+				min = utility[local_index];
+			}
+		}
+		return min;
+	}
+	
+	/**
+	 * @param utilities
+	 * @param local_index
+	 * @return the maximal utility
+	 */
+	protected float getMax(ArrayList<float[]> utilities, int local_index) {
+		float max = Float.MIN_VALUE;
+		for (float[] utility : utilities) {
+			if ( utility[local_index] > max ) {
+				max = utility[local_index];
+			}
+		}
+		return max;
+	}
 }

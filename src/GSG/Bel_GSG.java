@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author agautier
  *
  */
-public class GSG_MFWT{
+public abstract class Bel_GSG{
 	
 	/**
 	 * N players, K attackers and L defenders, the first K players are the attackers
@@ -39,9 +39,12 @@ public class GSG_MFWT{
 	 * GSG in SNF to represent all possibles worlds
 	 */
 	ArrayList<GSG_SNF> gsg_snf = new ArrayList<GSG_SNF>();
+	/**
+	 * a list of all the possible world
+	 */
 	ArrayList<int[]> possible_omega = new ArrayList<int[]>();
 	/**
-	 * represents all nodes of the transformation
+	 * represents all players of the game
 	 */
 	ArrayList<Node> nodes = new ArrayList<Node>();
 	/**
@@ -53,17 +56,13 @@ public class GSG_MFWT{
 	 */
 	float[] mass_function;
 	/**
-	 * The method use to compute the total utility considering all the possible world
+	 * The method use to compute the XEU, can be JEU, CEU or TBEU
 	 */
 	String method;
 	/**
-	 * Value of alpha used in the method JEU, can be change
+	 * Value of alpha used in the method JEU
 	 */
 	float[] alpha;
-	/**
-	 * List of local game who are the hypergraphical representation
-	 */
-	ArrayList<Local_Game> hypergraphical_representation = new ArrayList<Local_Game>();
 	/**
 	 * Value of herds
 	 */
@@ -92,7 +91,7 @@ public class GSG_MFWT{
 	 * @param alpha
 	 * @param gps
 	 */
-	public GSG_MFWT(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility,
+	public Bel_GSG(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility,
 			ArrayList<ArrayList<Integer>> possible_actions,int[] herd, int fine_or_bribe,int nb_location, ArrayList<int[][]> focal_element,
 			float[] mass_function, String method, float[] alpha, int[] gps) {
 		this.nb_attacker = nb_attacker;
@@ -111,9 +110,43 @@ public class GSG_MFWT{
 		this.gps = gps;
 	}
 	/**
+	 * @param nb_attacker
+	 * @param nb_defender
+	 * @param attacker_utility
+	 * @param defender_utility
+	 * @param possible_actions
+	 * @param herd
+	 * @param fine_or_bribe
+	 * @param nb_location
+	 * @param focal_element
+	 * @param mass_function
+	 * @param method
+	 * @param alpha
+	 * @param gps
+	 */
+	public Bel_GSG(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility,
+			ArrayList<ArrayList<Integer>> possible_actions,int[] herd, int fine_or_bribe,int nb_location, ArrayList<int[][]> focal_element,
+			float[] mass_function, String method, int[] gps) {
+		this.nb_attacker = nb_attacker;
+		this.nb_defender = nb_defender;
+		this.nb_player = this.nb_attacker + this.nb_defender;
+		this.attacker_utility = attacker_utility;
+		this.defender_utility = defender_utility;
+		this.possible_actions = possible_actions;
+		this.herd = herd;
+		this.fine_or_bribe = fine_or_bribe;
+		this.nb_location = nb_location;
+		this.focal_element = focal_element;
+		this.mass_function = mass_function;
+		this.method = method;
+		this.gps = gps;
+	}
+	
+	
+	/**
 	 * construct a gsg for each possible word
 	 */
-	private void create_snf_gsg() {
+	protected void create_snf_gsg() {
 		for (int[][] element : this.focal_element) {
 			for (int[] omega : element) {
 				float[] lambda = new float[nb_location];
@@ -128,7 +161,10 @@ public class GSG_MFWT{
 		}
 	}
 	
-	private void create_noeuds() {
+	/**
+	 * create all players, a player is a two-uplets (index_player,type_of_player)
+	 */
+	protected void create_noeuds() {
 		for (int[] omega : this.possible_omega) {
 			for (int i=0; i<this.nb_player; i++) {
 				Node n = new Node(i,omegaToTypes(omega,i));
@@ -138,7 +174,11 @@ public class GSG_MFWT{
 			}
 		}
 	}
-
+	
+	/**
+	 * @param n
+	 * @return true if the node n is already in the list of nodes, false otherwise
+	 */
 	private boolean containsNode(Node n) {
 		for (Node node : this.nodes) {
 			if (node.getIndexPlayer() == n.getIndexPlayer() && node.getType() == n.getType()) {
@@ -147,26 +187,12 @@ public class GSG_MFWT{
 		}
 		return false;
 	}
-	
-	private void create_hypergraphical_gsg() {
-		
-		create_snf_gsg();
-		create_noeuds();
-		
-		int i=0;
-		for (int[][] focal_elt : this.focal_element) {
-			Local_Game l = new Local_Game(this,focal_elt,i);
-			l.calcul_val();
-			this.hypergraphical_representation.add(l);
-			i++;
-		}
-	
-	}
-	
-	public void calcul_val() {
-		create_hypergraphical_gsg();
-	}
 
+	/**
+	 * @param omega
+	 * @param ind_player
+	 * @return the type of player "ind_player" depending the world omega
+	 */
 	protected String omegaToTypes(int[] omega, int ind_player) {
 		String res = "";
 		if (ind_player < this.nb_attacker) {
@@ -179,12 +205,8 @@ public class GSG_MFWT{
 			}
 		}
 		else {
-			/*for (int herd : gps) {
+			for (int herd : gps) {
 				res += "L"+omega[herd];
-			}*/
-			/// ATENTION JUSTE POUR L'EXEMPLE A SUPPRIMER APRES
-			if ( omega[0] == 2) {
-				res += "yo";
 			}
 		}
 		if ( res == "" ) {
@@ -195,10 +217,19 @@ public class GSG_MFWT{
 		}
 	}
 	
+	/**
+	 * @param ind_player
+	 * @return herds that player "ind_player" can see
+	 */
+	
 	protected int see(int ind_player) {
 		return ind_player; // à améliorer
 	}
 	
+	/**
+	 * @param player
+	 * @return
+	 */
 	protected float computeK(Node player ) {
 		float k = 0;
 		int i = 0;
@@ -273,12 +304,12 @@ public class GSG_MFWT{
 		return true;
 	}
 	
-	public void afficher_jeux() {
-		int i=0;
-		for (Local_Game game : this.hypergraphical_representation) {
-			String name  ="jeux"+i+".txt";
-			i++;
-			game.writeInFile(name);
-		}
-	}
+	/**
+	 * Compute value of utility and profiles
+	 */
+	public abstract void calcul_val();
+	/**
+	 * Print informations to define the game
+	 */
+	public abstract void writeInFile(String filename);
 }
