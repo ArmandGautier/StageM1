@@ -1,12 +1,18 @@
 package GSG;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class Local_Game {
 
-	private ArrayList<int[]> list_player = new ArrayList<int[]>();
+	private ArrayList<Node> list_player = new ArrayList<Node>();
 	private ArrayList<ArrayList<Boolean>> play_in_omega = new ArrayList<ArrayList<Boolean>>();
 	private int local_dimension;
+	private int indexOf_focal_elt;
 	private GSG_MFWT parent_game;
 	ArrayList<ArrayList<Integer>> possible_actions = new ArrayList<ArrayList<Integer>>();
 	int[][] focal_elt;
@@ -20,20 +26,21 @@ public class Local_Game {
 	 */
 	ArrayList<float[]> utilities_value = new ArrayList<float[]>();
 
-	public Local_Game(GSG_MFWT parent_game, int[][] focal_elt) {
+	public Local_Game(GSG_MFWT parent_game, int[][] focal_elt, int indexOf_focal_elt) {
 		this.parent_game = parent_game;
 		this.focal_elt = focal_elt;
+		this.indexOf_focal_elt = indexOf_focal_elt;
 		
-		for (int[] n : this.parent_game.nodes) {
+		for (Node n : this.parent_game.nodes) {
 			if (this.parent_game.typeIsTrue(n,this.focal_elt)) {
-				this.addPlayer(n,this.parent_game.possible_actions.get(n[0]));
+				this.addPlayer(n,this.parent_game.possible_actions.get(n.getIndexPlayer()));
 			}
 		}
 		
 		for (int[] omega : this.focal_elt) {
 			ArrayList<Boolean> list_player_temp = new ArrayList<Boolean>();
-			for (int[] player : this.list_player) {
-				if ( this.parent_game.omegaToTypes(omega, player[0])==player[1] ) {
+			for (Node player : this.list_player) {
+				if ( this.parent_game.omegaToTypes(omega, player.getIndexPlayer()).equals(player.getType()) ) {
 					list_player_temp.add(true);
 				}
 				else {
@@ -49,7 +56,7 @@ public class Local_Game {
 		}
 	}
 
-	private void addPlayer(int[] player, ArrayList<Integer> actions) {
+	private void addPlayer(Node player, ArrayList<Integer> actions) {
 		this.list_player.add(player);
 		this.possible_actions.add(actions);
 	}
@@ -87,10 +94,10 @@ public class Local_Game {
 			int j = 0;
 			float[] uti_tmp = new float[this.list_player.size()];
 			int[] c = new int[this.list_player.size()];
-			for (int[] player : this.list_player) {
+			for (Node player : this.list_player) {
 				float k = this.parent_game.computeK(player);
 				float val = computeVal(player,choix_des_joueurs);
-				uti_tmp[j] = k * this.parent_game.mass_function[i] * val;
+				uti_tmp[j] = k * this.parent_game.mass_function[indexOf_focal_elt] * val;
 				c[j] = choix_des_joueurs.get(j);
 				j++;
 			}
@@ -99,7 +106,7 @@ public class Local_Game {
 		}
 	}
 
-	private float computeVal(int[] player, ArrayList<Integer> choix_des_joueurs) {
+	private float computeVal(Node player, ArrayList<Integer> choix_des_joueurs) {
 		
 		switch(this.parent_game.method) {
 		case "CEU" :
@@ -115,18 +122,18 @@ public class Local_Game {
 		return 0;
 	}
 
-	private float calcul_val_using_TBEU(int[] player, ArrayList<Integer> choix_des_joueurs) {
+	private float calcul_val_using_TBEU(Node player, ArrayList<Integer> choix_des_joueurs) {
 		float val = 0;
 		int nb_omega=0;
 		int index_omega=0;
 		for (int[] omega : this.focal_elt) {
-			if ( this.parent_game.omegaToTypes(omega, player[0])==player[1] ) {
+			if ( this.parent_game.omegaToTypes(omega, player.getIndexPlayer()).equals(player.getType()) ) {
 				nb_omega++;
 				int[] profil_selon_omega = computeProfile(index_omega,choix_des_joueurs);
 				int indiceGSG = this.parent_game.getIndexOfGSG(omega);
 				GSG_SNF gsg = this.parent_game.gsg_snf.get(indiceGSG);
 				int indiceProfile = this.parent_game.getIndexOfProfile(profil_selon_omega,gsg);
-				val += gsg.getUtilities().get(indiceProfile)[player[0]];
+				val += gsg.getUtilities().get(indiceProfile)[player.getIndexPlayer()];
 			}
 			index_omega++;
 		}
@@ -138,25 +145,136 @@ public class Local_Game {
 		}
 	}
 	
-	private float calcul_val_using_JEU(int[] player, ArrayList<Integer> choix_des_joueurs) {
-		// TODO Auto-generated method stub
-		return 0;
+	private float calcul_val_using_JEU(Node player, ArrayList<Integer> choix_des_joueurs) {
+		float val = 0;
+		int index_omega=0;
+		float min = Float.MAX_VALUE;
+		float max = Float.MIN_VALUE;
+		for (int[] omega : this.focal_elt) {
+			if ( this.parent_game.omegaToTypes(omega, player.getIndexPlayer()).equals(player.getType()) ) {
+				int[] profil_selon_omega = computeProfile(index_omega,choix_des_joueurs);
+				int indiceGSG = this.parent_game.getIndexOfGSG(omega);
+				GSG_SNF gsg = this.parent_game.gsg_snf.get(indiceGSG);
+				int indiceProfile = this.parent_game.getIndexOfProfile(profil_selon_omega,gsg);
+				float toCompare = gsg.getUtilities().get(indiceProfile)[player.getIndexPlayer()];
+				if ( toCompare < min ) {
+					min = toCompare;
+				}
+				if ( toCompare > max ) {
+					max = toCompare;
+				}
+			}
+			index_omega++;
+		}
+		val = this.parent_game.alpha[player.getIndexPlayer()]*min+(1-this.parent_game.alpha[player.getIndexPlayer()])*max;
+		return val;
 	}
 
-	private float calcul_val_using_CEU(int[] player, ArrayList<Integer> choix_des_joueurs) {
-		// TODO Auto-generated method stub
-		return 0;
+	private float calcul_val_using_CEU(Node player, ArrayList<Integer> choix_des_joueurs) {
+		float min = Float.MAX_VALUE;
+		int index_omega=0;
+		for (int[] omega : this.focal_elt) {
+			if ( this.parent_game.omegaToTypes(omega, player.getIndexPlayer()).equals(player.getType()) ) {
+				int[] profil_selon_omega = computeProfile(index_omega,choix_des_joueurs);
+				int indiceGSG = this.parent_game.getIndexOfGSG(omega);
+				GSG_SNF gsg = this.parent_game.gsg_snf.get(indiceGSG);
+				int indiceProfile = this.parent_game.getIndexOfProfile(profil_selon_omega,gsg);
+				float toCompare = gsg.getUtilities().get(indiceProfile)[player.getIndexPlayer()];
+				if ( toCompare < min ) {
+					min = toCompare;
+				}
+			}
+			index_omega++;
+		}
+		return min;
 	}
 	
 	private int[] computeProfile(int index_omega, ArrayList<Integer> choix_des_joueurs) {
 		int[] profile = new int[this.parent_game.nb_player];
 		int index_player = 0;
-		for (int[] player : this.list_player) {
+		for (Node player : this.list_player) {
 			if (this.play_in_omega.get(index_omega).get(index_player)) {
-				profile[player[0]] = choix_des_joueurs.get(index_player);
+				profile[player.getIndexPlayer()] = choix_des_joueurs.get(index_player);
 			}
 			index_player++;
 		}
 		return profile;
+	}
+	
+	public void afficher_jeux() {
+		System.out.println("This game concerned the following focal element : " );
+		for (int[] omega : this.focal_elt) {
+			for (int place : omega) {
+				System.out.print(place + " ");
+			}
+			System.out.println();
+		}
+		ListIterator<int[]> it1 = this.profiles.listIterator();
+		ListIterator<float[]> it2 = this.utilities_value.listIterator();
+		while (it1.hasNext() && it2.hasNext()) {
+			int[] tab1 = it1.next();
+			float[] tab2 = it2.next();
+			System.out.print("Profil : ");
+			for (int i=0; i<tab1.length; i++) {
+				System.out.print(tab1[i] + " ");
+			}
+			System.out.print(" Utilitées correspondantes : ");
+			for (int j=0; j<tab2.length; j++) {
+				System.out.print(tab2[j] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public void writeInFile(String filename) {
+		try {
+			
+		  System.out.println("This game concerned the following focal element : " );
+		  for (int[] omega : this.focal_elt) {
+			  for (int place : omega) {
+				  System.out.print(place + " ");
+			  }
+			  System.out.println();
+		  }	
+			  
+		  File file = new File(filename);
+
+		  if (!file.exists()) {
+			  file.createNewFile();
+		  }
+		  
+		  FileWriter fw = new FileWriter(file.getAbsoluteFile());
+		  BufferedWriter bw = new BufferedWriter(fw);
+		  
+		  String content;
+		  
+		  content = "";
+		  for (Node player : this.list_player) {
+			  content+= "joueur numéro " + player.getIndexPlayer() + " type = "+ player.getType() + " ";
+		  }
+		  bw.write(content);
+		  bw.write("\n");
+		  
+		  ListIterator<int[]> it1 = this.profiles.listIterator();
+		  ListIterator<float[]> it2 = this.utilities_value.listIterator();
+		  
+		  while (it1.hasNext() && it2.hasNext()) {
+			  content = "";
+			  int[] tab1 = it1.next();
+			  float[] tab2 = it2.next();
+			  for (int i=0; i<tab1.length; i++) {
+				  content += tab1[i];
+				  content += " ";
+			  }
+			  content += " : ";
+			  for (int j=0; j<tab2.length; j++) {
+				  content += tab2[j];
+				  content += " ";
+			  }
+			  content += "\n";
+			  bw.write(content);
+		  }
+		  bw.close();
+		} catch (IOException e) {e.printStackTrace();}
 	}
 }

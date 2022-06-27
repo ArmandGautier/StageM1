@@ -13,6 +13,7 @@ import Model_cplex.Gilpin_model;
 import Model_cplex.Trabelsi_model;
 import Model_cplex.Trabelsi_without_objective;
 import GSG.GSG_MF;
+import GSG.GSG_MFWT;
 import Test_model.Test_model;
 
 /**
@@ -26,28 +27,32 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		/*Generateur g = new Generateur();
-		Test_model t = new Test_model();
-		for (int i=2; i<=20; i++) {
-			ArrayList<GSG_SNF> gsgs = g.Generate_GSG_SNF(2,i,500,"Team-poach and bribe", "captor");
-			t.test_on_GSG_SNF(gsgs, "test_all.csv", 2, i);
-		}*/
-		/*Generateur g = new Generateur();
-		ArrayList<GSG_SNF> gsgs = g.Generate_GSG_SNF(2,4,10,"Team-poach and bribe", "captor");
-		for (GSG_SNF gsg : gsgs) {
-			ArrayList<int[]> act = gsg.getProfiles();
-			ArrayList<float[]> uti = gsg.getUtilities();
-			Trabelsi_model m1 = new Trabelsi_model(act,uti);
-			Gilpin_model m2 = new Gilpin_model(act,uti);
-			m1.construct_model();
-			m2.construct_model();
-		}*/
-
-		float l = 1;
-		int[] t = {0,1};
-		GSG_SNF gsg = new GSG_SNF(2, 2, "Team-poach and bribe", "captor", l, t, 2);
+		int nb_attacker = 1 ;
+		int nb_defender = 1;
+		String uti_att = "Team-poach and bribe";
+		String uti_def = "captor";
+		ArrayList<ArrayList<Integer>> possible_actions = new ArrayList<ArrayList<Integer>>();
+		int nb_location = 3;
+		for (int j=0; j<nb_attacker+nb_defender; j++) {
+			ArrayList<Integer> temp = new ArrayList<Integer>();
+			for (int l=0; l<nb_location; l++) {
+				temp.add(l);
+			}
+			possible_actions.add(temp);
+		}
+		int[] herd = {2};
+		int fine_or_bribe = 2;
+		ArrayList<int[][]> focal_element = new ArrayList<int[][]>();
+		int[][] f = {{0}};
+		int[][] f1 = {{1},{2}};
+		focal_element.add(f);
+		focal_element.add(f1);
+		float[] m = {(float) 0.5,(float) 0.5};
+		String method = "TBEU";
+		float[] alpha = {0};
+		int[] gps = {0};
+		GSG_MFWT gsg = new GSG_MFWT(nb_attacker,nb_defender,uti_att,uti_def,possible_actions,herd,fine_or_bribe,nb_location,focal_element,m,method,alpha,gps);
 		gsg.calcul_val();
 		gsg.afficher_jeux();
-		gsg.writeInFile("Test1.txt");
 	}
 }
