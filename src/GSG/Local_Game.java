@@ -319,4 +319,34 @@ public class Local_Game {
 		  bw.close();
 		} catch (IOException e) {e.printStackTrace();}
 	}
+	
+	/**
+	 * @return Profiles
+	 */
+	public ArrayList<int[]> getProfiles() {
+		return this.profiles;
+	}
+
+	/**
+	 * @return Utilities value
+	 */
+	public ArrayList<float[]> getUtilities() {
+		return this.utilities_value;
+	}
+	
+	/**
+	 * @return the list of player in this game, with integer's value
+	 */
+	public ArrayList<Integer> getListPlayer() {
+		ArrayList<Integer> res = new ArrayList<Integer>();
+		for (Node local_player : this.list_player) {
+			int index = 0;
+			for (Node player : this.parent_game.nodes) {
+				if (local_player.equals(player)) {
+					res.add(index);
+				}
+			}
+		}
+		return res;
+	}
 }

@@ -16,7 +16,7 @@ public class Main2 {
 		String uti_att = "Team-poach and bribe";
 		String uti_def = "captor";
 		String filename = "Test pour 2 actions.txt";
-		for (int nb_player = 2; nb_player <= 15; nb_player++) {
+		for (int nb_player = 2; nb_player <= 5; nb_player++) {
 			ArrayList<GSG_SNF> gsgs =  g.generate_GSG_SNF(nb_player, nb_actions, nb_jeux, uti_att, uti_def);
 			t.test_on_GSG_SNF(gsgs, filename, nb_player, nb_actions);
 		}

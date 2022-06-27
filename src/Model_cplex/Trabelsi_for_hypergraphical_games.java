@@ -53,7 +53,7 @@ public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_
 			int local_index = 0;
 			for (int i=0; i<this.nb_joueur; i++) { 
 				if (this.player_by_game.get(key).contains(i)) {
-					local_index = this.player_by_game.indexOf(i); // Vérifier que c'est ok ici
+					local_index = this.player_by_game.get(key).indexOf(i); // Vérifier que c'est ok ici ça ne l'est pas
 					float i_max = getMax(this.utilites.get(key),local_index);
 					float i_min = getMin(this.utilites.get(key),local_index);
 					if ( i_min < min_local) {

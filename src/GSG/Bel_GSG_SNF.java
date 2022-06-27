@@ -273,5 +273,18 @@ public class Bel_GSG_SNF extends Bel_GSG {
 		} catch (IOException e) {e.printStackTrace();}
 	}
 	
+	/**
+	 * @return Profiles
+	 */
+	public ArrayList<int[]> getProfiles() {
+		return this.profiles;
+	}
+
+	/**
+	 * @return Utilities value
+	 */
+	public ArrayList<float[]> getUtilities() {
+		return this.utilities_value;
+	}
 
 }

@@ -1,6 +1,8 @@
 package GSG;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Bel_GSG_Direct_Transform extends Bel_GSG {
 	
@@ -8,6 +10,10 @@ public class Bel_GSG_Direct_Transform extends Bel_GSG {
 	 * List of local game who are the hypergraphical representation
 	 */
 	ArrayList<Local_Game> hypergraphical_representation = new ArrayList<Local_Game>();
+	
+	Map<Integer, ArrayList<int[]>> profils = new HashMap<>();
+	Map<Integer, ArrayList<float[]>> utilites = new HashMap<>();
+	ArrayList<ArrayList<Integer>> player_by_game = new ArrayList<ArrayList<Integer>>();
 	
 	public Bel_GSG_Direct_Transform(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility,
 			ArrayList<ArrayList<Integer>> possible_actions, int[] herd, int fine_or_bribe, int nb_location,
@@ -33,10 +39,34 @@ public class Bel_GSG_Direct_Transform extends Bel_GSG {
 			Local_Game l = new Local_Game(this,focal_elt,i);
 			l.calcul_val();
 			this.hypergraphical_representation.add(l);
+			this.profils.put(i, l.getProfiles());
+			this.utilites.put(i, l.getUtilities());
+			this.player_by_game.add(l.getListPlayer());
 			i++;
 		}
 	}
 	
+	/**
+	 * @return the profils
+	 */
+	public Map<Integer, ArrayList<int[]>> getProfils() {
+		return profils;
+	}
+
+	/**
+	 * @return the utilites
+	 */
+	public Map<Integer, ArrayList<float[]>> getUtilites() {
+		return utilites;
+	}
+
+	/**
+	 * @return the player_by_game
+	 */
+	public ArrayList<ArrayList<Integer>> getPlayer_by_game() {
+		return player_by_game;
+	}
+
 	/**
 	 * @return the hypergraphical_representation
 	 */
