@@ -1,8 +1,15 @@
 package GSG;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
 
-public abstract class GSG {
+import decision.game.CGame;
+import decision.game.profile.ActionProfile;
+import decision.game.profile.Profile;
+
+public abstract class GSG extends CGame<Float> {
 	
 	/**
 	 * N players, K attackers and L defenders, the first K players are the attackers
@@ -190,9 +197,25 @@ public abstract class GSG {
 	/**
 	 * Compute value of utility and profiles
 	 */
-	abstract void calcul_val();
+	public abstract void calcul_val();
 	/**
 	 * Print informations to define the game
 	 */
 	abstract void afficher_jeux();
+	
+	
+
+	@Override
+	public int nPlayers() {
+		return this.getNb_player();
+	}
+	@Override
+	public Profile<Integer> nActions() {
+		Profile<Integer> nActions = new Profile<>();
+		Iterator<ArrayList<Integer>> it = this.possible_actions.iterator();
+		while (it.hasNext()) {
+			nActions.add(it.next().size());
+		}
+		return nActions;
+	}
 }

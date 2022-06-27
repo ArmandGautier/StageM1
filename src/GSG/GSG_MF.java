@@ -228,7 +228,7 @@ public class GSG_MF extends GSG_SNF {
 			calcul_val_using_TBEU();
 			break;
 		default : 
-			System.out.println("Cette méthode n'existe pas ou n'est pas implémentée");
+			System.out.println("Cette mï¿½thode n'existe pas ou n'est pas implï¿½mentï¿½e");
 			break;
 		}
 	}
@@ -248,7 +248,7 @@ public class GSG_MF extends GSG_SNF {
 				}
 				j++;
 			}
-			this.utilities_value.add(uti_tmp);
+			this.getUtilities().add(uti_tmp);
 			this.profiles.add(this.gsg_snf.get(0).getProfiles().get(i));
 		}	
 	}
@@ -274,7 +274,7 @@ public class GSG_MF extends GSG_SNF {
 				}
 				j++;
 			}
-			this.utilities_value.add(uti_tmp);
+			this.getUtilities().add(uti_tmp);
 			this.profiles.add(this.gsg_snf.get(0).getProfiles().get(i));
 		}	
 	}
@@ -296,7 +296,7 @@ public class GSG_MF extends GSG_SNF {
 				}
 				j++;
 			}
-			this.utilities_value.add(uti_tmp);
+			this.getUtilities().add(uti_tmp);
 			this.profiles.add(this.gsg_snf.get(0).getProfiles().get(i));
 		}	
 	}
@@ -312,7 +312,7 @@ public class GSG_MF extends GSG_SNF {
 		}
 		System.out.println("Add of local games by "+this.method+" :");
 		ListIterator<int[]> it1 = this.profiles.listIterator();
-		ListIterator<float[]> it2 = this.utilities_value.listIterator();
+		ListIterator<float[]> it2 = this.getUtilities().listIterator();
 		while (it1.hasNext() && it2.hasNext()) {
 			int[] tab1 = it1.next();
 			float[] tab2 = it2.next();

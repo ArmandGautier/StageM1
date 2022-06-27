@@ -1,6 +1,11 @@
 package GSG;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import decision.game.profile.ActionProfile;
+import decision.game.profile.Profile;
 
 public class GSG_hypergraphique extends GSG {
 	
@@ -45,7 +50,7 @@ public class GSG_hypergraphique extends GSG {
 	 */
 	public void calcul_val() {
 		
-		switch(this.attacker_utility) { // TO DO voir les compatibilités entre les uti braco/gc
+		switch(this.attacker_utility) { // TO DO voir les compatibilitï¿½s entre les uti braco/gc
 		
 		case "Poach or hide" : // passer au log
 			
@@ -64,7 +69,7 @@ public class GSG_hypergraphique extends GSG {
 			
 		case "Team-Poach and bribe" : 
 			
-			// on créé un jeux entre les bracos pour le partage de la ressource
+			// on crï¿½ï¿½ un jeux entre les bracos pour le partage de la ressource
 			
 			ArrayList<ArrayList<Integer>> local_possible_actions = new ArrayList<ArrayList<Integer>>();
 			for (int i=0; i<this.nb_attacker; i++) {
@@ -75,7 +80,7 @@ public class GSG_hypergraphique extends GSG {
 			this.dimension += gsg.dimension;
 			this.gsg_snf.add(gsg);
 			
-			// on met les valeurs des ressources à zéro et on laisse dans la suite les jeux bimatriciel entre braco et garde chasse, pour que les braco perdent fine_or_bribe quand un gc les attrapes
+			// on met les valeurs des ressources ï¿½ zï¿½ro et on laisse dans la suite les jeux bimatriciel entre braco et garde chasse, pour que les braco perdent fine_or_bribe quand un gc les attrapes
 			
 			for (int i=0; i<this.lambda.length; i++) {
 				this.lambda[i] = 0;
@@ -85,7 +90,7 @@ public class GSG_hypergraphique extends GSG {
 			
 		default :
 			
-			System.out.println("Utilité des braconniers non reconnu");
+			System.out.println("Utilitï¿½ des braconniers non reconnu");
 			return;
 		}
 		
@@ -95,11 +100,11 @@ public class GSG_hypergraphique extends GSG {
 			
 			break;
 			
-		case "Bribemon : Gotta catch'em all!" : // rien à faire ici
+		case "Bribemon : Gotta catch'em all!" : // rien ï¿½ faire ici
 			
 			break;
 			
-		case "captor" : // un jeux par braco, participant aux jeux locaux donné en param ? si oui rien à faire ici
+		case "captor" : // un jeux par braco, participant aux jeux locaux donnï¿½ en param ? si oui rien ï¿½ faire ici
 			
 			break;
 			
@@ -109,7 +114,7 @@ public class GSG_hypergraphique extends GSG {
 			
 		default :
 			
-			System.out.println("Utilité des gardes chasses non reconnu");
+			System.out.println("Utilitï¿½ des gardes chasses non reconnu");
 			return;
 			
 		}
@@ -142,5 +147,20 @@ public class GSG_hypergraphique extends GSG {
 
 	void afficher_jeux() {
 		
+	}
+	
+	
+	@Override
+	public Profile<Float> utility(ActionProfile p) {
+		Iterator<GSG_SNF> itGames = this.gsg_snf.iterator();
+		Iterator<ArrayList<Integer>> itPlayers = this.list_of_local_game_players.iterator();
+		
+		while (itGames.hasNext() && itPlayers.hasNext()) {
+			GSG_SNF game = itGames.next();
+			ArrayList<Integer> players = itPlayers.next();
+			System.out.println(game);
+			System.out.println(players);
+		}
+		return null;
 	}
 }

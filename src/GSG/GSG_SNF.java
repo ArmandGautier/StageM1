@@ -8,8 +8,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+
+import decision.game.profile.ActionProfile;
+import decision.game.profile.Profile;
 
 /**
  * @author agautier
@@ -23,7 +27,7 @@ public class GSG_SNF extends GSG {
 	/**
 	 * a list of utility. uti.get(i) gives utilities of every players in the profile act.get(i)
 	 */
-	ArrayList<float[]> utilities_value = new ArrayList<float[]>();
+	private ArrayList<float[]> utilities_value = new ArrayList<float[]>();
 
 	/**
 	 * Constructor when all players can make the same actions and actions have all the same value.
@@ -157,7 +161,7 @@ public class GSG_SNF extends GSG {
 		List<Integer> choix_des_braconniers = choix_des_joueurs.subList(0, this.nb_attacker);
 		List<Integer> choix_des_garde_chasse = choix_des_joueurs.subList(this.nb_attacker, choix_des_joueurs.size());
 		
-		// cas où le joueur est un braconnier
+		// cas oï¿½ le joueur est un braconnier
 		
 		if (indice_joueur < this.nb_attacker) {
 			
@@ -216,12 +220,12 @@ public class GSG_SNF extends GSG {
 				return this.lambda[choix]/nb_braco - nb_garde;
 				
 			default :
-				System.out.println("Le calcul d'utilité concernant les braconniers n'existe pas");
+				System.out.println("Le calcul d'utilitï¿½ concernant les braconniers n'existe pas");
 				break;
 			}			
 		}
 		
-		// cas où le joueur est un garde_chasse
+		// cas oï¿½ le joueur est un garde_chasse
 		
 		else {
 			
@@ -272,7 +276,7 @@ public class GSG_SNF extends GSG {
 				
 			default :
 				
-				System.out.println("Le calcul d'utilité concernant les gardes chasses n'existe pas");
+				System.out.println("Le calcul d'utilitï¿½ concernant les gardes chasses n'existe pas");
 				break;
 				
 			}
@@ -317,7 +321,7 @@ public class GSG_SNF extends GSG {
 				c[j] = choix_des_joueurs.get(j);
 			}
 			
-			this.utilities_value.add(uti_tmp);
+			this.getUtilities().add(uti_tmp);
 			this.profiles.add(c);
 		}
 	}
@@ -326,7 +330,7 @@ public class GSG_SNF extends GSG {
 	 */
 	public void afficher_jeux() {
 		ListIterator<int[]> it1 = this.profiles.listIterator();
-		ListIterator<float[]> it2 = this.utilities_value.listIterator();
+		ListIterator<float[]> it2 = this.getUtilities().listIterator();
 		while (it1.hasNext() && it2.hasNext()) {
 			int[] tab1 = it1.next();
 			float[] tab2 = it2.next();
@@ -334,7 +338,7 @@ public class GSG_SNF extends GSG {
 			for (int i=0; i<tab1.length; i++) {
 				System.out.print(tab1[i] + " ");
 			}
-			System.out.print(" Utilitées correspondantes : ");
+			System.out.print(" Utilitï¿½es correspondantes : ");
 			for (int j=0; j<tab2.length; j++) {
 				System.out.print(tab2[j] + " ");
 			}
@@ -370,7 +374,7 @@ public class GSG_SNF extends GSG {
 		  String content;
 		  
 		  ListIterator<int[]> it1 = this.profiles.listIterator();
-		  ListIterator<float[]> it2 = this.utilities_value.listIterator();
+		  ListIterator<float[]> it2 = this.getUtilities().listIterator();
 		  
 		  while (it1.hasNext() && it2.hasNext()) {
 			  content = "";
@@ -390,5 +394,29 @@ public class GSG_SNF extends GSG {
 		  }
 		  bw.close();
 		} catch (IOException e) {e.printStackTrace();}
+	}
+	public void setUtilities(ArrayList<float[]> utilities_value) {
+		this.utilities_value = utilities_value;
+	}
+	
+	
+	@Override
+	public Profile<Float> utility(ActionProfile p) {
+		Profile<Float> u = new Profile<>();
+		int[] pArray;
+		float[] uArray;
+		Iterator<int[]> it1 = this.getProfiles().iterator();
+		Iterator<float[]> it2 = this.getUtilities().iterator();
+		while (it1.hasNext() && it2.hasNext()) {
+			pArray = it1.next();
+			uArray = it2.next();
+			if (p.equals(pArray)) {
+				for (int i = 0 ; i < this.nPlayers() ; i++) {
+					u.add(uArray[i]);
+				}
+				return u;
+			}
+		}
+		return null;
 	}
 }
