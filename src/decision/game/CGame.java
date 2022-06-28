@@ -1,11 +1,6 @@
 package decision.game;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import decision.game.profile.ActionProfile;
-import decision.game.profile.ActionProfile.ActionProfileIterator;
 import decision.game.profile.Profile;
 
 /**
@@ -13,7 +8,7 @@ import decision.game.profile.Profile;
  * @author Pierre Pomeret-Coquot
  * @param <U> Type for utility values
  */
-public abstract class CGame<U> {
+public interface CGame<U> {
 	
 	/**
 	 * @return Number of players
@@ -32,70 +27,16 @@ public abstract class CGame<U> {
 	public abstract Profile<U> utility(ActionProfile p);
 	
 	/**
-	 * @return Map where keys are action profiles and values are utility profiles
-	 */
-	public Map<ActionProfile,Profile<U>> utilityMap() {
-		Map<ActionProfile,Profile<U>> u = new HashMap<>();
-		Iterator<ActionProfile> it = new ActionProfileIterator(this.nActions());
-		while (it.hasNext()) {
-			ActionProfile p = it.next();
-			u.put(p, this.utility(p));
-		}
-		return u;
-	}
-	
-	/**
 	 * @return Cost of the representation = number of values stored in the utility "matrix"
 	 */
-	public int nValues() {
-		int n = 1;
-		for (int i = 0 ; i < this.nPlayers() ; i++) {
-			n = n * this.nActions().get(i);
-		}
-		return n;
-	}
+	public int nValues();
 	
+	/**
+	 * @param o The other object to compare with
+	 * @return true iff o is a CGame with the same number of player, of action per player 
+	 * with the same utility for each action profile (not enforced)
+	 */
 	@Override
-	public String toString() {
-		String s = "";
-		Iterator<ActionProfile> it = new ActionProfileIterator(this.nActions());
-		while (it.hasNext()) {
-			ActionProfile p = it.next();
-			s = s + "u( " + p + " )\t= " + this.utility(p) + "\n";
-		}
-		return s;
-	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if (o instanceof CGame<?>) {
-			CGame<?> g = (CGame<?>) o;
-			if (this.nPlayers() != g.nPlayers()) {
-				//System.out.println("NotEqual: differ on nPlayers: " + this.nPlayers() + " != " + g.nPlayers());
-				return false;
-			}
-			if (!this.nActions().equals(g.nActions())) {
-				//System.out.println("NotEqual: differ on nActions: " + this.nActions() + " != " + g.nActions());
-				return false;
-			}
-			Iterator<ActionProfile> it = new ActionProfileIterator(this.nActions());
-			while (it.hasNext()) {
-				ActionProfile p = it.next();
-				Profile<U> u1 = this.utility(p);
-				Profile<?> u2 = g.utility(p);
-				if (!u1.equals(u2)) {
-					//System.out.println("NotEqual: differ on utility for " + p + ": " + u1 + " != " + u2);
-					return false;
-				}
-			}
-			return true;
-		}
-		return false;
-	}
-	
-	
-	
-	
-	
+	public boolean equals(Object o);
 	
 }

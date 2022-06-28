@@ -5,11 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
-import decision.game.CGame;
+import decision.game.SNFGame;
 import decision.game.profile.ActionProfile;
 import decision.game.profile.Profile;
 
-public abstract class GSG extends CGame<Float> {
+public abstract class GSG extends SNFGame<Float> {
 	
 	/**
 	 * N players, K attackers and L defenders, the first K players are the attackers

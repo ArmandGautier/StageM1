@@ -34,8 +34,8 @@ public class Universe {
 		
 		this.see_function = new int[this.nb_attacker];
 		
-		// On créé une liste de lieux de taille nb_location-1 correspondant aux lieux qui doivent être vue
-		// et une liste de lieux correspondant à l'ensemble des lieux
+		// On crï¿½ï¿½ une liste de lieux de taille nb_location-1 correspondant aux lieux qui doivent ï¿½tre vue
+		// et une liste de lieux correspondant ï¿½ l'ensemble des lieux
 		ArrayList<Integer> locationMustBeSee = new ArrayList<Integer>();
 		ArrayList<Integer> location = new ArrayList<Integer>();
 		for ( int l=0; l<this.nb_location; l++) {
@@ -43,26 +43,29 @@ public class Universe {
 			location.add(l);
 		}
 		
-		// on retire au hasard un des lieux qui doit être vue ( car nb_location - 1 lieux doivent être vu pour la bijectivité )
-		int index = random.nextInt(0, this.nb_location);
+		// on retire au hasard un des lieux qui doit ï¿½tre vue ( car nb_location - 1 lieux doivent ï¿½tre vu pour la bijectivitï¿½ )
+		// int index = random.nextInt(0, this.nb_location);
+		int index = random.nextInt(this.nb_location);
 		locationMustBeSee.remove(index);
-		// Pour chaque attaquant on détermine le lieux qu'il verra
+		// Pour chaque attaquant on dï¿½termine le lieux qu'il verra
 		for (int j=0; j<this.nb_attacker; j++) {
 			if (!locationMustBeSee.isEmpty()) {
-				index = random.nextInt(0, locationMustBeSee.size());
+				// index = random.nextInt(0, locationMustBeSee.size());
+				index = random.nextInt(locationMustBeSee.size());
 				this.see_function[j] = locationMustBeSee.get(index);
 				locationMustBeSee.remove(index);
 			}
 			else {
-				index = random.nextInt(0, this.nb_location);
+				// index = random.nextInt(0, this.nb_location);
+				index = random.nextInt(this.nb_location);
 				this.see_function[j] = location.get(index);
 			}
 		}
 		
-		/** Construction of gps */ //à rajouter un param
+		/** Construction of gps */ //ï¿½ rajouter un param
 		
 		
-		// pour chaque troupeau on tire au hasard si il est pucé ou pas
+		// pour chaque troupeau on tire au hasard si il est pucï¿½ ou pas
 		ArrayList<Integer> herdChipped = new ArrayList<Integer>();
 		for (int t=0; t<this.nb_herd; t++) {
 			boolean isChipped = random.nextBoolean();
@@ -71,7 +74,7 @@ public class Universe {
 			}
 		}
 		
-		// on construit la liste des troupeux pucés
+		// on construit la liste des troupeux pucï¿½s
 		this.gps = new int[herdChipped.size()];
 		for (int t=0; t<herdChipped.size(); t++) {
 			this.gps[t] = herdChipped.get(t);
@@ -82,7 +85,8 @@ public class Universe {
 		this.herd_value = new int[this.nb_herd];
 		
 		for (int t=0; t<this.nb_herd; t++) {
-			int value = random.nextInt(1, 10);
+			// int value = random.nextInt(1, 10);
+			int value = 1 + random.nextInt(9);
 			this.herd_value[t] = value;
 		}
 		

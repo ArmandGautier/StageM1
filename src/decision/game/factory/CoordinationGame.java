@@ -1,6 +1,6 @@
 package decision.game.factory;
 
-import decision.game.CGame;
+import decision.game.SNFGame;
 import decision.game.profile.ActionProfile;
 import decision.game.profile.Profile;
 
@@ -9,7 +9,7 @@ import decision.game.profile.Profile;
  * @author Pierre Pomeret-Coquot
  *
  */
-public class CoordinationGame extends CGame<Integer> {
+public class CoordinationGame extends SNFGame<Integer> {
 	
 	private int nPlayers;
 	private Profile<Integer> nActions = new Profile<>();

@@ -21,7 +21,8 @@ public class Site {
 		Random random = new Random();
 		
 		for (int i=0; i<this.nb_herd; i++) {
-			int location = random.nextInt(0, this.nb_location);
+			// int location = random.nextInt(0, this.nb_location);
+			int location = random.nextInt(this.nb_location);
 			this.herdLocation[i] = location;
 			boolean pStay = random.nextBoolean();
 			if (pStay) {

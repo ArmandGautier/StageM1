@@ -9,7 +9,7 @@ import java.util.Map.Entry;
  * @author Pierre Pomeret-Coquot
  * @param <U> Type for utility values
  */
-public abstract class LocalGame<U> extends CGame<U> {
+public abstract class LocalGame<U> extends SNFGame<U> {
 	
 	/**
 	 * Id of a local player in the global hypergraphical game

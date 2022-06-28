@@ -2,9 +2,11 @@ package Main;
 
 import GSG.GSG;
 import GSG.GSG_SNF;
+import decision.game.SNFGame;
 import decision.game.CGame;
 import decision.game.CGameSolver;
 import decision.game.HGGame;
+import decision.game.MapSNFGame;
 import decision.game.factory.CoordinationGame;
 import decision.game.factory.HGCoordinationGame;
 import decision.game.profile.Profile;
@@ -30,9 +32,9 @@ public class MainTestsDecision {
 		Profile<Integer> p2 = new Profile<>(arr2);
 		Profile<Integer> p3 = new Profile<>(arr3);
 		System.out.println("Test of profile equality: p1 = " + p1 + ", p2 = " + p2 + ", p3 = " + p3);
-		System.out.println("p1 == p2:\t" + (p1 == p2) + ", " + p1.equals(p2) + ", " + p2.equals(p1));
-		System.out.println("p1 == p3:\t" + (p1 == p3) + ", " + p1.equals(p3) + ", " + p3.equals(p1));
-		System.out.println("p2 == p3:\t" + (p2 == p3) + ", " + p2.equals(p3) + ", " + p3.equals(p2));
+		System.out.println("p1 == p2, p1.equals(p2), p2.equals(p1) =\t" + (p1 == p2) + ", " + p1.equals(p2) + ", " + p2.equals(p1));
+		System.out.println("p1 == p3, p1.equals(p3), p3.equals(p1) =\t" + (p1 == p3) + ", " + p1.equals(p3) + ", " + p3.equals(p1));
+		System.out.println("p2 == p3, p2.equals(p3), p3.equals(p2) =\t" + (p2 == p3) + ", " + p2.equals(p3) + ", " + p3.equals(p2));
 		System.out.println("\n\n");
 
 		
@@ -51,10 +53,19 @@ public class MainTestsDecision {
 		int nPlayers = 3;
 		int nActions = 2;
 		
-		CGame<Integer> coordGame = new CoordinationGame(nPlayers,nActions);
+		SNFGame<Integer> coordGame = new CoordinationGame(nPlayers,nActions);
 		System.out.println(coordGame.nPlayers() + "-player " + coordGame.nActions() + "-action coordination game");
 		System.out.println("All Nash equilibria:");
 		intSolver.allNashEquilibria(coordGame, true);
+		CGame<Integer> coordGame2 = new MapSNFGame<>(coordGame.utilityMap());
+		System.out.println(coordGame2.nPlayers() + "-player " + coordGame2.nActions() + "-action coordination game");
+		intSolver.allNashEquilibria(coordGame2, true);
+		CGame<Integer> coordGame3 = new MapSNFGame<>(coordGame);
+		System.out.println(coordGame3.nPlayers() + "-player " + coordGame3.nActions() + "-action coordination game");
+		intSolver.allNashEquilibria(coordGame3, true);
+		System.out.println("coordGame.equals(coordGame2), coordGame2.equals(coordGame) =\t" + coordGame.equals(coordGame2) + ", " + coordGame2.equals(coordGame));
+		System.out.println("coordGame.equals(coordGame3), coordGame3.equals(coordGame) =\t" + coordGame.equals(coordGame3) + ", " + coordGame3.equals(coordGame));
+		System.out.println("coordGame2.equals(coordGame3), coordGame3.equals(coordGame2) =\t" + coordGame2.equals(coordGame3) + ", " + coordGame3.equals(coordGame));
 
 		System.out.println("\n\n");
 		
@@ -65,7 +76,7 @@ public class MainTestsDecision {
 		System.out.println(hgCoordGame);
 		System.out.println("All Nash equilibria:");
 		intSolver.allNashEquilibria(hgCoordGame, true);
-		System.out.println("coordGame == hgCoordGame:\t" + coordGame.equals(hgCoordGame) + ", " + hgCoordGame.equals(coordGame));
+		System.out.println("coordGame.equals(hgCoordGame), hgCoordGame.equals(CoordGame)=\t" + coordGame.equals(hgCoordGame) + ", " + hgCoordGame.equals(coordGame));
 		System.out.println("Cost of representation (SNF):\t" + coordGame.nValues());
 		System.out.println("Cost of representation (HG):\t" + hgCoordGame.nValues());
 		
