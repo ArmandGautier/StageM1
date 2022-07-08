@@ -1,0 +1,11 @@
+ indice_jeu, tps_dtransfo, tps_ctransfo, equi_dt, equi_ct
+Jeux0, 9.0, 6.0, false, false, 
+Jeux1, 1293.0, 21.0, true, true, 
+Jeux2, 6.0, 6.0, true, true, 
+Jeux3, 21.0, 16.0, false, false, 
+Jeux4, 27.0, 29.0, true, true, 
+Jeux5, 1771.0, 46.0, false, false, 
+Jeux6, 138.0, 129.0, false, false, 
+Jeux7, 596.0, 970.0, true, true, 
+Jeux8, 18.0, 17.0, false, false, 
+Jeux9, 225.0, 219.0, false, false, 

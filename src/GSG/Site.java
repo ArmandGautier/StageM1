@@ -207,7 +207,7 @@ public class Site {
 	public String getGraphe() {
 		String res ="";
 		for (int i=0; i<this.nb_herd; i++) {
-			res += "Le troupeau " + i + "est au lieu " + this.herdLocation[i] + "\n";
+			res += "Le troupeau " + i + " est au lieu " + this.herdLocation[i] + "\n";
 		}
 		for (Integer key : this.graphe.keySet()) {
 			res += "Du lieu : "+key+ " on peut aller aux lieux : ";

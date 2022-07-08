@@ -1,0 +1,11 @@
+ indice_jeu, tps_dtransfo, tps_ctransfo, equi_dt, equi_ct
+Jeux0, 1503.0, 1009.0, false, false, 
+Jeux1, 11578.0, 208.0, false, false, 
+Jeux2, 11.0, 14.0, true, true, 
+Jeux3, 10.0, 8.0, false, false, 
+Jeux4, 23.0, 27.0, true, true, 
+Jeux5, 211.0, 139.0, true, true, 
+Jeux6, 1913.0, 25.0, true, true, 
+Jeux7, 221.0, 151.0, false, false, 
+Jeux8, 8.0, 8.0, false, false, 
+Jeux9, jeux local trop important, pas calculé

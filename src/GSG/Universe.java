@@ -16,6 +16,7 @@ public class Universe {
 	int[] see_function;
 	int[] gps;
 	int fine_or_bribe;
+	Site site;
 	
 	/**
 	 * @param nb_location
@@ -91,12 +92,12 @@ public class Universe {
 		
 		/** Construction of focal_elements */
 		
-		Site site = new Site(this.nb_location,this.nb_herd);
-		this.focal_elements = site.getFocalElements();
+		this.site = new Site(this.nb_location,this.nb_herd);
+		this.focal_elements = this.site.getFocalElements();
 		
 		/** Construction of mass_function */
 		
-		this.mass_function = site.mass_function;
+		this.mass_function = this.site.mass_function;
 		
 		/** Construction of possible_actions */
 		
@@ -195,7 +196,7 @@ public class Universe {
 		res += "nb_defender : " +nb_defender;
 		res += "\n";
 		res += "nb_herd : " +nb_herd;
-		res += "\n";
+		res += "\n\n";
 		for (int i=0; i<this.focal_elements.size(); i++) {
 			res += " element focal numéro " + i;
 			res += "\n";
@@ -228,7 +229,9 @@ public class Universe {
 			res += gps[i] + " ";
 		}
 		res += "\n";
-		res += "fine_or_bribe" +this.fine_or_bribe;
+		res += "fine_or_bribe " +this.fine_or_bribe;
+		res += "\n";
+		res += this.site.getGraphe();
 		return res;
 	}
 
