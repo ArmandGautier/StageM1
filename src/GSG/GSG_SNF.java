@@ -336,7 +336,7 @@ public class GSG_SNF extends GSG {
 						int ind_actuel = this.possible_actions.get(k).indexOf(a);
 						choix_des_joueurs.set(k, this.possible_actions.get(k).get(ind_actuel+1));
 					    for (int l=k+1; l < this.nb_player; l++) {
-					    	choix_des_joueurs.set(l,0);
+					    	choix_des_joueurs.set(l,this.possible_actions.get(l).get(0));
 					    }
 					    break;
 					}

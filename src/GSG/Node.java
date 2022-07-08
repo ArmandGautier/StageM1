@@ -3,12 +3,12 @@ package GSG;
 public class Node {
 	
 	private int indexPlayer;
-	private String type;
+	private Type type;
 	/**
 	 * @param indexPlayer
 	 * @param type
 	 */
-	public Node(int indexPlayer, String type) {
+	public Node(int indexPlayer, Type type) {
 		this.indexPlayer = indexPlayer;
 		this.type = type;
 	}
@@ -21,12 +21,17 @@ public class Node {
 	/**
 	 * @return the type
 	 */
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 	
 	public boolean equals(Node n) {
 		return (this.indexPlayer == n.getIndexPlayer() && this.type.equals(n.getType()));
+	}
+	
+	public String toString() {
+		String res = " Joueur : " + indexPlayer + " Type : " + type.toString();
+		return res;
 	}
 
 }

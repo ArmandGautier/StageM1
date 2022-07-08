@@ -21,7 +21,7 @@ public class Daskalakis_model extends Model {
 			
 			double start1=System.currentTimeMillis();
 			
-			// création des variables
+			// creation des variables
 			
 			IloIntVar[][] Xik = new IloIntVar[this.nb_joueur][];
 			IloNumVar[] Vi = new IloNumVar[this.nb_joueur];
@@ -43,7 +43,7 @@ public class Daskalakis_model extends Model {
 				Vi[i] = cplex.numVar(0, Double.MAX_VALUE, "V"+i);
 			}
 			
-			// déclaration de l'objectif
+			// declaration de l'objectif
 			
 			IloLinearNumExpr objective = cplex.linearNumExpr();
 			
@@ -53,7 +53,7 @@ public class Daskalakis_model extends Model {
 			
 			cplex.addMinimize(objective);
 			
-			// création des contraintes
+			// creation des contraintes
 			
 			// Pour tout joueur la somme des Xik = 1
 			
@@ -153,19 +153,19 @@ public class Daskalakis_model extends Model {
 			for (int i=0; i<this.nb_joueur; i++) {
 				for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
 					if (this.results_Xik[i][k] == 1) {
-						System.out.println("Le joueur " + i + " a joué l'action " + this.actions_possible_par_joueur.get(i).get(k));
+						System.out.println("Le joueur " + i + " a joue l'action " + this.actions_possible_par_joueur.get(i).get(k));
 					}
 				}
 			}
 			if (this.obj == 0) {
-				System.out.println("Ce profil est un équilibre de nash");
+				System.out.println("Ce profil est un equilibre de nash");
 			}
 			else {
-				System.out.println("Ce profil n'est pas un équilibre de nash");
+				System.out.println("Ce profil n'est pas un equilibre de nash");
 			}
 		}
 		else {
-			System.out.println("Ce modèle n'a pas été construit ou alors il n'a pas de solution");
+			System.out.println("Ce modele n'a pas ete construit ou alors il n'a pas de solution");
 		}
 	}
 	

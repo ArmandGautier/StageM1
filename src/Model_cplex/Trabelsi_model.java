@@ -58,7 +58,7 @@ public class Trabelsi_model extends Model {
 			IloCplex cplex = new IloCplex();
 			cplex.setOut(null);
 			
-			// création des variables
+			// creation des variables
 			
 			double start1=System.currentTimeMillis();
 			
@@ -91,7 +91,7 @@ public class Trabelsi_model extends Model {
 				Xa_i[i] = cplex.boolVarArray(nb_variable,s1); 
 			}
 			
-			// déclaration de l'objectif
+			// declaration de l'objectif
 			
 			IloLinearNumExpr objective = cplex.linearNumExpr();
 			
@@ -103,7 +103,7 @@ public class Trabelsi_model extends Model {
 			
 			cplex.addMaximize(objective);
 			
-			// création des contraintes
+			// creation des contraintes
 			
 			// Pour tout joueur la somme des Xik = 1
 			
@@ -117,7 +117,7 @@ public class Trabelsi_model extends Model {
 				cplex.addEq(1, cplex.sum(Xa_i[i]));
 			}
 			
-			// Pour tout joueur si une action de ce joueur n'est pas sélectionné alors aucune restriction d'action jointe contenant cette action ne peut être sélectionné
+			// Pour tout joueur si une action de ce joueur n'est pas selectionne alors aucune restriction d'action jointe contenant cette action ne peut etre selectionne
 			
 			for (int i=0; i<this.nb_joueur; i++) {
 				int p=0;
@@ -134,7 +134,7 @@ public class Trabelsi_model extends Model {
 				}
 			}
 			
-			// définition de la valeur de l'utilité
+			// definition de la valeur de l'utilite
 			
 			for (int i=0; i<this.nb_joueur; i++) {
 				for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
@@ -168,7 +168,7 @@ public class Trabelsi_model extends Model {
 				}
 			}
 
-			// assures l'équilibre de nash ( constraint five )
+			// assures l'equilibre de nash ( constraint five )
 			
 			for (int i=0; i<this.nb_joueur; i++) {
 				for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
@@ -219,16 +219,16 @@ public class Trabelsi_model extends Model {
 			for (int i=0; i<this.nb_joueur; i++) {
 				for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
 					if (this.results_Xik[i][k] == 1) {
-						System.out.println("Le joueur " + i + " a joué l'action " + this.actions_possible_par_joueur.get(i).get(k) + ". Son utilité est de " + this.results_Uik[i][k] + ".");
+						System.out.println("Le joueur " + i + " a joue l'action " + this.actions_possible_par_joueur.get(i).get(k) + ". Son utilite est de " + this.results_Uik[i][k] + ".");
 					}
 					else {
-						System.out.println("Le joueur " + i + " n'a pas joué l'action " + this.actions_possible_par_joueur.get(i).get(k) + ". Son utilité aurait été de " + this.results_Uik[i][k] + ".");
+						System.out.println("Le joueur " + i + " n'a pas joue l'action " + this.actions_possible_par_joueur.get(i).get(k) + ". Son utilite aurait ete de " + this.results_Uik[i][k] + ".");
 					}
 				}
 			}
 		}
 		else {
-			System.out.println("Ce modèle n'a pas été construit ou alors il n'a pas d'équilibre de nash");
+			System.out.println("Ce modele n'a pas ete construit ou alors il n'a pas d'equilibre de nash");
 		}
 	}
 

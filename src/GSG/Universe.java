@@ -15,6 +15,7 @@ public class Universe {
 	int[] herd_value;
 	int[] see_function;
 	int[] gps;
+	int fine_or_bribe;
 	
 	/**
 	 * @param nb_location
@@ -29,6 +30,7 @@ public class Universe {
 		this.nb_attacker = nb_attacker;
 		this.nb_defender = nb_defender;
 		Random random = new Random();
+		this.fine_or_bribe = random.nextInt(1,6);
 		
 		/** Construction of see_function */
 		
@@ -68,6 +70,7 @@ public class Universe {
 			boolean isChipped = random.nextBoolean();
 			if (isChipped) {
 				herdChipped.add(t);
+				break;
 			}
 		}
 		
@@ -168,12 +171,65 @@ public class Universe {
 	public int[] getHerd_value() {
 		return herd_value;
 	}
+	
+	/**
+	 * @return the fine_or_bribe
+	 */
+	public int getFine_or_bribe() {
+		return fine_or_bribe;
+	}
 
 	/**
 	 * @return the gps
 	 */
 	public int[] getGps() {
 		return gps;
+	}
+	
+	public String toString() {
+		String res = "";
+		res += "nb_location : " +nb_location;
+		res += "\n";
+		res += "nb_attacker : " +nb_attacker;
+		res += "\n";
+		res += "nb_defender : " +nb_defender;
+		res += "\n";
+		res += "nb_herd : " +nb_herd;
+		res += "\n";
+		for (int i=0; i<this.focal_elements.size(); i++) {
+			res += " element focal numéro " + i;
+			res += "\n";
+			for (int[] omega : this.focal_elements.get(i)) {
+				for (int lieu : omega) {
+					res += lieu;
+				}
+				res += "\n";
+			}
+			res += "\n";
+		}
+		res += "\n";
+		res += " Mass Function : ";
+		for (int i=0; i<this.focal_elements.size(); i++) {
+			res += mass_function[i] + " ";
+		}
+		res += "\n";
+		res += " Herds Value : ";
+		for (int i=0; i<this.nb_herd; i++) {
+			res += herd_value[i] + " ";
+		}
+		res += "\n";
+		res += " See Function : ";
+		for (int i=0; i<nb_attacker; i++) {
+			res += see_function[i] + " ";
+		}
+		res += "\n";
+		res += " Gps : ";
+		for (int i=0; i<gps.length; i++) {
+			res += gps[i] + " ";
+		}
+		res += "\n";
+		res += "fine_or_bribe" +this.fine_or_bribe;
+		return res;
 	}
 
 }

@@ -22,16 +22,16 @@ public class Bel_GSG_SNF extends Bel_GSG {
 	
 	public Bel_GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility,
 			ArrayList<ArrayList<Integer>> possible_actions, int[] herd, int fine_or_bribe, int nb_location,
-			ArrayList<int[][]> focal_element, float[] mass_function, String method, float[] alpha, int[] gps) {
+			ArrayList<int[][]> focal_element, float[] mass_function, String method, float[] alpha, int[] seeFunction, int[] gps) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, possible_actions, herd, fine_or_bribe, nb_location,
-				focal_element, mass_function, method, alpha, gps);
+				focal_element, mass_function, method, alpha, seeFunction, gps);
 	}
 	
 	public Bel_GSG_SNF(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility,
 			ArrayList<ArrayList<Integer>> possible_actions, int[] herd, int fine_or_bribe, int nb_location,
-			ArrayList<int[][]> focal_element, float[] mass_function, String method, int[] gps) {
+			ArrayList<int[][]> focal_element, float[] mass_function, String method, int[] seeFunction, int[] gps) {
 		super(nb_attacker, nb_defender, attacker_utility, defender_utility, possible_actions, herd, fine_or_bribe, nb_location,
-				focal_element, mass_function, method, gps);
+				focal_element, mass_function, method, seeFunction, gps);
 	}
 	
 	public void calcul_val() {
@@ -76,7 +76,7 @@ public class Bel_GSG_SNF extends Bel_GSG {
 						int ind_actuel = this.possible_actions.get(n.getIndexPlayer()).indexOf(a);
 						choix_des_joueurs.set(k, this.possible_actions.get(n.getIndexPlayer()).get(ind_actuel+1));
 					    for (int l=k+1; l < this.nodes.size(); l++) {
-					    	choix_des_joueurs.set(l,0);
+					    	choix_des_joueurs.set(l,this.possible_actions.get(this.nodes.get(l).getIndexPlayer()).get(0));
 					    }
 					    break;
 					}
@@ -245,7 +245,7 @@ public class Bel_GSG_SNF extends Bel_GSG {
 		  
 		  content = "";
 		  for (Node player : this.nodes) {
-			  content+= "joueur numéro " + player.getIndexPlayer() + " type = "+ player.getType() + " ";
+			  content+= "joueur numéro " + player.getIndexPlayer() + " type = "+ player.getType().toString() + " ";
 		  }
 		  bw.write(content);
 		  bw.write("\n");
@@ -285,6 +285,41 @@ public class Bel_GSG_SNF extends Bel_GSG {
 	 */
 	public ArrayList<float[]> getUtilities() {
 		return this.utilities_value;
+	}
+	
+	/**
+	 * @param profile
+	 * @param gsg
+	 * @return the index of the profile "profile" in the Bel_GSG in SNF "gsg"
+	 */
+	private int getIndexOfProfile(int[] profile, Bel_GSG_SNF gsg) {
+		int indice = 0;
+		for (int[] p : gsg.getProfiles()) {
+			if (same(profile,p)) {
+				return indice;
+			}
+			indice++;
+		}
+		return -1;
+	}
+	
+	// sert juste pour verif
+	public float getUtility(int[] profile, Node player) {
+		int indexPlayer = 0;
+		for ( Node n : this.nodes) {
+			if ( player.equals(n)) {
+				break;
+			}
+			else {
+				indexPlayer++;
+			}
+		}
+		if (indexPlayer==this.nodes.size()) {
+			System.out.println("Ce joueur n'existe pas");
+			return 0;
+		}
+		int indexUtility = getIndexOfProfile(profile, this);
+		return this.utilities_value.get(indexUtility)[indexPlayer];
 	}
 
 }

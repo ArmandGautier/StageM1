@@ -46,7 +46,7 @@ public class Gilpin_model extends Model {
 			IloCplex cplex = new IloCplex();
 			cplex.setOut(null);
 			
-			// création des variables
+			// creation des variables
 			
 			double start1=System.currentTimeMillis();
 			
@@ -67,7 +67,7 @@ public class Gilpin_model extends Model {
 				Ri[i] = cplex.numVar(0, Double.MAX_VALUE);
 			}
 			
-			// création des contraintes
+			// creation des contraintes
 			
 			// Somme des Pik == 1
 			
@@ -176,16 +176,16 @@ public class Gilpin_model extends Model {
 				System.out.println(results_Ui[i]);
 				for (int k=0; k<this.actions_possible_par_joueur.get(i).size(); k++) {
 					if (this.results_Pik[i][k] == 1) {
-						System.out.println("Le joueur " + i + " a joué l'action " + this.actions_possible_par_joueur.get(i).get(k) + ". Son utilité est de " + this.results_Uik[i][k] + ".");
+						System.out.println("Le joueur " + i + " a joue l'action " + this.actions_possible_par_joueur.get(i).get(k) + ". Son utilite est de " + this.results_Uik[i][k] + ".");
 					}
 					else {
-						System.out.println("Le joueur " + i + " n'a pas joué l'action " + this.actions_possible_par_joueur.get(i).get(k) + ". Son utilité aurait été de " + this.results_Uik[i][k] + ".");
+						System.out.println("Le joueur " + i + " n'a pas joue l'action " + this.actions_possible_par_joueur.get(i).get(k) + ". Son utilite aurait ete de " + this.results_Uik[i][k] + ".");
 					}
 				}
 			}
 		}
 		else {
-			System.out.println("Ce modèle n'a pas été construit ou alors il n'a pas d'équilibre de nash");
+			System.out.println("Ce modele n'a pas ete construit ou alors il n'a pas d'equilibre de nash");
 		}
 		
 	}

@@ -18,8 +18,8 @@ public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_
 	double[][] results_Xik;
 	double nb_sol = 0;
 
-	public Trabelsi_for_hypergraphical_games(Map<Integer, ArrayList<int[]>> profils, Map<Integer, ArrayList<float[]>> utilites, ArrayList<ArrayList<Integer>> player_by_game) {
-		super(profils, utilites, player_by_game);
+	public Trabelsi_for_hypergraphical_games(Map<Integer, ArrayList<int[]>> profils, Map<Integer, ArrayList<float[]>> utilites, ArrayList<ArrayList<Integer>> player_by_game, int nb_joueur) {
+		super(profils, utilites, player_by_game, nb_joueur);
 		
 		for (Integer key : this.profiles.keySet()) {
 			ArrayList<ArrayList<int[]>> temp1 = new ArrayList<ArrayList<int[]>>();
@@ -28,9 +28,10 @@ public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_
 				if (this.player_by_game.get(key).contains(i)) {
 					for (int[] profil : this.profiles.get(key) ) {
 						int[] prof_temp = new int[profil.length-1];
+						int ind_i_in_localGame = this.player_by_game.get(key).indexOf(i);
 						int k=0;
 						for (int j=0; j<profil.length; j++) {
-							if (i!=j) {
+							if (ind_i_in_localGame!=j) {
 								prof_temp[k]=profil[j];
 								k++;
 							}
@@ -154,11 +155,11 @@ public class Trabelsi_for_hypergraphical_games extends Model_for_hypergraphical_
 							int p=0;
 							ArrayList<int[]> list_profil_restreint = this.list_A_i_par_joueur.get(key).get(ind_i_in_localGame);
 							for (int[] profil_restreint : list_profil_restreint) {
-								int[] profil = new int[this.nb_joueur];
+								int[] profil = new int[this.player_by_game.get(key).size()];
 								int l=0;
 								// On reconstruit le profil comlet ( en rajoutant la k-ième action du joueur i )
-								for (int j=0; j<this.nb_joueur; j++) {
-									if (i==j) {
+								for (int j=0; j<profil.length; j++) {
+									if (ind_i_in_localGame==j) {
 										int Ai = this.actions_possible_par_joueur.get(i).get(k);
 										profil[j] = Ai;
 									}

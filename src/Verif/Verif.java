@@ -3,13 +3,33 @@ package Verif;
 
 import java.util.ArrayList;
 
-import GSG.Bel_GSG_Direct_Transform;
+import GSG.Bel_GSG;
 import GSG.Bel_GSG_SNF;
 import GSG.GSG_SNF;
+import GSG.Node;
 
 public class Verif {
 
-	public boolean verifAsSameBelGsg(Bel_GSG_SNF game1, Bel_GSG_Direct_Transform game2) {
+	public boolean verifAsSameBelGsg(Bel_GSG_SNF game1, Bel_GSG game2) {
+		ArrayList<Node> playersInGame1 = game1.getNodes();
+		ArrayList<Node> playersInGame2 = game2.getNodes();
+		if (playersInGame1.size() != playersInGame2.size()) {
+			return false;
+		}
+		int nb_player = playersInGame1.size();
+		for ( int i=0; i<nb_player; i++) {
+			if (! playersInGame1.get(i).equals(playersInGame2.get(i))) {
+				return false;
+			}
+		}
+		for (int[] p : game1.getProfiles()) {
+			for (Node n : playersInGame1) {
+				if ( game1.getUtility(p, n) != game2.getUtility(p, n)) {
+					System.out.println(game1.getUtility(p, n) + " != " + game2.getUtility(p, n));
+					return false;
+				}
+			}
+		}
 		return true;
 	}
 	

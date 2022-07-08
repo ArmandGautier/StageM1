@@ -17,10 +17,10 @@ public abstract class Model_for_hypergraphical_game {
 	double solving_time;
 	double construction_and_solving_time;
 	
-	public Model_for_hypergraphical_game(Map<Integer,ArrayList<int[]>> profils, Map<Integer,ArrayList<float[]>> utilites, ArrayList<ArrayList<Integer>> player_by_game) {
+	public Model_for_hypergraphical_game(Map<Integer,ArrayList<int[]>> profils, Map<Integer,ArrayList<float[]>> utilites, ArrayList<ArrayList<Integer>> player_by_game, int nb_joueur) {
 		this.profiles = profils;
 		this.utilites = utilites;
-		this.nb_joueur = profiles.get(0).get(0).length;
+		this.nb_joueur = nb_joueur;
 		this.nb_jeux = profiles.size();
 		this.player_by_game = player_by_game;
 		

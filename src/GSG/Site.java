@@ -20,15 +20,16 @@ public class Site {
 		this.herdLocation = new int[this.nb_herd];
 		Random random = new Random();
 		
+		this.probaStay = new float[this.nb_herd];
 		for (int i=0; i<this.nb_herd; i++) {
 			int location = random.nextInt(0, this.nb_location);
 			this.herdLocation[i] = location;
 			boolean pStay = random.nextBoolean();
 			if (pStay) {
-				probaStay[i] = 1/2;
+				probaStay[i] = (float) 0.5;
 			}
 			else {
-				probaStay[i] = 1/4;
+				probaStay[i] = (float) 0.25;
 			}
 		}
 		
@@ -52,7 +53,7 @@ public class Site {
 		}
 		
 		for (int i=0; i<this.nb_location-1; i++) {
-			for (int j=i+2; j<this.nb_location-1; j++) {
+			for (int j=i+2; j<this.nb_location; j++) {
 				boolean b = random.nextBoolean();
 				if (b) {
 					ArrayList<Integer> s1 = this.graphe.get(i);
@@ -67,7 +68,7 @@ public class Site {
 	}
 	
 	private ArrayList<Integer> moove(int herdIndex, ArrayList<Integer> res) {
-		for (Integer location : this.graphe.get(herdIndex)) {
+		for (Integer location : this.graphe.get(this.herdLocation[herdIndex])) {
 			res.add(location);
 		}
 		return res;
@@ -86,6 +87,7 @@ public class Site {
 	    this.mass_function = new float[nb_focal_element];
 	    
 		for (int i=0; i < nb_focal_element; i++) {
+			
 			int changement_action_pour_k = nb_focal_element/2;
 			
 			if (i != 0) {
@@ -115,7 +117,9 @@ public class Site {
 					val = val*(1-this.probaStay[t]);
 				}
 			}
+			this.mass_function[i] = val;
 		}
+		//printGraphe();
 		return focal_elements;
 	}
 
@@ -134,29 +138,37 @@ public class Site {
 				l.add(this.herdLocation[herdIndex]);
 			}
 			locationPossible.add(l);
+			herdIndex++;
 		}
 		
 		int[][] element = new int[nbPossibleOmega][this.nb_herd];
 		ArrayList<Integer> possibleHerdLocation = new ArrayList<Integer>();
-		
 	    for (int k=0; k < this.nb_herd; k++) {
 	    	possibleHerdLocation.add(locationPossible.get(k).get(0));
 	    }
 		
 		for (int i=0; i<nbPossibleOmega; i++) {
-			int changement_action_pour_k = nbPossibleOmega/locationPossible.get(0).size();
-			
+			int index=0;
+			while (index < this.nb_herd-1 ) {
+				if (locationPossible.get(index).size() > 1) {
+					break;
+				}
+				index++;
+			}
+			int changement_action_pour_k = nbPossibleOmega/locationPossible.get(index).size();
 			if (i != 0) {
 			    for (int k=0; k < this.nb_herd; k++) {
 			    	
 					if (Math.floorMod(i,changement_action_pour_k) == 0) {
-						int a = possibleHerdLocation.get(k);
-						int ind_actuel = locationPossible.get(k).indexOf(a);
-						possibleHerdLocation.set(k, locationPossible.get(k).get(ind_actuel+1));
-					    for (int l=k+1; l < this.nb_herd; l++) {
-					    	possibleHerdLocation.set(l,locationPossible.get(k).get(0));
-					    }
-					    break;
+						if (locationPossible.get(k).size() > 1) {
+							int a = possibleHerdLocation.get(k);
+							int ind_actuel = locationPossible.get(k).indexOf(a);
+							possibleHerdLocation.set(k, locationPossible.get(k).get(ind_actuel+1));
+						    for (int l=k+1; l < this.nb_herd; l++) {
+						    	possibleHerdLocation.set(l,locationPossible.get(l).get(0));
+						    }
+						    break;
+						}
 					}
 					
 					else {
@@ -177,5 +189,33 @@ public class Site {
 	 */
 	public float[] getMass_function() {
 		return mass_function;
+	}
+	
+	public void printGraphe() {
+		for (int i=0; i<this.nb_herd; i++) {
+			System.out.println("Le troupeau " + i + "est au lieu " + this.herdLocation[i]);
+		}
+		for (Integer key : this.graphe.keySet()) {
+			System.out.print( "Du lieu : "+key+ " on peut aller aux lieux : ");
+			for (Integer place : this.graphe.get(key)) {
+				System.out.print(place+ " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public String getGraphe() {
+		String res ="";
+		for (int i=0; i<this.nb_herd; i++) {
+			res += "Le troupeau " + i + "est au lieu " + this.herdLocation[i] + "\n";
+		}
+		for (Integer key : this.graphe.keySet()) {
+			res += "Du lieu : "+key+ " on peut aller aux lieux : ";
+			for (Integer place : this.graphe.get(key)) {
+				res += place+ " ";
+			}
+			res += "\n";
+		}
+		return res;
 	}
 }

@@ -48,15 +48,12 @@ public class Generateur {
 		}
 		return res;
 	}
-	
 	// if method == JEU
 	
 	public ArrayList<Bel_GSG_SNF> generate_Bel_GSG_SNF(ArrayList<Universe> universes, String attacker_utility, String defender_utility, String method, float[] alpha) {
 		ArrayList<Bel_GSG_SNF> res = new ArrayList<Bel_GSG_SNF>();
-		Random random = new Random();
 		for (Universe universe : universes) {
-			int fine_or_bribe = random.nextInt(5);
-			Bel_GSG_SNF game = new Bel_GSG_SNF(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), fine_or_bribe, universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, alpha, universe.getGps());
+			Bel_GSG_SNF game = new Bel_GSG_SNF(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, alpha, universe.getSee_function(), universe.getGps());
 			game.calcul_val();
 			res.add(game);
 		}
@@ -65,10 +62,8 @@ public class Generateur {
 	
 	public ArrayList<Bel_GSG_Direct_Transform> generate_Bel_GSG_Direct_Transform(ArrayList<Universe> universes, String attacker_utility, String defender_utility, String method, float[] alpha) {
 		ArrayList<Bel_GSG_Direct_Transform> res = new ArrayList<Bel_GSG_Direct_Transform>();
-		Random random = new Random();
 		for (Universe universe : universes) {
-			int fine_or_bribe = random.nextInt(5);
-			Bel_GSG_Direct_Transform game = new Bel_GSG_Direct_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), fine_or_bribe, universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, alpha, universe.getGps());
+			Bel_GSG_Direct_Transform game = new Bel_GSG_Direct_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, alpha,universe.getSee_function(), universe.getGps());
 			game.calcul_val();
 			res.add(game);
 		}
@@ -79,10 +74,8 @@ public class Generateur {
 	
 	public ArrayList<Bel_GSG_SNF> generate_Bel_GSG_SNF(ArrayList<Universe> universes, String attacker_utility, String defender_utility, String method) {
 		ArrayList<Bel_GSG_SNF> res = new ArrayList<Bel_GSG_SNF>();
-		Random random = new Random();
 		for (Universe universe : universes) {
-			int fine_or_bribe = random.nextInt(5);
-			Bel_GSG_SNF game = new Bel_GSG_SNF(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), fine_or_bribe, universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, universe.getGps());
+			Bel_GSG_SNF game = new Bel_GSG_SNF(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method,universe.getSee_function(), universe.getGps());
 			game.calcul_val();
 			res.add(game);
 		}
@@ -91,13 +84,33 @@ public class Generateur {
 	
 	public ArrayList<Bel_GSG_Direct_Transform> generate_Bel_GSG_Direct_Transform(ArrayList<Universe> universes, String attacker_utility, String defender_utility, String method) {
 		ArrayList<Bel_GSG_Direct_Transform> res = new ArrayList<Bel_GSG_Direct_Transform>();
-		Random random = new Random();
 		for (Universe universe : universes) {
-			int fine_or_bribe = random.nextInt(5);
-			Bel_GSG_Direct_Transform game = new Bel_GSG_Direct_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), fine_or_bribe, universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, universe.getGps());
+			Bel_GSG_Direct_Transform game = new Bel_GSG_Direct_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, universe.getSee_function(), universe.getGps());
 			game.calcul_val();
 			res.add(game);
 		}
 		return res;
 	}
+	
+	public ArrayList<Bel_GSG_TBM_Transform> Bel_GSG_TBM_Transform(ArrayList<Universe> universes, String attacker_utility, String defender_utility) {
+		ArrayList<Bel_GSG_TBM_Transform> res = new ArrayList<Bel_GSG_TBM_Transform>();
+		for (Universe universe : universes) {
+			Bel_GSG_TBM_Transform game = new Bel_GSG_TBM_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), universe.getSee_function(), universe.getGps());
+			game.calcul_val();
+			res.add(game);
+		}
+		return res;
+	}
+	
+	public ArrayList<Bel_GSG_Conditionned_Transform> Bel_GSG_Conditionned_Transform(ArrayList<Universe> universes, String attacker_utility, String defender_utility, String method) {
+		ArrayList<Bel_GSG_Conditionned_Transform> res = new ArrayList<Bel_GSG_Conditionned_Transform>();
+		for (Universe universe : universes) {
+			Bel_GSG_Conditionned_Transform game = new Bel_GSG_Conditionned_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, universe.getSee_function(), universe.getGps());
+			game.calcul_val();
+			res.add(game);
+		}
+		return res;
+	}
+	
+	
 }

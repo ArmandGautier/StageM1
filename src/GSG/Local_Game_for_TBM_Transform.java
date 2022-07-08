@@ -7,16 +7,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-public class Local_Game {
+public class Local_Game_for_TBM_Transform {
 
 	/**
 	 * the list of player who plays in at least omega that belongs to focal_elt
 	 */
 	private ArrayList<Node> list_player = new ArrayList<Node>();
 	/**
-	 * for each omega that belongs to focal_elt, give a list of boolean to know if player's plays or not in omega
+	 * the number of omega where player i plays
 	 */
-	private ArrayList<ArrayList<Boolean>> play_in_omega = new ArrayList<ArrayList<Boolean>>();
+	private ArrayList<Integer> nb_omega_plays = new ArrayList<Integer>();
 	/**
 	 * dimension of the local_game
 	 */
@@ -26,6 +26,10 @@ public class Local_Game {
 	 */
 	private int indexOf_focal_elt;
 	/**
+	 * the focal element of omega
+	 */
+	private int[][] focal_elt;
+	/**
 	 * The parent game
 	 */
 	private Bel_GSG parent_game;
@@ -34,9 +38,9 @@ public class Local_Game {
 	 */
 	ArrayList<ArrayList<Integer>> possible_actions = new ArrayList<ArrayList<Integer>>();
 	/**
-	 * the focal element corresponding to this local game
+	 * the omega corresponding to this local game
 	 */
-	int[][] focal_elt;
+	int[] omega;
 	/**
 	 * a list of profile. 
 	 */
@@ -52,28 +56,16 @@ public class Local_Game {
 	 * @param focal_elt
 	 * @param indexOf_focal_elt
 	 */
-	public Local_Game(Bel_GSG parent_game, int[][] focal_elt, int indexOf_focal_elt) {
+	public Local_Game_for_TBM_Transform(Bel_GSG parent_game, int[] omega,int[][] focal_elt, int indexOf_focal_elt) {
 		this.parent_game = parent_game;
+		this.omega = omega;
+		this.indexOf_focal_elt = indexOf_focal_elt;	
 		this.focal_elt = focal_elt;
-		this.indexOf_focal_elt = indexOf_focal_elt;
 		
 		for (Node n : this.parent_game.nodes) {
-			if (this.parent_game.typeIsTrue(n,this.focal_elt)) {
+			if ( this.parent_game.omegaToTypes(omega, n.getIndexPlayer()).equals(n.getType()) ) {
 				this.addPlayer(n,this.parent_game.possible_actions.get(n.getIndexPlayer()));
 			}
-		}
-		
-		for (int[] omega : this.focal_elt) {
-			ArrayList<Boolean> list_player_temp = new ArrayList<Boolean>();
-			for (Node player : this.list_player) {
-				if ( this.parent_game.omegaToTypes(omega, player.getIndexPlayer()).equals(player.getType()) ) {
-					list_player_temp.add(true);
-				}
-				else {
-					list_player_temp.add(false);
-				}
-			}
-			this.play_in_omega.add(list_player_temp);
 		}
 		
 		this.local_dimension = 1; 
@@ -86,9 +78,20 @@ public class Local_Game {
 	 * @param player
 	 * @param actions
 	 */
-	private void addPlayer(Node player, ArrayList<Integer> actions) {
+	protected void addPlayer(Node player, ArrayList<Integer> actions) {
 		this.list_player.add(player);
 		this.possible_actions.add(actions);
+		this.nb_omega_plays.add(computeNbOmegaPlays(player));
+	}
+
+	private Integer computeNbOmegaPlays(Node player) { // doit pouvoir se mettre ailleurs pour ne pas avoir à le calculer pour chacun des omega
+		Integer res = 0;
+		for (int[] element : this.focal_elt) {
+			if ( this.parent_game.omegaToTypes(element, player.getIndexPlayer()).equals(player.getType()) ) {
+				res++;
+			}
+		}
+		return res;
 	}
 
 	public void calcul_val() {
@@ -99,6 +102,7 @@ public class Local_Game {
 	    }
 	    
 		for (int i=0; i<this.local_dimension; i++) {
+			
 			int changement_action_pour_k = this.local_dimension/this.possible_actions.get(0).size();
 			
 			if (i != 0) {
@@ -126,7 +130,7 @@ public class Local_Game {
 			for (Node player : this.list_player) {
 				float k = this.parent_game.computeK(player);
 				float val = computeVal(player,choix_des_joueurs,j);
-				uti_tmp[j] = k * this.parent_game.mass_function[this.indexOf_focal_elt] * val;
+				uti_tmp[j] = k * this.parent_game.mass_function[indexOf_focal_elt] * val;
 				c[j] = choix_des_joueurs.get(j);
 				j++;
 			}
@@ -137,85 +141,20 @@ public class Local_Game {
 
 	private float computeVal(Node player, ArrayList<Integer> choix_des_joueurs, int j) {
 		
-		switch(this.parent_game.method) {
-		case "CEU" :
-			return calcul_val_using_CEU(player,choix_des_joueurs,j);
-		case "JEU" :
-			return calcul_val_using_JEU(player,choix_des_joueurs,j);
-		case "TBEU" :
-			return calcul_val_using_TBEU(player,choix_des_joueurs,j);
-		default : 
-			System.out.println("Cette méthode n'existe pas ou n'est pas implémentée");
-			break;
-		}
-		return 0;
-	}
-
-	private float calcul_val_using_TBEU(Node player, ArrayList<Integer> choix_des_joueurs, int j) {
 		float val = 0;
-		int nb_omega=0;
-		int index_omega=0;
-		for (int[] omega : this.focal_elt) {
-			if ( this.play_in_omega.get(index_omega).get(j) ) {
-				nb_omega++;
-				int[] profil_selon_omega = computeProfile(index_omega,choix_des_joueurs);
-				int indiceGSG = this.parent_game.getIndexOfGSG(omega);
-				GSG_SNF gsg = this.parent_game.gsg_snf.get(indiceGSG);
-				int indiceProfile = this.parent_game.getIndexOfProfile(profil_selon_omega,gsg);
-				val += gsg.getUtilities().get(indiceProfile)[player.getIndexPlayer()];
-			}
-			index_omega++;
-		}
-		if (nb_omega > 0) {
-			return val/nb_omega;
+
+		int[] profil_selon_omega = computeProfile(choix_des_joueurs);
+		int indiceGSG = this.parent_game.getIndexOfGSG(omega);
+		GSG_SNF gsg = this.parent_game.gsg_snf.get(indiceGSG);
+		int indiceProfile = this.parent_game.getIndexOfProfile(profil_selon_omega,gsg);
+		val += gsg.getUtilities().get(indiceProfile)[player.getIndexPlayer()];
+
+		if ( this.nb_omega_plays.get(j) > 0) {
+			return val/this.nb_omega_plays.get(j);
 		}
 		else {
 			return val;
 		}
-	}
-	
-	private float calcul_val_using_JEU(Node player, ArrayList<Integer> choix_des_joueurs, int j) {
-		float val = 0;
-		int index_omega=0;
-		float min = Float.MAX_VALUE;
-		float max = Float.MIN_VALUE;
-		for (int[] omega : this.focal_elt) {
-			if ( this.play_in_omega.get(index_omega).get(j) ) {
-				int[] profil_selon_omega = computeProfile(index_omega,choix_des_joueurs);
-				int indiceGSG = this.parent_game.getIndexOfGSG(omega);
-				GSG_SNF gsg = this.parent_game.gsg_snf.get(indiceGSG);
-				int indiceProfile = this.parent_game.getIndexOfProfile(profil_selon_omega,gsg);
-				float toCompare = gsg.getUtilities().get(indiceProfile)[player.getIndexPlayer()];
-				if ( toCompare < min ) {
-					min = toCompare;
-				}
-				if ( toCompare > max ) {
-					max = toCompare;
-				}
-			}
-			index_omega++;
-		}
-		val = this.parent_game.alpha[player.getIndexPlayer()]*min+(1-this.parent_game.alpha[player.getIndexPlayer()])*max;
-		return val;
-	}
-	
-	private float calcul_val_using_CEU(Node player, ArrayList<Integer> choix_des_joueurs, int j) {
-		float min = Float.MAX_VALUE;
-		int index_omega=0;
-		for (int[] omega : this.focal_elt) {
-			if ( this.play_in_omega.get(index_omega).get(j) ) {
-				int[] profil_selon_omega = computeProfile(index_omega,choix_des_joueurs);
-				int indiceGSG = this.parent_game.getIndexOfGSG(omega);
-				GSG_SNF gsg = this.parent_game.gsg_snf.get(indiceGSG);
-				int indiceProfile = this.parent_game.getIndexOfProfile(profil_selon_omega,gsg);
-				float toCompare = gsg.getUtilities().get(indiceProfile)[player.getIndexPlayer()];
-				if ( toCompare < min ) {
-					min = toCompare;
-				}
-			}
-			index_omega++;
-		}
-		return min;
 	}
 	
 	/**
@@ -223,13 +162,11 @@ public class Local_Game {
 	 * @param choix_des_joueurs
 	 * @return a restricting profile of "choix_des_joueurs" considering only players who played in omega
 	 */
-	private int[] computeProfile(int index_omega, ArrayList<Integer> choix_des_joueurs) {
+	private int[] computeProfile(ArrayList<Integer> choix_des_joueurs) {
 		int[] profile = new int[this.parent_game.nb_player];
 		int index_player = 0;
 		for (Node player : this.list_player) {
-			if (this.play_in_omega.get(index_omega).get(index_player)) {
-				profile[player.getIndexPlayer()] = choix_des_joueurs.get(index_player);
-			}
+			profile[player.getIndexPlayer()] = choix_des_joueurs.get(index_player);
 			index_player++;
 		}
 		return profile;
@@ -239,13 +176,11 @@ public class Local_Game {
 	 * print information to describe this game
 	 */
 	public void afficher_jeux() {
-		System.out.println("This game concerned the following focal element : " );
-		for (int[] omega : this.focal_elt) {
-			for (int place : omega) {
-				System.out.print(place + " ");
-			}
-			System.out.println();
+		System.out.println("This game concerned the following omega : " );
+		for (int place : omega) {
+			System.out.print(place + " ");
 		}
+		System.out.println();
 		ListIterator<int[]> it1 = this.profiles.listIterator();
 		ListIterator<float[]> it2 = this.utilities_value.listIterator();
 		while (it1.hasNext() && it2.hasNext()) {
@@ -269,6 +204,7 @@ public class Local_Game {
 	 */
 	public void writeInFile(String filename) {
 		try {
+	
 			  
 		  File file = new File(filename);
 
@@ -373,7 +309,7 @@ public class Local_Game {
 	 * @param gsg
 	 * @return the index of the profile "profile" in the Local_GSG in SNF "gsg"
 	 */
-	private int getIndexOfProfile(int[] profile, Local_Game gsg) {
+	private int getIndexOfProfile(int[] profile, Local_Game_for_TBM_Transform gsg) {
 		int indice = 0;
 		for (int[] p : gsg.getProfiles()) {
 			if (same(profile,p)) {

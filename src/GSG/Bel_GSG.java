@@ -42,7 +42,7 @@ public abstract class Bel_GSG{
 	/**
 	 * a list of all the possible world
 	 */
-	ArrayList<int[]> possible_omega = new ArrayList<int[]>();
+	public ArrayList<int[]> possible_omega = new ArrayList<int[]>();
 	/**
 	 * represents all players of the game
 	 */
@@ -72,6 +72,10 @@ public abstract class Bel_GSG{
 	 */
 	int nb_location;
 	/**
+	 * give information about place see by poachers
+	 */
+	int[] seeFunction;
+	/**
 	 * number of herds who are chipped by defender
 	 */
 	int[] gps;
@@ -93,7 +97,7 @@ public abstract class Bel_GSG{
 	 */
 	public Bel_GSG(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility,
 			ArrayList<ArrayList<Integer>> possible_actions,int[] herd, int fine_or_bribe,int nb_location, ArrayList<int[][]> focal_element,
-			float[] mass_function, String method, float[] alpha, int[] gps) {
+			float[] mass_function, String method, float[] alpha, int[] seeFunction, int[] gps) {
 		this.nb_attacker = nb_attacker;
 		this.nb_defender = nb_defender;
 		this.nb_player = this.nb_attacker + this.nb_defender;
@@ -107,6 +111,7 @@ public abstract class Bel_GSG{
 		this.mass_function = mass_function;
 		this.method = method;
 		this.alpha = alpha;
+		this.seeFunction = seeFunction;
 		this.gps = gps;
 	}
 	/**
@@ -126,7 +131,7 @@ public abstract class Bel_GSG{
 	 */
 	public Bel_GSG(int nb_attacker, int nb_defender, String attacker_utility, String defender_utility,
 			ArrayList<ArrayList<Integer>> possible_actions,int[] herd, int fine_or_bribe,int nb_location, ArrayList<int[][]> focal_element,
-			float[] mass_function, String method, int[] gps) {
+			float[] mass_function, String method,int[] seeFunction, int[] gps) {
 		this.nb_attacker = nb_attacker;
 		this.nb_defender = nb_defender;
 		this.nb_player = this.nb_attacker + this.nb_defender;
@@ -139,6 +144,7 @@ public abstract class Bel_GSG{
 		this.focal_element = focal_element;
 		this.mass_function = mass_function;
 		this.method = method;
+		this.seeFunction = seeFunction;
 		this.gps = gps;
 	}
 	
@@ -181,7 +187,7 @@ public abstract class Bel_GSG{
 	 */
 	private boolean containsNode(Node n) {
 		for (Node node : this.nodes) {
-			if (node.getIndexPlayer() == n.getIndexPlayer() && node.getType() == n.getType()) {
+			if (node.getIndexPlayer() == n.getIndexPlayer() && node.getType().equals(n.getType())) {
 				return true;
 			}
 		}
@@ -193,24 +199,25 @@ public abstract class Bel_GSG{
 	 * @param ind_player
 	 * @return the type of player "ind_player" depending the world omega
 	 */
-	protected String omegaToTypes(int[] omega, int ind_player) {
-		String res = "";
+	protected Type omegaToTypes(int[] omega, int ind_player) {
+		Type res = new Type();
 		if (ind_player < this.nb_attacker) {
 			int herd_number = 0;
 			for (int o : omega) {
 				if ( o == see(ind_player)) {
-					res += "T"+herd_number;
+					res.add("T"+herd_number);
 				}
 				herd_number ++;
 			}
 		}
 		else {
 			for (int herd : gps) {
-				res += "L"+omega[herd];
+				res.add("L"+omega[herd]);
 			}
 		}
-		if ( res == "" ) {
-			return "ensemble vide";
+		if ( res.getSet().isEmpty() ) {
+			res.add("ensemble vide");
+			return res;
 		}
 		else {
 			return res;
@@ -223,7 +230,7 @@ public abstract class Bel_GSG{
 	 */
 	
 	protected int see(int ind_player) {
-		return ind_player; // à améliorer
+		return this.seeFunction[ind_player];
 	}
 	
 	/**
@@ -249,6 +256,15 @@ public abstract class Bel_GSG{
 	 */
 	protected boolean typeIsTrue(Node n, int[][] focal_elt) {
 		for (int[] omega : focal_elt) {
+			if ( this.omegaToTypes(omega, n.getIndexPlayer()).equals(n.getType()) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean typeIsTrue(Node n, ArrayList<int[]> omegaPlaysForN) {
+		for (int[] omega : omegaPlaysForN) {
 			if ( this.omegaToTypes(omega, n.getIndexPlayer()).equals(n.getType()) ) {
 				return true;
 			}
@@ -292,7 +308,7 @@ public abstract class Bel_GSG{
 	 * @param omega2
 	 * @return true if the two arrays are the same, false otherwise
 	 */
-	private boolean same(int[] omega1, int[] omega2) {
+	protected boolean same(int[] omega1, int[] omega2) {
 		if (omega1.length != omega2.length) {
 			return false;
 		}
@@ -304,6 +320,30 @@ public abstract class Bel_GSG{
 		return true;
 	}
 	
+	protected boolean same(ArrayList<int[]> omega1, ArrayList<int[]> omega2) {
+		if ( omega1.size() != omega2.size()) {
+			return false;
+		}
+		for (int i=0; i < omega1.size(); i++) {
+			if (omega1.get(i).length != omega2.get(i).length) {
+				return false;
+			}
+			for (int j=0; j<omega1.get(i).length; j++) {
+				if (omega1.get(i)[j] != omega2.get(i)[j]) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * @return the nodes
+	 */
+	public ArrayList<Node> getNodes() {
+		return this.nodes;
+	}
+	
 	/**
 	 * Compute value of utility and profiles
 	 */
@@ -312,4 +352,7 @@ public abstract class Bel_GSG{
 	 * Print informations to define the game
 	 */
 	public abstract void writeInFile(String filename);
+	
+	public abstract float getUtility(int[] profile, Node player);
+	
 }
