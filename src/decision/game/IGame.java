@@ -1,46 +1,69 @@
 package decision.game;
 
+import decision.game.profile.ActionProfile;
+import decision.game.profile.IActionProfile;
+import decision.game.profile.Profile;
+
 /**
  * Games of Incomplete Information
- * Not Implemented
  * @author Pierre Pomeret-Coquot
- * @param <U> Type for utility
+ * @param <U> Type for utility values
  */
-public abstract class IGame<U> {
-	/*
-	public abstract int nPlayers();
+public interface IGame<U> {
 	
-	public abstract Vector<Integer> nActions();
+	/**
+	 * @return Number of players
+	 */
+	public int nPlayers();
 	
-	public abstract int nStates();
+	/**
+	 * @return Action profile where i-th component is the number of actions of Player i
+	 */
+	public Profile<Integer> nActions();
 	
-	public abstract Profile<U> utility(ActionProfile p, int State);
+	/**
+	 * @return Number of ``states of the world''
+	 */
+	public int nWorlds();
 	
-	public List<Map<ActionProfile,Profile<U>>> utilityMap() {
-		List<Map<ActionProfile,Profile<U>>> u = new ArrayList<>();
-		for (int t = 0 ; t < this.nStates() ; t++) {
-			Map<ActionProfile,Profile<U>> u_t = new HashMap<>();
-			Iterator<ActionProfile> it = new ActionProfileIterator(this.nActions());
-			while (it.hasNext()) {
-				ActionProfile p = it.next();
-				u_t.put(p, this.utility(p,t));
-			}
-			u.add(u_t);
-		}
-		return u;
-	}
+	/**
+	 * @return Profile where i-th component is the number of types of player i
+	 */
+	public Profile<Integer> nTypes();
 	
-	public String toString() {
-		String s = "";
-		Iterator<ActionProfile> it;
-		for (int t = 0 ; t < this.nStates() ; t++) {
-			it = new ActionProfileIterator(this.nActions());
-			while (it.hasNext()) {
-				ActionProfile p = it.next();
-				s = s + "u( " + p + ", " + t + " )\t= " + this.utility(p,t) + "\n";
-			}
-		}
-		return s;
-	}
-	*/
+	/**
+	 * The signal that a player receive in a given state of the world (= Harsanyi's type)
+	 * @param player Player
+	 * @param world State of the world
+	 * @return Signal that player receive in the given state of the world
+	 */
+	public int signal(int player, int world);
+	
+	/**
+	 * @param p ActionProfile to evaluate
+	 * @param world State of the world
+	 * @return Utility profile where the i-th component is the utility of Player i
+	 */
+	public abstract Profile<U> utility(ActionProfile profile, int world);
+	
+	/**
+	 * @param p IActionProfile to evaluate
+	 * @param world State of the world
+	 * @return Utility profile where the i-th component is the utility of Player i
+	 */
+	public abstract Profile<U> iUtility(IActionProfile iprofile, int world);
+	
+	/**
+	 * @return Cost of the representation = number of values stored in the utility "matrix"
+	 */
+	public int nValues();
+	
+	/**
+	 * @param o The other object to compare with
+	 * @return true iff o is a IGame with the same number of player, of action per player, of worlds 
+	 * and with the same utility for each action profile (not enforced)
+	 */
+	@Override
+	public boolean equals(Object o);
+	
 }

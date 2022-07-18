@@ -132,4 +132,12 @@ public class ActionProfile extends Profile<Integer> {
 		return false;
 	}
 
+	public static ActionProfile ACTION_PROFILE_0(Integer nPlayers) {
+		ActionProfile p = new ActionProfile();
+		for (int i = 0 ; i < nPlayers; i++) {
+			p.add(0);
+		}
+		return p;
+	}
+
 }

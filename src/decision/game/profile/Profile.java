@@ -37,6 +37,18 @@ public class Profile<T> extends Vector<T> {
 		}
 	}
 	
+	/**
+	 * Instantiate a profile in which every component has the same value
+	 * @param value The repeated value
+	 * @param size Size of the ActionProfile
+	 */
+	public Profile(T value, int size) {
+		super();
+		for (int i = 0 ; i < size ; i++) {
+			this.add(value);
+		}
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Profile<?>) {

@@ -1,12 +1,10 @@
 package decision.game;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
 import decision.game.profile.ActionProfile;
 import decision.game.profile.Profile;
-import decision.game.profile.ActionProfile.ActionProfileIterator;
 import decision.utility.oplus.Oplus;
 
 /**
@@ -91,36 +89,5 @@ public abstract class HGGame<U> implements CGame<U> {
 			s = s + lg;
 		}
 		return s;
-	}
-
-	/**
-	 * G1.equals(G2) iff G1 and G2 are CGames with the same number of players, 
-	 * of actions per player and with the same utility for each action profile
-	 */
-	@Override
-	public boolean equals(Object o) {
-		if (o instanceof CGame<?>) {
-			CGame<?> g = (CGame<?>) o;
-			if (this.nPlayers() != g.nPlayers()) {
-				//System.out.println("NotEqual: differ on nPlayers: " + this.nPlayers() + " != " + g.nPlayers());
-				return false;
-			}
-			if (!this.nActions().equals(g.nActions())) {
-				//System.out.println("NotEqual: differ on nActions: " + this.nActions() + " != " + g.nActions());
-				return false;
-			}
-			Iterator<ActionProfile> it = new ActionProfileIterator(this.nActions());
-			while (it.hasNext()) {
-				ActionProfile p = it.next();
-				Profile<U> u1 = this.utility(p);
-				Profile<?> u2 = g.utility(p);
-				if (!u1.equals(u2)) {
-					//System.out.println("NotEqual: differ on utility for " + p + ": " + u1 + " != " + u2);
-					return false;
-				}
-			}
-			return true;
-		}
-		return false;
 	}
 }

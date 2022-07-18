@@ -11,12 +11,16 @@ import decision.game.profile.Profile;
 
 public class MapSNFGame<U> extends SNFGame<U> {
 	
-	private Map<ActionProfile,Profile<U>> utility;
-	private int nPlayers = -1;
-	private Profile<Integer> nActions;
+	protected Map<ActionProfile,Profile<U>> utility;
+	protected int nPlayers = -1;
+	protected Profile<Integer> nActions;
+
+	protected MapSNFGame() {
+		this.utility = new HashMap<>();
+	}
 	
 	public MapSNFGame(Map<ActionProfile,Profile<U>> utility) {
-		this.utility = new HashMap<>(utility);
+		this();
 		
 		// Initialize this.nPlayers and this.nActions from the utility map.
 		Iterator<Entry<ActionProfile,Profile<U>>> it = this.utility.entrySet().iterator();
