@@ -1,0 +1,52 @@
+ nb_lieu : 3 nb_troupeau : 2 nb_attaquant : 3 nb defender : 2
+ indice_jeu, tps_dtransfo, tps_ctransfo, equi_dt, equi_ct
+Jeux0, Not compute, 367.0, Not compute, false, 
+Jeux1, 147.0, 146.0, false, false, 
+Jeux2, jeux local trop important, pas calcule
+Jeux3, Not compute, 1541.0, Not compute, true, 
+Jeux4, jeux local trop important, pas calcule
+Jeux5, 159.0, 159.0, false, false, 
+Jeux6, jeux local trop important, pas calcule
+Jeux7, 5693.0, 4709.0, false, false, 
+Jeux8, 1440.0, 1983.0, false, false, 
+Jeux9, 5565.0, 5015.0, false, false, 
+Jeux10, jeux local trop important, pas calcule
+Jeux11, jeux local trop important, pas calcule
+Jeux12, jeux local trop important, pas calcule
+Jeux13, jeux local trop important, pas calcule
+Jeux14, 5734.0, 5377.0, true, true, 
+Jeux15, jeux local trop important, pas calcule
+Jeux16, 1414.0, 1774.0, false, false, 
+Jeux17, jeux local trop important, pas calcule
+Jeux18, jeux local trop important, pas calcule
+Jeux19, 466.0, 500.0, true, true, 
+Jeux20, jeux local trop important, pas calcule
+Jeux21, jeux local trop important, pas calcule
+Jeux22, jeux local trop important, pas calcule
+Jeux23, jeux local trop important, pas calcule
+Jeux24, 163.0, 162.0, true, true, 
+Jeux25, 148.0, 147.0, false, false, 
+Jeux26, jeux local trop important, pas calcule
+Jeux27, 144.0, 146.0, false, false, 
+Jeux28, 76178.0, 74544.0, false, false, 
+Jeux29, 124.0, 124.0, false, false, 
+Jeux30, 76.0, 76.0, false, false, 
+Jeux31, 69.0, 69.0, true, true, 
+Jeux32, 173.0, 175.0, false, false, 
+Jeux33, Not compute, 37366.0, Not compute, false, 
+Jeux34, jeux local trop important, pas calcule
+Jeux35, 5773.0, 4712.0, false, false, 
+Jeux36, 8709.0, 8114.0, false, false, 
+Jeux37, 8347.0, 6603.0, false, false, 
+Jeux38, Not compute, 97914.0, Not compute, false, 
+Jeux39, jeux local trop important, pas calcule
+Jeux40, 636.0, 659.0, true, true, 
+Jeux41, Not compute, 87327.0, Not compute, false, 
+Jeux42, jeux local trop important, pas calcule
+Jeux43, jeux local trop important, pas calcule
+Jeux44, 77951.0, 76551.0, false, false, 
+Jeux45, jeux local trop important, pas calcule
+Jeux46, jeux local trop important, pas calcule
+Jeux47, Not compute, 97544.0, Not compute, false, 
+Jeux48, jeux local trop important, pas calcule
+Jeux49, jeux local trop important, pas calcule

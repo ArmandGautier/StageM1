@@ -1,0 +1,2670 @@
+Jeux 0
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+21
+
+
+ Mass Function : 0.125 0.375 0.125 0.375 
+ Herds Value : 8 7 
+ See Function : 1 0 
+ Gps : 0 
+fine_or_bribe 3
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 7
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 7
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 7
+
+
+Jeux 1
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+22
+
+ element focal numero 1
+21
+20
+
+ element focal numero 2
+12
+02
+
+ element focal numero 3
+11
+10
+01
+00
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 1 3 
+ See Function : 1 0 
+ Gps : 0 
+fine_or_bribe 6
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 6
+nombre de joueur dans le jeux local 2 : 8
+nombre de joueur dans le jeux local 3 : 12
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 6
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 6
+nombre de joueur dans le jeux local 11 : 6
+
+
+Jeux 2
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+21
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 1 6 
+ See Function : 1 0 
+ Gps : 1 
+fine_or_bribe 6
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 12
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 5
+nombre de joueur dans le jeux local 3 : 5
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 5
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 4
+
+
+Jeux 3
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+21
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 7 2 
+ See Function : 2 0 
+ Gps : 1 
+fine_or_bribe 3
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 6
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 6
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 6
+
+
+Jeux 4
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+21
+
+
+ Mass Function : 0.125 0.375 0.125 0.375 
+ Herds Value : 5 8 
+ See Function : 0 2 
+ Gps : 0 
+fine_or_bribe 5
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 12
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 8
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+
+
+Jeux 5
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+01
+
+ element focal numero 1
+00
+02
+
+ element focal numero 2
+11
+21
+
+ element focal numero 3
+10
+12
+20
+22
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 1 2 
+ See Function : 0 1 
+ Gps : 0 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 5
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 7
+nombre de joueur dans le jeux local 7 : 7
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 5
+nombre de joueur dans le jeux local 10 : 7
+
+
+Jeux 6
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+22
+
+ element focal numero 1
+21
+
+ element focal numero 2
+12
+
+ element focal numero 3
+11
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 9 5 
+ See Function : 0 1 
+ Gps : 1 
+fine_or_bribe 3
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 9
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+
+
+Jeux 7
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+02
+
+ element focal numero 1
+01
+00
+
+ element focal numero 2
+12
+22
+
+ element focal numero 3
+11
+10
+21
+20
+
+
+ Mass Function : 0.125 0.375 0.125 0.375 
+ Herds Value : 3 7 
+ See Function : 1 2 
+ Gps : 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 6
+nombre de joueur dans le jeux local 7 : 8
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 5
+nombre de joueur dans le jeux local 11 : 4
+nombre de joueur dans le jeux local 12 : 4
+nombre de joueur dans le jeux local 13 : 5
+
+
+Jeux 8
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+20
+
+ element focal numero 1
+21
+22
+
+ element focal numero 2
+10
+00
+
+ element focal numero 3
+11
+12
+01
+02
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 4 1 
+ See Function : 0 2 
+ Gps : 0 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 5
+nombre de joueur dans le jeux local 4 : 5
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 7
+nombre de joueur dans le jeux local 7 : 7
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 5
+nombre de joueur dans le jeux local 10 : 7
+
+
+Jeux 9
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+01
+
+ element focal numero 1
+00
+02
+
+ element focal numero 2
+11
+
+ element focal numero 3
+10
+12
+
+
+ Mass Function : 0.125 0.375 0.125 0.375 
+ Herds Value : 5 1 
+ See Function : 2 0 
+ Gps : 1 
+fine_or_bribe 2
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 12
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 8
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+
+
+Jeux 10
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+21
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 6 9 
+ See Function : 0 2 
+ Gps : 0 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 12
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 8
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+
+
+Jeux 11
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+22
+
+ element focal numero 1
+21
+20
+
+ element focal numero 2
+12
+02
+
+ element focal numero 3
+11
+10
+01
+00
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 7 6 
+ See Function : 0 1 
+ Gps : 1 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 8
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 12
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 6
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 6
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 6
+
+
+Jeux 12
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+01
+
+ element focal numero 1
+00
+02
+
+ element focal numero 2
+11
+
+ element focal numero 3
+10
+12
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 2 5 
+ See Function : 0 1 
+ Gps : 
+fine_or_bribe 2
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 5
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 5
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 5
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 4
+
+
+Jeux 13
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+02
+
+ element focal numero 1
+01
+00
+
+ element focal numero 2
+12
+22
+
+ element focal numero 3
+11
+10
+21
+20
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 4 4 
+ See Function : 1 2 
+ Gps : 0 
+fine_or_bribe 4
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 8
+nombre de joueur dans le jeux local 3 : 10
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 4
+nombre de joueur dans le jeux local 8 : 5
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 5
+nombre de joueur dans le jeux local 11 : 4
+
+
+Jeux 14
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+01
+
+ element focal numero 1
+00
+02
+
+ element focal numero 2
+11
+21
+
+ element focal numero 3
+10
+12
+20
+22
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 7 6 
+ See Function : 2 0 
+ Gps : 1 
+fine_or_bribe 4
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 8
+nombre de joueur dans le jeux local 2 : 5
+nombre de joueur dans le jeux local 3 : 10
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 5
+nombre de joueur dans le jeux local 7 : 4
+nombre de joueur dans le jeux local 8 : 5
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+
+
+Jeux 15
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+02
+
+ element focal numero 1
+01
+00
+
+ element focal numero 2
+12
+22
+
+ element focal numero 3
+11
+10
+21
+20
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 5 8 
+ See Function : 1 2 
+ Gps : 
+fine_or_bribe 6
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 6
+nombre de joueur dans le jeux local 7 : 8
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 5
+nombre de joueur dans le jeux local 11 : 4
+nombre de joueur dans le jeux local 12 : 4
+nombre de joueur dans le jeux local 13 : 5
+
+
+Jeux 16
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+12
+
+ element focal numero 1
+11
+
+ element focal numero 2
+02
+22
+
+ element focal numero 3
+01
+21
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 5 7 
+ See Function : 1 0 
+ Gps : 
+fine_or_bribe 3
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 8
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 5
+nombre de joueur dans le jeux local 3 : 5
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 5
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 4
+
+
+Jeux 17
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+01
+
+ element focal numero 1
+00
+02
+
+ element focal numero 2
+11
+
+ element focal numero 3
+10
+12
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 2 1 
+ See Function : 0 2 
+ Gps : 0 
+fine_or_bribe 4
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 6
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 6
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 6
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 6
+
+
+Jeux 18
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+21
+
+
+ Mass Function : 0.125 0.375 0.125 0.375 
+ Herds Value : 2 8 
+ See Function : 1 0 
+ Gps : 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 5
+nombre de joueur dans le jeux local 3 : 5
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 5
+nombre de joueur dans le jeux local 4 : 5
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 4
+
+
+Jeux 19
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+12
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+02
+21
+22
+
+
+ Mass Function : 0.125 0.375 0.125 0.375 
+ Herds Value : 9 2 
+ See Function : 2 1 
+ Gps : 1 
+fine_or_bribe 3
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 8
+nombre de joueur dans le jeux local 2 : 5
+nombre de joueur dans le jeux local 3 : 10
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 5
+nombre de joueur dans le jeux local 7 : 4
+nombre de joueur dans le jeux local 8 : 5
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+
+
+Jeux 20
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+21
+
+ element focal numero 1
+20
+22
+
+ element focal numero 2
+11
+01
+
+ element focal numero 3
+10
+12
+00
+02
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 2 5 
+ See Function : 0 2 
+ Gps : 0 
+fine_or_bribe 4
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 6
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 10
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 6
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 7
+nombre de joueur dans le jeux local 8 : 7
+nombre de joueur dans le jeux local 9 : 6
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+nombre de joueur dans le jeux local 12 : 6
+nombre de joueur dans le jeux local 13 : 7
+nombre de joueur dans le jeux local 14 : 4
+
+
+Jeux 21
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+22
+
+ element focal numero 1
+21
+
+ element focal numero 2
+12
+
+ element focal numero 3
+11
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 3 8 
+ See Function : 2 1 
+ Gps : 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+
+
+Jeux 22
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+20
+
+ element focal numero 1
+21
+22
+
+ element focal numero 2
+10
+00
+
+ element focal numero 3
+11
+12
+01
+02
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 7 2 
+ See Function : 0 1 
+ Gps : 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 6
+nombre de joueur dans le jeux local 7 : 8
+nombre de joueur dans le jeux local 8 : 5
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+nombre de joueur dans le jeux local 12 : 4
+nombre de joueur dans le jeux local 13 : 5
+
+
+Jeux 23
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+20
+
+ element focal numero 1
+21
+22
+
+ element focal numero 2
+10
+00
+
+ element focal numero 3
+11
+12
+01
+02
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 1 3 
+ See Function : 0 1 
+ Gps : 
+fine_or_bribe 4
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 6
+nombre de joueur dans le jeux local 7 : 8
+nombre de joueur dans le jeux local 8 : 5
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+nombre de joueur dans le jeux local 12 : 4
+nombre de joueur dans le jeux local 13 : 5
+
+
+Jeux 24
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+12
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+02
+21
+22
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 6 5 
+ See Function : 0 2 
+ Gps : 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 6
+nombre de joueur dans le jeux local 7 : 8
+nombre de joueur dans le jeux local 8 : 5
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+nombre de joueur dans le jeux local 12 : 5
+nombre de joueur dans le jeux local 13 : 4
+
+
+Jeux 25
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+02
+
+ element focal numero 1
+01
+00
+
+ element focal numero 2
+12
+22
+
+ element focal numero 3
+11
+10
+21
+20
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 3 8 
+ See Function : 0 1 
+ Gps : 0 
+fine_or_bribe 3
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 6
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 10
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 6
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 7
+nombre de joueur dans le jeux local 8 : 7
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 6
+nombre de joueur dans le jeux local 12 : 6
+nombre de joueur dans le jeux local 13 : 4
+nombre de joueur dans le jeux local 14 : 7
+
+
+Jeux 26
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+11
+
+ element focal numero 1
+10
+12
+
+ element focal numero 2
+01
+21
+
+ element focal numero 3
+00
+02
+20
+22
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 1 8 
+ See Function : 0 2 
+ Gps : 1 
+fine_or_bribe 4
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 8
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 12
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 6
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 6
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 6
+
+
+Jeux 27
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+22
+
+ element focal numero 1
+21
+
+ element focal numero 2
+12
+
+ element focal numero 3
+11
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 4 6 
+ See Function : 1 0 
+ Gps : 1 
+fine_or_bribe 5
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 9
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+
+
+Jeux 28
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+21
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 8 5 
+ See Function : 1 2 
+ Gps : 0 
+fine_or_bribe 6
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 12
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 7
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 7
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 7
+
+
+Jeux 29
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+10
+
+ element focal numero 1
+11
+12
+
+ element focal numero 2
+00
+20
+
+ element focal numero 3
+01
+02
+21
+22
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 9 7 
+ See Function : 2 0 
+ Gps : 0 
+fine_or_bribe 4
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 8
+nombre de joueur dans le jeux local 3 : 10
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 5
+nombre de joueur dans le jeux local 7 : 4
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 5
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+
+
+Jeux 30
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+02
+
+ element focal numero 1
+01
+00
+
+ element focal numero 2
+12
+22
+
+ element focal numero 3
+11
+10
+21
+20
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 5 5 
+ See Function : 0 1 
+ Gps : 0 
+fine_or_bribe 6
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 6
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 10
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 6
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 7
+nombre de joueur dans le jeux local 8 : 7
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 6
+nombre de joueur dans le jeux local 12 : 6
+nombre de joueur dans le jeux local 13 : 4
+nombre de joueur dans le jeux local 14 : 7
+
+
+Jeux 31
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+21
+
+ element focal numero 1
+20
+22
+
+ element focal numero 2
+11
+
+ element focal numero 3
+10
+12
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 6 9 
+ See Function : 1 0 
+ Gps : 
+fine_or_bribe 2
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 8
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 5
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 5
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 4
+
+
+Jeux 32
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+11
+
+ element focal numero 1
+10
+12
+
+ element focal numero 2
+01
+21
+
+ element focal numero 3
+00
+02
+20
+22
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 1 5 
+ See Function : 2 0 
+ Gps : 0 
+fine_or_bribe 2
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 6
+nombre de joueur dans le jeux local 2 : 8
+nombre de joueur dans le jeux local 3 : 12
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 6
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 6
+nombre de joueur dans le jeux local 11 : 6
+
+
+Jeux 33
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+00
+
+ element focal numero 1
+01
+
+ element focal numero 2
+10
+
+ element focal numero 3
+11
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 6 3 
+ See Function : 1 2 
+ Gps : 0 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 9
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+
+
+Jeux 34
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+02
+
+ element focal numero 1
+01
+00
+
+ element focal numero 2
+12
+22
+
+ element focal numero 3
+11
+10
+21
+20
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 5 9 
+ See Function : 2 1 
+ Gps : 
+fine_or_bribe 6
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 6
+nombre de joueur dans le jeux local 7 : 8
+nombre de joueur dans le jeux local 8 : 5
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+nombre de joueur dans le jeux local 12 : 4
+nombre de joueur dans le jeux local 13 : 5
+
+
+Jeux 35
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+21
+
+ element focal numero 1
+20
+22
+
+ element focal numero 2
+11
+
+ element focal numero 3
+10
+12
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 7 8 
+ See Function : 1 2 
+ Gps : 1 
+fine_or_bribe 2
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 7
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 7
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 7
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 7
+
+
+Jeux 36
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+22
+
+ element focal numero 1
+21
+20
+
+ element focal numero 2
+12
+02
+
+ element focal numero 3
+11
+10
+01
+00
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 5 2 
+ See Function : 1 0 
+ Gps : 0 
+fine_or_bribe 2
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 6
+nombre de joueur dans le jeux local 2 : 8
+nombre de joueur dans le jeux local 3 : 12
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 6
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 6
+nombre de joueur dans le jeux local 11 : 6
+
+
+Jeux 37
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+00
+
+ element focal numero 1
+01
+02
+
+ element focal numero 2
+10
+20
+
+ element focal numero 3
+11
+12
+21
+22
+
+
+ Mass Function : 0.125 0.375 0.125 0.375 
+ Herds Value : 1 8 
+ See Function : 0 2 
+ Gps : 1 
+fine_or_bribe 6
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 7
+nombre de joueur dans le jeux local 2 : 5
+nombre de joueur dans le jeux local 3 : 9
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 5
+nombre de joueur dans le jeux local 5 : 7
+nombre de joueur dans le jeux local 6 : 5
+nombre de joueur dans le jeux local 7 : 4
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 5
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+nombre de joueur dans le jeux local 12 : 9
+nombre de joueur dans le jeux local 13 : 4
+
+
+Jeux 38
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+00
+
+ element focal numero 1
+01
+02
+
+ element focal numero 2
+10
+20
+
+ element focal numero 3
+11
+12
+21
+22
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 9 2 
+ See Function : 0 1 
+ Gps : 0 
+fine_or_bribe 5
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 9
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 5
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 7
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 5
+nombre de joueur dans le jeux local 11 : 5
+nombre de joueur dans le jeux local 12 : 9
+nombre de joueur dans le jeux local 13 : 4
+
+
+Jeux 39
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+11
+
+ element focal numero 1
+10
+12
+
+ element focal numero 2
+01
+21
+
+ element focal numero 3
+00
+02
+20
+22
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 4 6 
+ See Function : 1 2 
+ Gps : 
+fine_or_bribe 6
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 5
+nombre de joueur dans le jeux local 3 : 7
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 5
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 7
+nombre de joueur dans le jeux local 7 : 4
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+
+
+Jeux 40
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+02
+
+ element focal numero 1
+01
+00
+
+ element focal numero 2
+12
+22
+
+ element focal numero 3
+11
+10
+21
+20
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 9 7 
+ See Function : 0 1 
+ Gps : 0 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 6
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 10
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 6
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 7
+nombre de joueur dans le jeux local 8 : 7
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 6
+nombre de joueur dans le jeux local 12 : 6
+nombre de joueur dans le jeux local 13 : 4
+nombre de joueur dans le jeux local 14 : 7
+
+
+Jeux 41
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+21
+
+ element focal numero 1
+20
+22
+
+ element focal numero 2
+11
+
+ element focal numero 3
+10
+12
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 1 6 
+ See Function : 0 2 
+ Gps : 1 
+fine_or_bribe 3
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 12
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 8
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+
+
+Jeux 42
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+11
+
+ element focal numero 1
+10
+12
+
+ element focal numero 2
+01
+21
+
+ element focal numero 3
+00
+02
+20
+22
+
+
+ Mass Function : 0.125 0.375 0.125 0.375 
+ Herds Value : 5 7 
+ See Function : 0 2 
+ Gps : 1 
+fine_or_bribe 3
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 8
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 12
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 6
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 6
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 6
+
+
+Jeux 43
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+22
+
+ element focal numero 1
+21
+
+ element focal numero 2
+12
+
+ element focal numero 3
+11
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 4 6 
+ See Function : 0 1 
+ Gps : 0 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 9
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+
+
+Jeux 44
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+12
+
+ element focal numero 1
+11
+10
+
+ element focal numero 2
+02
+22
+
+ element focal numero 3
+01
+00
+21
+20
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 8 6 
+ See Function : 2 0 
+ Gps : 
+fine_or_bribe 2
+Le troupeau 0 est au lieu 1
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 6
+nombre de joueur dans le jeux local 3 : 8
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 6
+nombre de joueur dans le jeux local 7 : 8
+nombre de joueur dans le jeux local 8 : 5
+nombre de joueur dans le jeux local 9 : 4
+nombre de joueur dans le jeux local 10 : 4
+nombre de joueur dans le jeux local 11 : 4
+nombre de joueur dans le jeux local 12 : 4
+nombre de joueur dans le jeux local 13 : 5
+
+
+Jeux 45
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+02
+
+ element focal numero 1
+01
+00
+
+ element focal numero 2
+12
+22
+
+ element focal numero 3
+11
+10
+21
+20
+
+
+ Mass Function : 0.25 0.25 0.25 0.25 
+ Herds Value : 3 3 
+ See Function : 1 0 
+ Gps : 0 
+fine_or_bribe 5
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 2 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 0 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 6
+nombre de joueur dans le jeux local 2 : 7
+nombre de joueur dans le jeux local 3 : 10
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 6
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 4
+nombre de joueur dans le jeux local 8 : 4
+nombre de joueur dans le jeux local 9 : 7
+nombre de joueur dans le jeux local 10 : 7
+nombre de joueur dans le jeux local 11 : 6
+nombre de joueur dans le jeux local 12 : 6
+nombre de joueur dans le jeux local 13 : 4
+nombre de joueur dans le jeux local 14 : 7
+
+
+Jeux 46
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+21
+
+ element focal numero 1
+20
+22
+
+ element focal numero 2
+11
+
+ element focal numero 3
+10
+12
+
+
+ Mass Function : 0.0625 0.1875 0.1875 0.5625 
+ Herds Value : 1 8 
+ See Function : 1 2 
+ Gps : 1 
+fine_or_bribe 6
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 14
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 7
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 7
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 7
+nombre de joueur dans le jeux local 4 : 4
+nombre de joueur dans le jeux local 5 : 4
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 7
+
+
+Jeux 47
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+20
+
+ element focal numero 1
+21
+
+ element focal numero 2
+10
+
+ element focal numero 3
+11
+
+
+ Mass Function : 0.125 0.375 0.125 0.375 
+ Herds Value : 7 6 
+ See Function : 0 2 
+ Gps : 0 
+fine_or_bribe 1
+Le troupeau 0 est au lieu 2
+Le troupeau 1 est au lieu 0
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 8
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+
+
+Jeux 48
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+01
+
+ element focal numero 1
+00
+02
+
+ element focal numero 2
+11
+
+ element focal numero 3
+10
+12
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 6 4 
+ See Function : 2 1 
+ Gps : 
+fine_or_bribe 5
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 1
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 8
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 5
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 5
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+nombre de joueur dans le jeux local 4 : 5
+nombre de joueur dans le jeux local 5 : 5
+nombre de joueur dans le jeux local 6 : 4
+nombre de joueur dans le jeux local 7 : 4
+
+
+Jeux 49
+
+nb_location : 3
+nb_attacker : 2
+nb_defender : 2
+nb_herd : 2
+
+ element focal numero 0
+02
+
+ element focal numero 1
+01
+
+ element focal numero 2
+12
+
+ element focal numero 3
+11
+
+
+ Mass Function : 0.125 0.125 0.375 0.375 
+ Herds Value : 7 6 
+ See Function : 1 0 
+ Gps : 0 
+fine_or_bribe 2
+Le troupeau 0 est au lieu 0
+Le troupeau 1 est au lieu 2
+Du lieu : 0 on peut aller aux lieux : 1 
+Du lieu : 1 on peut aller aux lieux : 0 2 
+Du lieu : 2 on peut aller aux lieux : 1 
+
+ nombre de joueurs crees : 10
+Nombre de joueur dans les jeux locaux de la transfo direct : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+Nombre de joueur dans les jeux locaux de la transfo conditionnee : 
+nombre de joueur dans le jeux local 0 : 4
+nombre de joueur dans le jeux local 1 : 4
+nombre de joueur dans le jeux local 2 : 4
+nombre de joueur dans le jeux local 3 : 4
+
+

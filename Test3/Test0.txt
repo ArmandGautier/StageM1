@@ -1,0 +1,52 @@
+ nb_lieu : 3 nb_troupeau : 2 nb_attaquant : 2 nb defender : 2
+ indice_jeu, tps_dtransfo, tps_ctransfo, equi_dt, equi_ct
+Jeux0, 37.0, 35.0, true, true, 
+Jeux1, 52.0, 51.0, false, false, 
+Jeux2, 31.0, 29.0, true, true, 
+Jeux3, jeux local trop important, pas calcule
+Jeux4, jeux local trop important, pas calcule
+Jeux5, Not compute, 1747.0, Not compute, false, 
+Jeux6, Not compute, 31818.0, Not compute, false, 
+Jeux7, 251.0, 281.0, false, false, 
+Jeux8, Not compute, 268.0, Not compute, false, 
+Jeux9, jeux local trop important, pas calcule
+Jeux10, 1193.0, 1179.0, true, true, 
+Jeux11, 46.0, 36.0, false, false, 
+Jeux12, 18.0, 17.0, true, true, 
+Jeux13, 45.0, 46.0, false, false, 
+Jeux14, 2276.0, 2303.0, true, true, 
+Jeux15, 237.0, 463.0, true, true, 
+Jeux16, 4001.0, 2894.0, false, false, 
+Jeux17, 45817.0, 30695.0, false, false, 
+Jeux18, 417.0, 426.0, true, true, 
+Jeux19, jeux local trop important, pas calcule
+Jeux20, 36.0, 35.0, false, false, 
+Jeux21, Not compute, 290.0, Not compute, false, 
+Jeux22, 48480.0, 10009.0, false, false, 
+Jeux23, 9117.0, 4688.0, false, false, 
+Jeux24, 56136.0, 35044.0, false, false, 
+Jeux25, 336.0, 486.0, false, false, 
+Jeux26, 30.0, 31.0, false, false, 
+Jeux27, 519.0, 677.0, false, false, 
+Jeux28, jeux local trop important, pas calcule
+Jeux29, 282.0, 236.0, true, true, 
+Jeux30, 9210.0, 4485.0, false, false, 
+Jeux31, 20.0, 20.0, true, true, 
+Jeux32, 11520.0, 8171.0, false, false, 
+Jeux33, 48982.0, 34853.0, false, false, 
+Jeux34, Not compute, 87.0, Not compute, true, 
+Jeux35, 49987.0, 29918.0, false, false, 
+Jeux36, 29.0, 28.0, false, false, 
+Jeux37, jeux local trop important, pas calcule
+Jeux38, jeux local trop important, pas calcule
+Jeux39, 30.0, 30.0, false, false, 
+Jeux40, jeux local trop important, pas calcule
+Jeux41, 967.0, 665.0, false, false, 
+Jeux42, 39.0, 39.0, false, false, 
+Jeux43, 28.0, 28.0, false, false, 
+Jeux44, Not compute, 196.0, Not compute, false, 
+Jeux45, 408.0, 889.0, true, true, 
+Jeux46, 67.0, 109.0, false, false, 
+Jeux47, Not compute, 316.0, Not compute, false, 
+Jeux48, 30.0, 30.0, false, false, 
+Jeux49, Not compute, 36696.0, Not compute, false, 
