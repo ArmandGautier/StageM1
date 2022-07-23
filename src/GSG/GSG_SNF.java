@@ -342,7 +342,9 @@ public class GSG_SNF extends GSG {
 					}
 					
 					else {
-						changement_action_pour_k = changement_action_pour_k/this.possible_actions.get(k).size();
+						if ( k < this.nb_player-1 ) {
+							changement_action_pour_k = changement_action_pour_k/this.possible_actions.get(k).size();
+						}
 					}
 			    }
 			}

@@ -82,34 +82,22 @@ public class Generateur {
 		return res;
 	}
 	
-	public ArrayList<Bel_GSG_Direct_Transform> generate_Bel_GSG_Direct_Transform(ArrayList<Universe> universes, String attacker_utility, String defender_utility, String method) {
-		ArrayList<Bel_GSG_Direct_Transform> res = new ArrayList<Bel_GSG_Direct_Transform>();
-		for (Universe universe : universes) {
-			Bel_GSG_Direct_Transform game = new Bel_GSG_Direct_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, universe.getSee_function(), universe.getGps());
-			game.calcul_val();
-			res.add(game);
-		}
-		return res;
+	public Bel_GSG_Direct_Transform generate_Bel_GSG_Direct_Transform(Universe universe, String attacker_utility, String defender_utility, String method) {
+		Bel_GSG_Direct_Transform game = new Bel_GSG_Direct_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, universe.getSee_function(), universe.getGps());
+		game.calcul_val();
+		return game;
 	}
 	
-	public ArrayList<Bel_GSG_TBM_Transform> Bel_GSG_TBM_Transform(ArrayList<Universe> universes, String attacker_utility, String defender_utility) {
-		ArrayList<Bel_GSG_TBM_Transform> res = new ArrayList<Bel_GSG_TBM_Transform>();
-		for (Universe universe : universes) {
-			Bel_GSG_TBM_Transform game = new Bel_GSG_TBM_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), universe.getSee_function(), universe.getGps());
-			game.calcul_val();
-			res.add(game);
-		}
-		return res;
+	public Bel_GSG_TBM_Transform generate_Bel_GSG_TBM_Transform(Universe universe, String attacker_utility, String defender_utility) {
+		Bel_GSG_TBM_Transform game = new Bel_GSG_TBM_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), universe.getSee_function(), universe.getGps());
+		game.calcul_val();
+		return game;
 	}
 	
-	public ArrayList<Bel_GSG_Conditionned_Transform> Bel_GSG_Conditionned_Transform(ArrayList<Universe> universes, String attacker_utility, String defender_utility, String method) {
-		ArrayList<Bel_GSG_Conditionned_Transform> res = new ArrayList<Bel_GSG_Conditionned_Transform>();
-		for (Universe universe : universes) {
-			Bel_GSG_Conditionned_Transform game = new Bel_GSG_Conditionned_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, universe.getSee_function(), universe.getGps());
-			game.calcul_val();
-			res.add(game);
-		}
-		return res;
+	public Bel_GSG_Conditionned_Transform generate_Bel_GSG_Conditionned_Transform(Universe universe, String attacker_utility, String defender_utility, String method) {
+		Bel_GSG_Conditionned_Transform game = new Bel_GSG_Conditionned_Transform(universe.getNb_attacker(), universe.getNb_defender(), attacker_utility, defender_utility, universe.getPossible_actions(), universe.getHerd_value(), universe.getFine_or_bribe(), universe.getNb_location(), universe.getFocal_elements(), universe.getMass_function(), method, universe.getSee_function(), universe.getGps());
+		game.calcul_val();
+		return game;
 	}
 	
 	

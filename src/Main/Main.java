@@ -42,30 +42,24 @@ public class Main {
 	public static void main(String[] args) {
 	
 		Generateur g = new Generateur();
-		
-		ArrayList<Universe> universes = g.generateUniverseForBel_Gsg(3, 2, 2, 1, 10);
-		
+		int nb_location = 3;
+		ArrayList<Universe> universes = g.generateUniverseForBel_Gsg(nb_location, 3, 2, 2, 50);
 		String uti_att = "Team-poach and bribe";
 		String uti_def = "captor";
 		String method = "CEU";
 		
-		//ArrayList<Bel_GSG_SNF> gsg = g.generate_Bel_GSG_SNF(universes, uti_att, uti_def, method);
-		ArrayList<Bel_GSG_Direct_Transform> dTransfo = g.generate_Bel_GSG_Direct_Transform(universes, uti_att, uti_def, method);
-		ArrayList<Bel_GSG_Conditionned_Transform> cTransfo = g.Bel_GSG_Conditionned_Transform(universes, uti_att, uti_def, method);
-		//ArrayList<Bel_GSG_TBM_Transform> tbmTransfo = g.Bel_GSG_TBM_Transform(universes, uti_att, uti_def);
-		
 		try {
-		    File file = new File("Test_condVSdir_CEU_6.txt");
-		    File file2 = new File("Info_jeux_Test_condVSdir_CEU_6.txt");
+		    File file = new File("Test6.csv");
+		    File file2 = new File("Info_jeux_Test6.txt");
 		    String content = "";
 	
 		    if (!file.exists()) {
-		     file.createNewFile();
+		      file.createNewFile();
 		    }
 		    
 		    if (!file2.exists()) {
-			     file2.createNewFile();
-			    }
+		      file2.createNewFile();
+			}
 	
 		    FileWriter fw = new FileWriter(file.getAbsoluteFile(),true);
 		    BufferedWriter bw = new BufferedWriter(fw);
@@ -73,73 +67,91 @@ public class Main {
 		    FileWriter fw2 = new FileWriter(file2.getAbsoluteFile(),true);
 		    BufferedWriter bw2 = new BufferedWriter(fw2);
 		    
-		    content = " indice_jeu, tps_dtransfo, tps_ctransfo, equi_dt, equi_ct\n";
+		    content = " indice_jeu, tps_dtransfo, tps_ctransfo, equi_dt, equi_ct, classe,";
+		    content += " t_moy_elt_foc, t_max_elt_foc, nb_gps, nb_depl_herd, moy_arc_observe, max_arc_observe, nb_joueurs, nb_jeux_loc_dt, moy_j_by_g_dt, max_j_by_g_dt, nb_jeux_loc_ct, moy_j_by_g_ct, max_j_by_g_ct\n";
 		    bw.write(content);
 		    
-			//double time1 = 0;
 			double time2 = 0;
 			double time3 = 0;
-			//double time4 = 0;
 			int size = 0;
 			int ind_jeux_local;
 			boolean ok2;
 			boolean ok3;
 		    
-			for (int i=0; i<10; i++) {
+			for (int i=0; i<50; i++) {
 				   
 				System.out.println("JEUX "+i);
 				
-				//ArrayList<int[]> profils = gsg.get(i).getProfiles();
-				//ArrayList<float[]> utilites = gsg.get(i).getUtilities();
-				Map<Integer, ArrayList<int[]>> profils2 = dTransfo.get(i).getProfils();
-				Map<Integer, ArrayList<float[]>> utilites2 = dTransfo.get(i).getUtilites();
-				Map<Integer, ArrayList<int[]>> profils3 = cTransfo.get(i).getProfils();
-				Map<Integer, ArrayList<float[]>> utilites3 = cTransfo.get(i).getUtilites();
-				//Map<Integer, ArrayList<int[]>> profils4 = tbmTransfo.get(i).getProfils();
-				//Map<Integer, ArrayList<float[]>> utilites4 = tbmTransfo.get(i).getUtilites();
+				Bel_GSG_Direct_Transform dTransfo = g.generate_Bel_GSG_Direct_Transform(universes.get(i), uti_att, uti_def, method);
+				Bel_GSG_Conditionned_Transform cTransfo = g.generate_Bel_GSG_Conditionned_Transform(universes.get(i), uti_att, uti_def, method);
 				
-				ArrayList<ArrayList<Integer>> player_by_game2 = dTransfo.get(i).getPlayer_by_game();
-				ArrayList<ArrayList<Integer>> player_by_game3 = cTransfo.get(i).getPlayer_by_game();
-				//ArrayList<ArrayList<Integer>> player_by_game4 = tbmTransfo.get(i).getPlayer_by_game();
+				Map<Integer, ArrayList<int[]>> profils2 = dTransfo.getProfils();
+				Map<Integer, ArrayList<float[]>> utilites2 = dTransfo.getUtilites();
+				Map<Integer, ArrayList<int[]>> profils3 = cTransfo.getProfils();
+				Map<Integer, ArrayList<float[]>> utilites3 = cTransfo.getUtilites();
 				
-				size = dTransfo.get(i).getNodes().size();
+				ArrayList<ArrayList<Integer>> player_by_game2 = dTransfo.getPlayer_by_game();
+				ArrayList<ArrayList<Integer>> player_by_game3 = cTransfo.getPlayer_by_game();
+				
+				size = dTransfo.getNodes().size();
+				
+				float moy1 = 0;
+				float moy2 = 0;
+				int max1 = 0;
+				int max2 = 0;
 				
 				ok2 = true;
 				for ( ArrayList<Integer> nb_player : player_by_game2) {
-					if (nb_player.size() > 8) {
+					moy1 += nb_player.size();
+					if (nb_player.size() > max1) {
+						max1 = nb_player.size();
+					}
+					if (nb_player.size() > 11-nb_location) {
 						ok2 = false;
-						break;
 					}
 				}
+				moy1 = moy1/player_by_game2.size();
+				
 				ok3 = true;
 				for ( ArrayList<Integer> nb_player : player_by_game3) {
-					if (nb_player.size() > 8) {
+					moy2 += nb_player.size();
+					if (nb_player.size() > max2) {
+						max2 = nb_player.size();
+					}
+					if (nb_player.size() > 11-nb_location) {
 						ok3 = false;
-						break;
 					}
 				}
+				moy2 = moy2/player_by_game3.size();
 				
 				if (ok2) {
-				
-					//Trabelsi_model trabel = new Trabelsi_model(profils,utilites);
+					
 					Trabelsi_for_hypergraphical_games trabel2 = new Trabelsi_for_hypergraphical_games(profils2,utilites2,player_by_game2,size);
 					Trabelsi_for_hypergraphical_games trabel3 = new Trabelsi_for_hypergraphical_games(profils3,utilites3,player_by_game3,size);
-					//Trabelsi_for_hypergraphical_games trabel4 = new Trabelsi_for_hypergraphical_games(profils4,utilites4,player_by_game4,size);
 					
-					//trabel.construct_model();
 					trabel2.construct_model();
 					trabel3.construct_model();
-					//trabel4.construct_model();
 					
-					//time1 += trabel.get_solving_time();
 					time2 = trabel2.get_solving_time();
 					time3 = trabel3.get_solving_time();
-					//time4 += trabel4.get_solving_time();
+					int classe;
+					
+					if (time2 > 2*time3) {
+						classe = 4;
+					}
+					else {
+						if ( time3 > 2*time2) {
+							classe = 3;
+						}
+						else {
+							classe = 2;
+						}
+					}
 					
 					boolean equi1 = trabel2.equilibrium();
 					boolean equi2 = trabel3.equilibrium();
 					
-					content = "Jeux" + i + ", "+time2+", "+time3+", "+equi1+", "+equi2+", "+"\n";
+					content = "Jeux" + i + ", "+time2+", "+time3+", "+equi1+", "+equi2+", "+classe+", ";
 					bw.write(content);
 					
 				}
@@ -151,11 +163,11 @@ public class Main {
 						time3 = trabel3.get_solving_time();
 						boolean equi2 = trabel3.equilibrium();
 						
-						content = "Jeux" + i + ", "+"Not compute"+", "+time3+", "+"Not compute"+", "+equi2+", "+"\n";
+						content = "Jeux" + i + ", "+"Not compute"+", "+time3+", "+"Not compute"+", "+equi2+", "+1+", ";
 						bw.write(content);
 					}
 					else {
-						content = "Jeux" + i + ", jeux local trop important, pas calculé\n";
+						content = "Jeux" + i + ", "+"Not compute"+", "+"Not compute"+", "+"Not compute"+", "+"Not compute"+", "+0+", ";
 						bw.write(content);
 					}
 				}
@@ -176,6 +188,7 @@ public class Main {
 			    	ind_jeux_local++;
 				}
 				bw2.write("\n\n");
+				bw.write(universes.get(i).toCSV()+", "+size+", "+player_by_game2.size()+", "+moy1+", "+max1+", "+player_by_game3.size()+", "+moy2+", "+max2+"\n");
 			}
 			bw.close();
 			bw2.close();

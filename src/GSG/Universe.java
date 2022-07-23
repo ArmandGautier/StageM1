@@ -71,7 +71,6 @@ public class Universe {
 			boolean isChipped = random.nextBoolean();
 			if (isChipped) {
 				herdChipped.add(t);
-				break;
 			}
 		}
 		
@@ -232,6 +231,36 @@ public class Universe {
 		res += "fine_or_bribe " +this.fine_or_bribe;
 		res += "\n";
 		res += this.site.getGraphe();
+		return res;
+	}
+	
+	public String toCSV() {
+		String res = "";
+		float moy = 0;
+		int max = 0;
+		for (int i=0; i<this.focal_elements.size(); i++) { 
+			moy += this.focal_elements.get(i).length;
+			if ( this.focal_elements.get(i).length > max ) {
+				max = this.focal_elements.get(i).length;
+			}
+		}
+		moy = moy/this.focal_elements.size();
+		res += " "+moy+", "+max+", "+this.gps.length;
+		int nb_herd_moove = 0;
+		for (int i=0; i<this.nb_herd; i++) {
+			nb_herd_moove += this.site.graphe.get(this.site.herdLocation[i]).size();
+		}
+		res += ", "+nb_herd_moove;
+		moy = 0;
+		max = 0;
+		for (int i=0; i<this.nb_attacker; i++) { 
+			moy += this.site.graphe.get(this.see_function[i]).size();
+			if ( this.site.graphe.get(this.see_function[i]).size() > max ) {
+				max = this.site.graphe.get(this.see_function[i]).size();
+			}
+		}
+		moy = moy/this.nb_attacker;
+		res += ", "+moy+", "+max;
 		return res;
 	}
 

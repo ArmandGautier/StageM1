@@ -82,8 +82,10 @@ public class Site {
 	    for (int k=0; k < this.nb_herd; k++) {
 	    	mooveOfHerd.add("Stay");
 	    }
-	    
-	    int nb_focal_element = (int) (Math.pow(2, this.nb_herd));
+	    int nb_focal_element = 1;
+	    if (this.nb_location > 1 ) {
+	    	nb_focal_element = (int) (Math.pow(2, this.nb_herd));
+	    }
 	    this.mass_function = new float[nb_focal_element];
 	    
 		for (int i=0; i < nb_focal_element; i++) {
@@ -106,7 +108,6 @@ public class Site {
 					}
 			    }
 			}
-			
 			focal_elements.add(giveFocalElement(mooveOfHerd));
 			float val = 1;
 			for (int t=0; t<this.nb_herd; t++) {
@@ -148,17 +149,9 @@ public class Site {
 	    }
 		
 		for (int i=0; i<nbPossibleOmega; i++) {
-			int index=0;
-			while (index < this.nb_herd-1 ) {
-				if (locationPossible.get(index).size() > 1) {
-					break;
-				}
-				index++;
-			}
-			int changement_action_pour_k = nbPossibleOmega/locationPossible.get(index).size();
+			int changement_action_pour_k = nbPossibleOmega/locationPossible.get(0).size();
 			if (i != 0) {
 			    for (int k=0; k < this.nb_herd; k++) {
-			    	
 					if (Math.floorMod(i,changement_action_pour_k) == 0) {
 						if (locationPossible.get(k).size() > 1) {
 							int a = possibleHerdLocation.get(k);
@@ -172,7 +165,9 @@ public class Site {
 					}
 					
 					else {
-						changement_action_pour_k = changement_action_pour_k/locationPossible.get(k).size();
+						if ( k < this.nb_herd-1 ) {
+							changement_action_pour_k = changement_action_pour_k/locationPossible.get(k+1).size();
+						}
 					}
 			    }
 			}
