@@ -34,7 +34,7 @@ public class Test_model {
 			   
 			   if (first) {
 				   //content = "Nb_joueur, Nb_actions, nb_sol_t1, nb_sol_t2\n";
-				   content = "Nb_joueur, Nb_actions, daska_s, trabel_s, gilpin, daska_s&c, trabel_s&c, gilpin_s&c, nb_equilibre\n";
+				   content = "Nb_joueur, Nb_actions, daska_s, trabel_s, daska_s&c, trabel_s&c, nb_equilibre\n";
 				   bw.write(content);
 			   }
 			   
@@ -56,16 +56,16 @@ public class Test_model {
 				   ArrayList<int[]> act = gsg.getProfiles();
 				   ArrayList<float[]> uti = gsg.getUtilities();
 				   Daskalakis_model m1 = new Daskalakis_model(act,uti);
-				   Gilpin_model m2 = new Gilpin_model(act,uti);
+				   //Gilpin_model m2 = new Gilpin_model(act,uti);
 				   Trabelsi_without_objective m2_bis = new Trabelsi_without_objective(act,uti);
 					 
 				   m1.construct_model();
 				   time1 += m1.get_solving_time();
 				   total_time1 += m1.get_construction_and_solving_time();
 					 
-				   m2.construct_model();
+				  /*m2.construct_model();
 				   time2 += m2.get_solving_time();
-				   total_time2 += m2.get_construction_and_solving_time();
+				   total_time2 += m2.get_construction_and_solving_time();*/
 				   //nb_sol1 += m2.getNb_sol();
 					 
 				   m2_bis.construct_model();
@@ -74,7 +74,7 @@ public class Test_model {
 				   //nb_sol2 += m2_bis.getNb_sol();
 				   
 				   if ( m1.equilibrium() ) {
-					   if ( m2_bis.equilibrium() && m2.equilibrium() ) {
+					   if ( m2_bis.equilibrium() ) {
 					   		nb_equilibrium++;
 					   }
 					   else {
@@ -84,7 +84,7 @@ public class Test_model {
 				
 			  }
 			   
-			  content = nb_joueur+", "+nb_action+", "+time1/nb_jeux+", "+time2_bis/nb_jeux+" ,"+time2/nb_jeux+" ,"+ total_time1/nb_jeux+", "+total_time2_bis/nb_jeux+ " ,"+total_time2/nb_jeux+ " ,"+nb_equilibrium +"\n";
+			  content = nb_joueur+", "+nb_action+", "+time1/nb_jeux+", "+time2_bis/nb_jeux+", "+ total_time1/nb_jeux+", "+total_time2_bis/nb_jeux+" ,"+nb_equilibrium +"\n";
 			  bw.write(content);
 			  bw.close();
 

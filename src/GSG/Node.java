@@ -4,6 +4,7 @@ public class Node {
 	
 	private int indexPlayer;
 	private Type type;
+	
 	/**
 	 * @param indexPlayer
 	 * @param type
@@ -12,6 +13,7 @@ public class Node {
 		this.indexPlayer = indexPlayer;
 		this.type = type;
 	}
+	
 	/**
 	 * @return the indexPlayer
 	 */

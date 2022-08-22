@@ -43,14 +43,14 @@ public class Main {
 	
 		Generateur g = new Generateur();
 		int nb_location = 3;
-		ArrayList<Universe> universes = g.generateUniverseForBel_Gsg(nb_location, 3, 2, 2, 50);
+		ArrayList<Universe> universes = g.generateUniverseForBel_Gsg(nb_location, 2, 2, 2, 50);
 		String uti_att = "Team-poach and bribe";
 		String uti_def = "captor";
 		String method = "CEU";
 		
 		try {
-		    File file = new File("Test6.csv");
-		    File file2 = new File("Info_jeux_Test6.txt");
+		    File file = new File("Test8.csv");
+		    File file2 = new File("Info_jeux_Test8.txt");
 		    String content = "";
 	
 		    if (!file.exists()) {
