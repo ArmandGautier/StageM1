@@ -5,9 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.TreeMap;
 
 import Methods.MethodForAttacker;
 import Methods.MethodForDefender;
@@ -23,7 +22,7 @@ public class GSG_SNF extends GSG {
 	/**
 	 * representation of the game with profiles and utility value
 	 */
-	protected Map<Profile,float[]> matrixOfGame = new HashMap<>();
+	protected TreeMap<Profile,float[]> matrixOfGame = new TreeMap<>();
 	
 	/**
 	 * the number of profile possible
@@ -185,7 +184,7 @@ public class GSG_SNF extends GSG {
 	/**
 	 * @return the matrixOfGame
 	 */
-	public Map<Profile, float[]> getMatrixOfGame() {
+	public TreeMap<Profile, float[]> getMatrixOfGame() {
 		return matrixOfGame;
 	}
 

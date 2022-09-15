@@ -32,10 +32,14 @@ public class CEU extends XEU {
 	@Override
 	public float computeVal(Node player, ArrayList<Integer> playersAction, int localIndexPlayer, BEL_GSG parentGame, ArrayList<ArrayList<Boolean>> play_in_omega) {
 		float min = Float.MAX_VALUE;
+		float res = 0;
 		int index_omega=0;
+		int index_focalElt=0;
+		boolean hasPlay = false;
 		for (int[][] focalElement : parentGame.getFocal_element()) {
 			for (int[] omega : focalElement) {
 				if ( play_in_omega.get(index_omega).get(localIndexPlayer) ) {
+					hasPlay = true;
 					Profile profile = computeProfile(index_omega,playersAction,parentGame,play_in_omega);
 					int indiceGSG = parentGame.getIndexOfGSG(omega);
 					GSG_SNF gsg = parentGame.getGsg_snf().get(indiceGSG);
@@ -46,8 +50,14 @@ public class CEU extends XEU {
 				}
 				index_omega++;
 			}
+			if ( hasPlay ) {
+				res += min * parentGame.getMass_function()[index_focalElt] * parentGame.computeK(player);
+				hasPlay = false;
+				min = Float.MAX_VALUE;
+			}
+			index_focalElt++;
 		}
-		return min;
+		return res;
 	}
 
 }

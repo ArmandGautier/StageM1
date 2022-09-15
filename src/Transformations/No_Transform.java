@@ -1,8 +1,7 @@
 package Transformations;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.TreeMap;
 
 import Games.BEL_GSG;
 import Tools.Node;
@@ -15,7 +14,7 @@ public class No_Transform extends Transformation{
 		
 		int dimension = 1;
 		ArrayList<ArrayList<Boolean>> play_in_omega = new ArrayList<ArrayList<Boolean>>();
-		Map<Profile,float[]> matrixOfGame = new HashMap<>();
+		TreeMap<Profile, float[]> matrixOfGame = new TreeMap<>();
 		
 		for (Node joueur : parentGame.getNodes()) {
 			dimension = dimension * parentGame.getPossibleActions().get(joueur.getIndexPlayer()).size();
@@ -51,18 +50,18 @@ public class No_Transform extends Transformation{
 					if (Math.floorMod(i,changeAction) == 0) {
 						
 						int choiceOf_k = playersAction.get(k);
-						int cuurentIndex = parentGame.getPossibleActions().get(k).indexOf(choiceOf_k);
-						playersAction.set(k, parentGame.getPossibleActions().get(k).get(cuurentIndex+1));
+						int cuurentIndex = parentGame.getPossibleActions().get(parentGame.getNodes().get(k).getIndexPlayer()).indexOf(choiceOf_k);
+						playersAction.set(k, parentGame.getPossibleActions().get(parentGame.getNodes().get(k).getIndexPlayer()).get(cuurentIndex+1));
 						
 					    for (int l=k+1; l < parentGame.getNodes().size(); l++) {
-					    	playersAction.set(l,parentGame.getPossibleActions().get(l).get(0));
+					    	playersAction.set(l,parentGame.getPossibleActions().get(parentGame.getNodes().get(l).getIndexPlayer()).get(0));
 					    }
 					    break;
 					}
 					
 					else {
 						if ( k < parentGame.getNodes().size()-1 ) {
-							changeAction = changeAction/parentGame.getPossibleActions().get(k+1).size();
+							changeAction = changeAction/parentGame.getPossibleActions().get(parentGame.getNodes().get(k).getIndexPlayer()).size();
 						}
 					}
 			    }

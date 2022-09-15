@@ -2,7 +2,7 @@ package Tools;
 
 import java.util.ArrayList;
 
-public class Profile {
+public class Profile implements Comparable<Object> {
 	
 	int[] actions;
 
@@ -45,6 +45,10 @@ public class Profile {
 		return false;
 	}
 	
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
+	
 	/**
 	 * @return actions of profile
 	 */
@@ -58,6 +62,24 @@ public class Profile {
 			res += " " + action+" ";
 		}
 		return res;
+	}
+
+	@Override
+	public int compareTo(Object obj) {
+		
+		if (obj instanceof Profile) {
+			int[] a1 = this.actions;
+			int[] a2 = ((Profile) obj).getActions();
+			for (int i = 0; i<a1.length; i++) {
+				if ( a1[i] < a2[i] ) {
+					return -1;
+				}
+				if ( a1[i] > a2[i] ) {
+					return 1;
+				}
+			}
+		}
+		return 0;
 	}
 
 }

@@ -1,8 +1,7 @@
 package Local_Game_for_BEL_GSG;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.TreeMap;
 
 import Games.BEL_GSG;
 import Tools.Node;
@@ -11,11 +10,11 @@ import Tools.Profile;
 public abstract class Local_Game {
 	
 	/**
-	 * the list of player who plays in at least omega that belongs to focal_elt
+	 * the list of player who plays in at least omega that belongs to this game
 	 */
 	protected ArrayList<Node> listPlayer = new ArrayList<Node>();
 	/**
-	 * for each omega that belongs to focal_elt, give a list of boolean to know if player's plays or not in omega
+	 * for each omega that belongs to this game, give a list of boolean to know if player plays or not in omega
 	 */
 	protected ArrayList<ArrayList<Boolean>> play_in_omega = new ArrayList<ArrayList<Boolean>>();
 	/**
@@ -33,7 +32,7 @@ public abstract class Local_Game {
 	/**
 	 * representation of the game with profiles and utility value
 	 */
-	protected Map<Profile,float[]> matrixOfGame = new HashMap<>();
+	protected TreeMap<Profile,float[]> matrixOfGame = new TreeMap<>();
 	
 	/**
 	 * @param focal_elt
@@ -71,7 +70,7 @@ public abstract class Local_Game {
 	/**
 	 * @return the matrixOfGame
 	 */
-	public Map<Profile, float[]> getMatrixOfGame() {
+	public TreeMap<Profile, float[]> getMatrixOfGame() {
 		return matrixOfGame;
 	}
 	

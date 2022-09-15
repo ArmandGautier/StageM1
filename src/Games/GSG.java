@@ -85,7 +85,7 @@ public abstract class GSG extends Game {
 	}
 	
 	/**
-	 * compute utilies of the game
+	 * compute utilities of the game
 	 */
 	public abstract void computeUtilities();
 	
@@ -98,6 +98,7 @@ public abstract class GSG extends Game {
 	
 	/**
 	 * @param filename
+	 * write profiles and corresponding utilities in the file "filename"
 	 */
 	public abstract void writeInFile(String filename);
 	

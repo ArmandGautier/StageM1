@@ -5,9 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.TreeMap;
 
 import Games.BEL_GSG;
 import Tools.Profile;
@@ -17,7 +16,7 @@ public abstract class Transformation {
 	/**
 	 * the representation of the game
 	 */
-	protected Map<Integer, Map<Profile,float[]>> game = new HashMap<>();
+	protected TreeMap<Integer, TreeMap<Profile,float[]>> game = new TreeMap<>();
 	/**
 	 * a list of list who give all players who play in a local game
 	 */
@@ -142,7 +141,7 @@ public abstract class Transformation {
 	/**
 	 * @return the game
 	 */
-	public Map<Integer, Map<Profile, float[]>> getGame() {
+	public TreeMap<Integer, TreeMap<Profile, float[]>> getGame() {
 		return game;
 	}
 
@@ -153,8 +152,8 @@ public abstract class Transformation {
 		return player_by_game;
 	}
 
-	public Map<Integer, ArrayList<int[]>> getProfilesForCplex() {
-		Map<Integer, ArrayList<int[]>> gamesProfiles = new HashMap<>();
+	public TreeMap<Integer, ArrayList<int[]>> getProfilesForCplex() {
+		TreeMap<Integer, ArrayList<int[]>> gamesProfiles = new TreeMap<>();
 		for (Integer localGame : this.game.keySet()) {
 			ArrayList<int[]> res = new ArrayList<>();
 			for ( Profile p : this.game.get(localGame).keySet()) {
@@ -165,8 +164,8 @@ public abstract class Transformation {
 		return gamesProfiles;
 	}
 	
-	public Map<Integer, ArrayList<float[]>> getUtilitiesForCplex() {
-		Map<Integer, ArrayList<float[]>> gamesUtilities = new HashMap<>();
+	public TreeMap<Integer, ArrayList<float[]>> getUtilitiesForCplex() {
+		TreeMap<Integer, ArrayList<float[]>> gamesUtilities = new TreeMap<>();
 		for (Integer localGame : this.game.keySet()) {
 			ArrayList<float[]> res = new ArrayList<>();
 			for ( float[] u : this.game.get(localGame).values() ) {
